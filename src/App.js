@@ -1,11 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from "react";
+import { Text, View } from "react-native";
 
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import type { Node } from 'react';
 import {
@@ -28,6 +24,14 @@ import Login from "./components/Login";
 
 const App = props => {
   return (<Login />);
+=======
+const App = props => {
+    return (
+        <View>
+            <Text>Hello there!</Text>
+        </View>
+    );
+>>>>>>> login
 };
 
 export default App;
