@@ -1,6 +1,7 @@
 {
-  "name": "src",
+  "name": "Reel Dating",
   "version": "0.0.1",
+  "main": "src/index.js",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
