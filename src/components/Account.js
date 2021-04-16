@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 import {
-	SafeAreaView,
-	ScrollView,
-	StatusBar,
 	StyleSheet,
 	Text,
-	useColorScheme,
 	ImageBackground,
 	View,
 	Image,
 	TextInput,
-	AppRegistry,
-	TouchableHighlight,
 	TouchableOpacity,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,7 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 Stack.Navigator.defaultProps = {
-    headerMode: 'none',
+	headerMode: 'none',
 };
 
 const Account = props => {
@@ -49,9 +43,6 @@ const Accountpt1 = ({ navigation }) => {
 				/>
 				<View style={page.box}>
 					<View style={page.form}>
-						<TouchableOpacity>
-                            <Text style={page.return}>Returning User? Login Here!</Text>
-                        </TouchableOpacity>
 						<Text style={page.title}>Create Account</Text>
 						<View style={page.form_content}>
 							<TextInput
@@ -72,6 +63,9 @@ const Accountpt1 = ({ navigation }) => {
 								<View style={page.login_button}>
 									<Text style={page.login_text}>Continue</Text>
 								</View>
+							</TouchableOpacity>
+							<TouchableOpacity>
+							<	Text style={page.return}>Returning User? Login Here!</Text>
 							</TouchableOpacity>
 						</View>
 					</View>
@@ -96,22 +90,22 @@ const Accountpt2 = props => {
 						<View style={page.form_content}>
 							<TextInput
 								style={page.login}
-								onChangeText={text => setUser(text)}
-								value={num}
+								onChangeText={text => setFirst(text)}
+								value={first}
 								placeholder="First Name"
 								placeholderTextColor="black"
 							/>
 							<TextInput
 								style={page.login}
-								onChangeText={text => setPass(text)}
-								value={first}
+								onChangeText={text => setLast(text)}
+								value={last}
 								placeholder="Last Name"
 								placeholderTextColor="black"
 							/>
 							<TextInput
 								style={page.login}
-								onChangeText={text => setPass(text)}
-								value={first}
+								onChangeText={text => setNum(text)}
+								value={num}
 								placeholder="Phone Number"
 								placeholderTextColor="black"
 								keyboardType={'number-pad'}
@@ -169,11 +163,14 @@ const page = StyleSheet.create({
 		fontSize: 22,
 	},
 	form: {
-		backgroundColor: "#003333",
+		backgroundColor: "transparent",
+		borderColor: "white",
+		borderStyle: "solid",
+		borderWidth: 2,
+		borderRadius: 8,
 		padding: "5%",
 		paddingBottom: "1%",
 		marginTop: "1%",
-		borderRadius: 8,
 		width: "70%",
 		flexWrap: "wrap",
 		flexDirection: "column",
@@ -204,9 +201,10 @@ const page = StyleSheet.create({
 		textAlign: "center",
 	},
 	return: {
-		textAlign: 'center',
-		color: 'white',
-		opacity: 0.6
+		textAlign: "center",
+		color: "white",
+		opacity: 0.6,
+		textDecorationLine: "underline",
 	},
 });
 
