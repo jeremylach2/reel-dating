@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import 'react-native-gesture-handler';
+import React, { Component } from "react";
+import "react-native-gesture-handler";
 import {
     StyleSheet,
     Text,
@@ -9,13 +9,13 @@ import {
     TextInput,
     TouchableNativeFeedback,
     Dimensions,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 Stack.Navigator.defaultProps = {
-    //headerMode: 'none',
+    //headerMode: "none",
 };
 
 const Settings = props => {
@@ -28,7 +28,7 @@ const Settings = props => {
                     options={{
                         title: "Profile Settings",
                         headerTitleStyle: { alignSelf: "center" },
-                        headerStyle: { backgroundColor: 'black' },
+                        headerStyle: { backgroundColor: "black" },
                     }}
                 />
                 <Stack.Screen name="account" component={Account_settings} />
@@ -51,27 +51,27 @@ const Options = ({ navigation }) => {
                 <Image
                     source={require("../assets/images/profile-picture-example.png")}
                     style={page.profile_pic} />
-                <TouchableNativeFeedback onPress={() => navigation.navigate('account')}>
+                <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
                     <View style={page.button}>
                         <Text style={page.button_text}>Account</Text>
                     </View>
                 </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => navigation.navigate('notifications')}>
+                <TouchableNativeFeedback onPress={() => navigation.navigate("notifications")}>
                     <View style={page.button}>
                         <Text style={page.button_text}>Notifications</Text>
                     </View>
                 </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => navigation.navigate('questionnaire')}>
+                <TouchableNativeFeedback onPress={() => navigation.navigate("questionnaire")}>
                     <View style={page.button}>
                         <Text style={page.button_text}>Change Questionnaire</Text>
                     </View>
                 </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => navigation.navigate('privacy')}>
+                <TouchableNativeFeedback onPress={() => navigation.navigate("privacy")}>
                     <View style={page.button}>
                         <Text style={page.button_text}>Privacy & Security</Text>
                     </View>
                 </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => navigation.navigate('help')}>
+                <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
                     <View style={page.button}>
                         <Text style={page.button_text}>Help & Support</Text>
                     </View>
@@ -115,7 +115,7 @@ const Help = ({ navigation }) => {
 const page = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: "row",
     },
     background: {
         flex: 1,

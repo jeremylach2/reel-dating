@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import {
     SafeAreaView,
@@ -14,21 +14,19 @@ import {
     AppRegistry,
     TouchableHighlight,
     TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 import {
     Colors,
     DebugInstructions,
     Header,
     LearnMoreLinks,
     ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+} from "react-native/Libraries/NewAppScreen";
 
 const Login = props => {
     const [user, setUser] = React.useState("");
     const [pass, setPass] = React.useState("");
-    const forgot = () => {
-
-    }
+    const forgot = () => {};
 
     return (
         <View style={page.container}>
