@@ -3,8 +3,9 @@ import { Text, View } from "react-native";
 import type { Node } from 'react';
 
 import Login from "./components/Login";
+import Account from "./components/Account";
 
 const App = props => {
-  return (<Login />);
+  return (<Account />);
 }
 export default App;
