@@ -19,7 +19,7 @@ import Icon4 from 'react-native-vector-icons/Ionicons'
 const SettingsAccount = ({ navigation }) => {
     return (
         <ImageBackground
-            source={require("../assets/images/background-settings.jpg")}
+            source={require("../assets/images/background-settings.png")}
             style={page.background}
             resizeMode="cover">
         </ImageBackground>

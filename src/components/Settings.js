@@ -11,20 +11,13 @@ import {
     TouchableNativeFeedback,
     StatusBar,
 } from "react-native";
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, StackNavigator } from "@react-navigation/stack";
-
 import SettingsOptions from "./SettingsOptions";
 import SettingsAccount from "./SettingsAccount";
 
-
 const Stack = createStackNavigator();
 
-const setting = <Icon4 name="settings" size={45} color="#B2B2B2" />;
 const Settings = props => {
     return (
         <NavigationContainer>
@@ -34,9 +27,9 @@ const Settings = props => {
                     component={SettingsOptions}
                     options={{
                         title: "SETTINGS",
-                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30},
-                        headerShown: true,
-                        headerTransparent: true,
+                        //headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
+                        //headerShown: true,
+                        //headerTransparent: true,
                     }}
                 />
                 <Stack.Screen
@@ -44,10 +37,11 @@ const Settings = props => {
                     component={SettingsAccount}
                     options={{
                         title: "Account",
-                        headerTitleStyle: {  color: "white" },
+                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
                         headerShown: true,
                         headerTransparent: true,
-                    }} />
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
