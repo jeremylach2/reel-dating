@@ -55,7 +55,7 @@ const SettingsNotifications = ({navigation}) => {
                     name="app_notifications"
                     component={App_Notifications}
                     options={{
-                        title: "App_Notifications",
+                        title: "App Notifications",
                         headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
                         headerShown: true,
                         headerTransparent: true,
@@ -78,14 +78,14 @@ function Notifications ({ navigation }) {
                         <TouchableNativeFeedback onPress={() => navigation.navigate("preferences")}>
                             <View style={page.button}>
                                 <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>Notifications</Text>
+                                <Text style={page.button_text}>Preferences</Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("app_notifications")}>
                             <View style={page.button}>
                                 <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>Notifications</Text>
+                                <Text style={page.button_text}>App Notifications</Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
