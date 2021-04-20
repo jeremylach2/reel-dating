@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Account from "./components/Account";
 
 const App = props => {
-    return <Account />;
+    return <Settings />;
 };
 
 export default App;
