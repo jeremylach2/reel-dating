@@ -15,7 +15,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons'
+import Icon4 from 'react-native-vector-icons/Ionicons';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 //Preferences --> to these three:
 //Push notifications
@@ -25,124 +26,58 @@ import Icon4 from 'react-native-vector-icons/Ionicons'
 //Types of notifications app will send:
 //New matches, new messages, likes, superlikes
 
-const Stack = createStackNavigator();
+const SettingsNotifications = ({ navigation }) => {
+    return (
+        <View style={page.container}>
+            <ImageBackground
+                source={require("../assets/images/background-settings.png")}
+                style={page.background}
+                resizeMode="cover">
+                <View style={page.box}>
+                    <View style={page.item_container}>
+                        <View style={page.header_content}>
+                            <Icon3 name="notifications" size={40} color="white" />
+                            <Text style={page.header}>NOTIFICATIONS</Text>
+                            <Icon3 name="notifications" size={40} color="white" />
+                        </View>
 
-const SettingsNotifications = ({navigation}) => {
-    return(
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="notifications">
-                <Stack.Screen
-                    name="notifications"
-                    component={Notifications}
-                    options={{
-                        title: "Notifications",
-                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
-                        headerShown: true,
-                        headerTransparent: true,
-                    }}
-                />
-                <Stack.Screen
-                    name="preferences"
-                    component={Preferences}
-                    options={{
-                        title: "Preferences",
-                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
-                        headerShown: true,
-                        headerTransparent: true,
-                    }}
-                />
-                <Stack.Screen
-                    name="app_notifications"
-                    component={App_Notifications}
-                    options={{
-                        title: "App Notifications",
-                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
-                        headerShown: true,
-                        headerTransparent: true,
-                    }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+                        <View style={page.item_content}>
+                            <Text style={page.text}>ON/OFF</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>Messages</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>New Matches</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>New Likes</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+                    </View>
+                </View>
+            </ImageBackground>
+        </View>
     );
 }
-
-function Notifications ({ navigation }) {
-    return (
-        <View style={page.container}>
-            <ImageBackground
-                source={require("../assets/images/background-settings.png")}
-                style={page.background}
-                resizeMode="cover">
-                <View style={page.box}>
-                    <View style={page.buttonContainer}>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("preferences")}>
-                            <View style={page.button}>
-                                <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>Preferences</Text>
-                                <Icon name="right" size={25} color="white" />
-                            </View>
-                        </TouchableNativeFeedback>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("app_notifications")}>
-                            <View style={page.button}>
-                                <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>App Notifications</Text>
-                                <Icon name="right" size={25} color="white" />
-                            </View>
-                        </TouchableNativeFeedback>
-                    </View>
-                </View>
-            </ImageBackground>
-        </View>
-    )
-};
-
-//These functions below are just test holders as of right now.
-
-function Preferences ({ navigation }) {
-    return (
-        <View style={page.container}>
-            <ImageBackground
-                source={require("../assets/images/background-settings.png")}
-                style={page.background}
-                resizeMode="cover">
-                <View style={page.box}>
-                    <View style={page.buttonContainer}>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("notifications")}>
-                            <View style={page.button}>
-                                <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>Notifications</Text>
-                                <Icon name="right" size={25} color="white" />
-                            </View>
-                        </TouchableNativeFeedback>
-                    </View>
-                </View>
-            </ImageBackground>
-        </View>
-    )
-};
-
-function App_Notifications ({ navigation }) {
-    return (
-        <View style={page.container}>
-            <ImageBackground
-                source={require("../assets/images/background-settings.png")}
-                style={page.background}
-                resizeMode="cover">
-                <View style={page.box}>
-                    <View style={page.buttonContainer}>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("notifications")}>
-                            <View style={page.button}>
-                                <Icon3 name="notifications" size={25} color="white" />
-                                <Text style={page.button_text}>Notifications</Text>
-                                <Icon name="right" size={25} color="white" />
-                            </View>
-                        </TouchableNativeFeedback>
-                    </View>
-                </View>
-            </ImageBackground>
-        </View>
-    )
-};
 
 const page = StyleSheet.create({
     container: {
@@ -154,23 +89,18 @@ const page = StyleSheet.create({
         flex: 1,
     },
     box: {
+        flex: 2,
         display: "flex",
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
     },
-    profile_pic: {
-        width: 75,
-        height: 75,
-        marginTop: "15%",
-        marginBottom: "5%",
-    },
-    buttonContainer: {
+    item_container: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
-    button: {
+    item_content: {
         margin: 24,
         borderBottomWidth: 1,
         borderColor: "white",
@@ -178,9 +108,22 @@ const page = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
     },
-    button_text: {
+    header_content: {
+        borderBottomWidth: 1,
+        borderColor: "white",
+        margin: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    header: {
         color: "white",
-    }
+        fontSize: 20,
+    },
+    text: {
+        color: "white",
+        fontSize: 20,
+    },
 });
 
 export default SettingsNotifications;

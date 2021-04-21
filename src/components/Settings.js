@@ -15,6 +15,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, StackNavigator } from "@react-navigation/stack";
 import SettingsOptions from "./SettingsOptions";
 import SettingsAccount from "./SettingsAccount";
+import SettingsNotifications from "./SettingsNotifications";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,16 @@ const Settings = props => {
                     component={SettingsAccount}
                     options={{
                         title: "Account",
+                        headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
+                        headerShown: true,
+                        headerTransparent: true,
+                    }}
+                />
+                <Stack.Screen
+                    name="notifications"
+                    component={SettingsNotifications}
+                    options={{
+                        title: "Notifications",
                         headerTitleStyle: { alignSelf: "center", color: "white", fontFamily: "sans-serif-light", fontSize: 30 },
                         headerShown: true,
                         headerTransparent: true,
