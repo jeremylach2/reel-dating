@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import "react-native-gesture-handler";
+import React from "react";
 import {
     StyleSheet,
     Text,
@@ -90,7 +90,6 @@ const page = StyleSheet.create({
         width: 75,
         height: 75,
         marginTop: "15%",
-        marginBottom: "5%",
     },
     buttonContainer: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",

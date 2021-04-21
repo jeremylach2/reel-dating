@@ -12,6 +12,7 @@ import {
     StatusBar,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
@@ -25,13 +26,13 @@ import Icon4 from 'react-native-vector-icons/Ionicons'
 //Types of notifications app will send:
 //New matches, new messages, likes, superlikes
 
-const Stack = createStackNavigator();
+const Notif = createStackNavigator();
 
 const SettingsNotifications = ({navigation}) => {
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="notifications">
-                <Stack.Screen
+            <Notif.Navigator initialRouteName="notifications">
+                <Notif.Screen
                     name="notifications"
                     component={Notifications}
                     options={{
@@ -41,7 +42,7 @@ const SettingsNotifications = ({navigation}) => {
                         headerTransparent: true,
                     }}
                 />
-                <Stack.Screen
+                <Notif.Screen
                     name="preferences"
                     component={Preferences}
                     options={{
@@ -51,7 +52,7 @@ const SettingsNotifications = ({navigation}) => {
                         headerTransparent: true,
                     }}
                 />
-                <Stack.Screen
+                <Notif.Screen
                     name="app_notifications"
                     component={App_Notifications}
                     options={{
@@ -61,7 +62,7 @@ const SettingsNotifications = ({navigation}) => {
                         headerTransparent: true,
                     }}
                 />
-            </Stack.Navigator>
+            </Notif.Navigator>
         </NavigationContainer>
     );
 }

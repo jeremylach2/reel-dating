@@ -26,7 +26,7 @@ import {
 const Login = props => {
     const [user, setUser] = React.useState("");
     const [pass, setPass] = React.useState("");
-    const forgot = () => {};
+    const forgot = () => { };
 
     return (
         <View style={page.container}>
@@ -99,15 +99,18 @@ const page = StyleSheet.create({
     title: {
         fontWeight: "bold",
         textAlign: "center",
-        color: "black",
+        color: "white",
         fontSize: 25,
     },
     form: {
-        backgroundColor: "white",
+        backgroundColor: "transparent",
+        borderColor: "white",
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderRadius: 8,
         padding: "5%",
         paddingBottom: "1%",
         marginTop: "1%",
-        borderRadius: 8,
         width: "70%",
         flexWrap: "wrap",
         flexDirection: "column",
@@ -120,26 +123,27 @@ const page = StyleSheet.create({
         width: "100%",
     },
     login: {
-        backgroundColor: "gray",
+        backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
         width: "100%",
     },
     login_button: {
-        backgroundColor: "#268CCB",
+        backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
     login_text: {
-        color: "white",
+        color: "black",
         textAlign: "center",
     },
     forgot: {
         color: "black",
         opacity: 0.6,
+        textDecorationLine: "underline",
     },
 });
 
