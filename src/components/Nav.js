@@ -1,10 +1,9 @@
-import React from "react";
 import "react-native-gesture-handler";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MenuScreen from "./MenuScreen";
-import Account from "./Login";
 import SettingsOptions from "./SettingsOptions";
 import SettingsAccount from "./SettingsAccount";
 import SettingsNotifications from "./SettingsNotifications";
@@ -61,7 +60,6 @@ const Nav = props => {
                                 ? "settings"
                                 : "settings-outline";
                         }
-                        // You can return any component that you like here!
                         return (
                             <Icon name={iconName} size={size} color={color} />
                         );
