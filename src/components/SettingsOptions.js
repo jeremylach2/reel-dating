@@ -25,7 +25,8 @@ const SettingsOptions = ({ navigation }) => {
                 <View style={page.box}>
                     <Image
                         source={require("../assets/images/profile-picture-example.png")}
-                        style={page.profile_pic} />
+                        style={page.profile_pic}
+                    />
                     <View style={page.buttonContainer}>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
