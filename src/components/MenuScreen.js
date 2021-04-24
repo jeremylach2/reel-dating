@@ -16,7 +16,6 @@ import { set } from "react-native-reanimated";
 const quotes = [
     "\"I love you and I like you.\" – Parks and Recreation",
     "\"I like you very much. Just as you are.\" – Bridget Jones\'s Diary",
-    "\"To me you are perfect.\" – Love Actually",
     "\"Love me—that\'s all I ask of you.\" – Phantom of the Opera",
 ];
 
@@ -45,7 +44,7 @@ const MenuScreen = props => {
     useEffect(() => {
         const interval = setInterval(() => {
             quotePicker();
-        }, 10000);
+        }, 5000);
         return () => clearInterval(interval);
     }, [quote]);
 
@@ -123,7 +122,7 @@ const page = StyleSheet.create({
     },
     active: {
         alignItems: "center",
-        marginTop: "14%",
+        marginTop: "10%",
     },
     search: {
         alignSelf: "center",
@@ -131,6 +130,9 @@ const page = StyleSheet.create({
         fontFamily: "sans-serif-light",
         fontSize: 30,
         marginBottom: "6%",
+        textShadowColor: "rgba(0, 0, 0, 0.75)",
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10,
     },
     power: {
         overflow: "hidden",
@@ -146,8 +148,13 @@ const page = StyleSheet.create({
     },
     quote: {
         fontSize: 20,
-        color: "white",
+        color: "rgba(255, 255, 255, 0.85)",
         textAlign: "center",
+        fontStyle: "italic",
+        fontFamily: "sans-serif-light",
+        textShadowColor: "rgba(0, 0, 0, 0.75)",
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10,
     },
 });
 
