@@ -35,6 +35,13 @@ const SettingsPrivacySecurity = ({ navigation }) => {
 
                         <TouchableNativeFeedback onPress>
                             <View style={page.item_content}>
+                                <Text style={page.text}>Change Password</Text>
+                                <Icon name="right" size={25} color="white" />
+                            </View>
+                        </TouchableNativeFeedback>
+
+                        <TouchableNativeFeedback onPress>
+                            <View style={page.item_content}>
                                 <Text style={page.text}>Blocked Accounts</Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>

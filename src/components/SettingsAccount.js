@@ -11,6 +11,8 @@ import {
     TouchableNativeFeedback,
     StatusBar,
     Button,
+    ScrollView,
+    SafeAreaView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -52,12 +54,6 @@ const SettingsAccount = ({ navigation }) => {
                                 placeholderTextColor="white"
                             />
                         </View>
-                        <View style={page.box_container}>
-                            <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Press to Update</Text>
-                            </TouchableNativeFeedback>
-                        </View>
-
 
                         <View style={page.box_content}>
                             <Text style={page.text}>Last Name: </Text>
@@ -67,42 +63,6 @@ const SettingsAccount = ({ navigation }) => {
                                 placeholder="Last Name Sample"
                                 placeholderTextColor="white"
                             />
-                        </View>
-                        <View style={page.box_container}>
-                            <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Press to Update</Text>
-                            </TouchableNativeFeedback>
-                        </View>
-
-                        <View style={page.box_content}>
-                            <Text style={page.text}>Username: </Text>
-                            <TextInput
-                                onChangeText={text => set_username(text)}
-                                value={username}
-                                placeholder="Username Sample"
-                                placeholderTextColor="white"
-                            />
-                        </View>
-                        <View style={page.box_container}>
-                            <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Press to Update</Text>
-                            </TouchableNativeFeedback>
-                        </View>
-
-
-                        <View style={page.box_content}>
-                            <Text style={page.text}>Password: </Text>
-                            <TextInput
-                                onChangeText={text => set_password(text)}
-                                value={password}
-                                placeholder="Password Sample?"
-                                placeholderTextColor="white"
-                            />
-                        </View>
-                        <View style={page.box_container}>
-                            <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Press to Update</Text>
-                            </TouchableNativeFeedback>
                         </View>
 
                         <View style={page.box_content}>
@@ -114,18 +74,44 @@ const SettingsAccount = ({ navigation }) => {
                                 placeholderTextColor="white"
                             />
                         </View>
-                        <View style={page.box_container}>
-                            <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Press to Update</Text>
-                            </TouchableNativeFeedback>
-                        </View>
-
                     </View>
+                </View>
+                <View style={page.button_box}>
+                    <TouchableNativeFeedback onPress>
+                        <View style={page.button_container}>
+                            <Text style={page.text}>UPDATE</Text>
+                        </View>
+                    </TouchableNativeFeedback>
                 </View>
             </ImageBackground>
         </View>
     )
 };
+
+//Removed username and password because why should they have the option to change username in the first place
+//Second, why is change password in account? Should be in Privacy/Security.
+
+/* 
+<View style={page.box_content}>
+    <Text style={page.text}>Username: </Text>
+    <TextInput
+        onChangeText={text => set_username(text)}
+        value={username}
+        placeholder="Username Sample"
+        placeholderTextColor="white"
+    />
+</View>
+
+<View style={page.box_content}>
+    <Text style={page.text}>Password: </Text>
+    <TextInput
+        onChangeText={text => set_password(text)}
+        value={password}
+        placeholder="Password Sample?"
+        placeholderTextColor="white"
+    />
+</View>
+*/
 
 const page = StyleSheet.create({
     container: {
@@ -137,18 +123,17 @@ const page = StyleSheet.create({
         flex: 1,
     },
     box: {
-        flex: 1,
-        display: "flex",
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
+        height: 600,
     },
     profile_pic: {
-        flex: 2,
         width: 75,
         height: 75,
         marginTop: "15%",
+        marginBottom: "5%",
     },
     box_container: {
         alignItems: "center",
@@ -162,6 +147,19 @@ const page = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+    },
+    button_box: {
+        display: "flex",
+        alignContent: "center",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    button_container: {
+        alignItems: "center",
+        backgroundColor: "rgba(32, 32, 32, 0.3)",
+        width: 200,
+        height: 25,
     },
     text: {
         color: "white",

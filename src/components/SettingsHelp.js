@@ -10,6 +10,7 @@ import {
     Platform,
     TouchableNativeFeedback,
     StatusBar,
+    ScrollView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -20,7 +21,6 @@ import Icon4 from 'react-native-vector-icons/Ionicons';
 const SettingsHelp = ({ navigation }) => {
     const [problem, send_problem] = React.useState("");
 
-
     return (
         <View style={page.container}>
             <ImageBackground
@@ -29,20 +29,43 @@ const SettingsHelp = ({ navigation }) => {
                 resizeMode="cover">
                 <View style={page.box}>
                     <View style={page.item_container}>
-                        <View style={page.box}>
-                            <Text style={page.text}>Enter your Problem: </Text>
-                            <TextInput
-                                onChangeText={text => send_problem(text)}
-                                value={problem}
-                                placeholder="Type here..."
-                                placeholderTextColor="white"
+                        <View style={page.header_content}>
+                            <Icon4
+                                name="help-buoy"
+                                size={25}
+                                color="white"
+                            />
+                            <Text style={page.header}>HELP & SUPPORT</Text>
+                            <Icon4
+                                name="help-buoy"
+                                size={25}
+                                color="white"
                             />
                         </View>
+
+                        <View style={page.text}>
+                            <Text style={page.text}>What is your problem?</Text>
+                        </View>
                     </View>
-                    <TouchableNativeFeedback onPress>
-                                <Text style={page.text}>Send</Text>
+                </View>
+
+                <View style={page.box}>
+                    <TextInput
+                        color="white"
+                        placeholder="Write about your problem here..."
+                        placeholderTextColor="white"
+                        size={25}
+                    />
+                </View>
+
+                <View style={page.box}>
+                    <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
+                        <View style={page.item_container}>
+                            <Text style={page.text}>Press to Send</Text>
+                        </View>
                     </TouchableNativeFeedback>
                 </View>
+
             </ImageBackground>
         </View>
     );
@@ -70,9 +93,35 @@ const page = StyleSheet.create({
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
+    item_content: {
+        margin: 24,
+        borderBottomWidth: 1,
+        borderColor: "white",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    header_content: {
+        borderBottomWidth: 1,
+        borderColor: "white",
+        margin: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    header: {
+        color: "white",
+        fontSize: 20,
+    },
     text: {
         color: "white",
         fontSize: 20,
+    },
+    button: {
+        margin: 24,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
 });
 
