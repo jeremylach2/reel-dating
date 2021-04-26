@@ -110,8 +110,6 @@ const SettingsAccount = ({ navigation }) => {
     )
 };
 
-//Removed username and password because why should they have the option to change username in the first place
-//Second, why is change password in account? Should be in Privacy/Security.
 
 /* 
 <View style={page.box_content}>
@@ -149,7 +147,6 @@ const page = StyleSheet.create({
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        height: 600,
     },
     profile_pic: {
         width: 75,
