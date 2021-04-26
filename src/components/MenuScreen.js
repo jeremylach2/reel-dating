@@ -11,18 +11,17 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
-import { set } from "react-native-reanimated";
+import quotes from "../assets/quotes.js";
 
-const quotes = [
-    "\"I love you and I like you.\" – Parks and Recreation",
-    "\"I like you very much. Just as you are.\" – Bridget Jones\'s Diary",
-    "\"Love me—that\'s all I ask of you.\" – Phantom of the Opera",
-];
+const quotePicker = () => {
+    const index = Math.floor(Math.random() * quotes.length);
+    return quotes[index];
+};
 
 const MenuScreen = props => {
     const [status, set_status] = useState(false);
     const [dot, set_dot] = useState(1);
-    const [quote, set_quote] = useState(() => quotePicker);
+    const [quote, set_quote] = useState(quotePicker());
     const AnimOpacity = new Animated.Value(0.5);
 
     useEffect(() => {
@@ -42,16 +41,10 @@ const MenuScreen = props => {
     }, [dot]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            quotePicker();
-        }, 5000);
+        const interval = setInterval(() => set_quote(quotePicker()), 5000);
         return () => clearInterval(interval);
     }, [quote]);
 
-    const quotePicker = () => {
-        const index = Math.floor(Math.random() * quotes.length);
-        set_quote(quotes[index]);
-    };
 
     let currStatus = status ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);

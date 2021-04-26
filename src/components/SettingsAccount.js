@@ -40,71 +40,74 @@ const SettingsAccount = ({ navigation }) => {
                 source={require("../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
-                <View style={page.box}>
-                    <Image
-                        source={require("../assets/images/profile-picture-example.png")}
-                        style={page.profile_pic}
-                    />
-                    <View style={page.box_container}>
-                        <View style={page.header_content}>
-                            <Icon2
-                                name="account"
-                                size={25}
-                                color="white"
-                            />
-                            <Text style={page.header}>ACCOUNT</Text>
-                            <Icon2
-                                name="account"
-                                size={25}
-                                color="white"
-                            />
-                        </View>
+                <ScrollView>
+                    <View style={page.box}>
+                        <Image
+                            source={require("../assets/images/profile-picture-example.png")}
+                            style={page.profile_pic}
+                        />
+                        <View style={page.box_container}>
+                            <View style={page.header_content}>
+                                <Icon2
+                                    name="account"
+                                    size={25}
+                                    color="white"
+                                />
+                                <Text style={page.header}>ACCOUNT</Text>
+                                <Icon2
+                                    name="account"
+                                    size={25}
+                                    color="white"
+                                />
+                            </View>
 
-                        <View style={page.box_content}>
-                            <Text style={page.text}>First Name: </Text>
-                            <TextInput
-                                color="white"
-                                onChangeText={text => set_firstName(text)}
-                                value={first_name}
-                                placeholder="First Name Sample"
-                                placeholderTextColor="white"
-                            />
-                        </View>
+                            <View style={page.box_content}>
+                                <Text style={page.text}>First Name: </Text>
+                                <TextInput
+                                    color="white"
+                                    onChangeText={text => set_firstName(text)}
+                                    value={first_name}
+                                    placeholder="First Name Sample"
+                                    placeholderTextColor="white"
+                                />
+                            </View>
 
-                        <View style={page.box_content}>
-                            <Text style={page.text}>Last Name: </Text>
-                            <TextInput
-                                color="white"
-                                onChangeText={text => set_lastName(text)}
-                                value={last_name}
-                                placeholder="Last Name Sample"
-                                placeholderTextColor="white"
-                            />
-                        </View>
+                            <View style={page.box_content}>
+                                <Text style={page.text}>Last Name: </Text>
+                                <TextInput
 
-                        <View style={page.box_content}>
-                            <Text style={page.text}>Email: </Text>
-                            <TextInput
-                                color="white"
-                                onChangeText={text => set_email(text)}
-                                value={email}
-                                placeholder="Email Sample"
-                                placeholderTextColor="white"
-                            />
+                                    color="white"
+                                    onChangeText={text => set_lastName(text)}
+                                    value={last_name}
+                                    placeholder="Last Name Sample"
+                                    placeholderTextColor="white"
+                                />
+                            </View>
+
+                            <View style={page.box_content}>
+                                <Text style={page.text}>Email: </Text>
+                                <TextInput
+                                    color="white"
+                                    onChangeText={text => set_email(text)}
+                                    value={email}
+                                    placeholder="Email Sample"
+                                    placeholderTextColor="white"
+                                />
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={page.button}>
-                    <TouchableNativeFeedback onPress>
-                        <View>
-                            <Icon6
-                                name="update"
-                                size={25}
-                                color="white"
-                            />
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
+                    <View style={page.button}>
+                        <TouchableNativeFeedback onPress>
+                            <View>
+                                <Icon6
+                                    name="update"
+                                    size={25}
+                                    color="white"
+                                />
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
+                </ScrollView>
             </ImageBackground>
         </View>
     )
@@ -172,12 +175,15 @@ const page = StyleSheet.create({
         width: "70%",
     },
     box_content: {
+        width: "80%",
         margin: 5,
         borderBottomWidth: 1,
         borderColor: "white",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        maxWidth: "80%",
+        overflow: "hidden",
     },
     button_box: {
         display: "flex",
