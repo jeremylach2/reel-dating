@@ -24,9 +24,9 @@ import {
 } from "react-native/Libraries/NewAppScreen";
 
 const Login = props => {
-    const [user, setUser] = React.useState("");
-    const [pass, setPass] = React.useState("");
-    const forgot = () => {};
+    const [username, set_username] = React.useState("");
+    const [password, set_password] = React.useState("");
+    const forgot = () => { };
 
     return (
         <View style={page.container}>
@@ -42,16 +42,16 @@ const Login = props => {
                         <Text style={page.title}>Login</Text>
                         <View style={page.form_content}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setUser(text)}
-                                value={user}
+                                style={page.user_input}
+                                onChangeText={text => set_username(text)}
+                                value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setPass(text)}
-                                value={pass}
+                                style={page.user_input}
+                                onChangeText={text => set_password(text)}
+                                value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
@@ -62,7 +62,7 @@ const Login = props => {
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity onPress={() => forgot}>
-                            <Text style={page.forgot}>Forgot My Password </Text>
+                            <Text style={page.forgot_button}>Forgot My Password </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -99,15 +99,18 @@ const page = StyleSheet.create({
     title: {
         fontWeight: "bold",
         textAlign: "center",
-        color: "black",
+        color: "white",
         fontSize: 25,
     },
     form: {
-        backgroundColor: "white",
+        backgroundColor: "transparent",
+        borderColor: "white",
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderRadius: 8,
         padding: "5%",
         paddingBottom: "1%",
         marginTop: "1%",
-        borderRadius: 8,
         width: "70%",
         flexWrap: "wrap",
         flexDirection: "column",
@@ -119,27 +122,28 @@ const page = StyleSheet.create({
         flexDirection: "column",
         width: "100%",
     },
-    login: {
-        backgroundColor: "gray",
+    user_input: {
+        backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
         width: "100%",
     },
     login_button: {
-        backgroundColor: "#268CCB",
+        backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
     login_text: {
-        color: "white",
+        color: "black",
         textAlign: "center",
     },
-    forgot: {
+    forgot_button: {
         color: "black",
         opacity: 0.6,
+        textDecorationLine: "underline",
     },
 });
 

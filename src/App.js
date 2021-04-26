@@ -1,11 +1,11 @@
 import React from "react";
 
-import Settings from "./components/Settings";
 import Login from "./components/Login";
 import Account from "./components/Account";
+import Nav from "./components/Nav";
 
 const App = props => {
-    return <Account />;
+    return <Nav />;
 };
 
 export default App;
