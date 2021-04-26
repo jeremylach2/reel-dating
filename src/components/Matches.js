@@ -11,41 +11,101 @@ import {
     ScrollView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const Matches = ({ navigation }) => {
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-
+const Matches = props => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../assets/images/background-settings.png")} //change the background at some point
                 style={page.background}
                 resizeMode="cover">
                 <ScrollView>
                     <View style={page.utilityBox}>
-                        <Image
-                            source={require("../assets/images/profile-picture-example.png")}
-                            style={page.profilePic}
-                        />
+                        <View style={page.utilityBoxContent}>
+                            <Image
+                                source={require("../assets/images/profile-picture-example.png")}
+                                style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                            />
+                            <Image
+                                source={require("../assets/images/profile-picture-example.png")}
+                                style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                            />
+                            <Image
+                                source={require("../assets/images/profile-picture-example.png")}
+                                style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                            />
+                            <Image
+                                source={require("../assets/images/profile-picture-example.png")}
+                                style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                            />
+                            <Image
+                                source={require("../assets/images/profile-picture-example.png")}
+                                style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                            />
+                        </View>
+
                         <View style={page.utilityBoxContainer}>
                             <View style={page.headerContent}>
-                                <Text style={page.header}>Matches</Text>
+                                <Text style={page.header}>YOUR MATCHES</Text>
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 7505 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
+                            </View>
+
+                            <View style={page.utilityBoxContent}>
+                                <Image
+                                    source={require("../assets/images/profile-picture-example.png")}
+                                    style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
+                                />
+                                <Text style={page.text}>Last Text Message Here...</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </View>
-                    </View>
-                    <View style={page.button}>
-                        <TouchableNativeFeedback onPress>
-                            <View>
-                                <MaterialCommunityIcons
-                                    name="update"
-                                    size={25}
-                                    color="white"
-                                />
-                            </View>
-                        </TouchableNativeFeedback>
+
+
                     </View>
                 </ScrollView>
             </ImageBackground>
@@ -89,7 +149,8 @@ const page = StyleSheet.create({
     utilityBoxContainer: {
         alignItems: "center",
         backgroundColor: "rgba(32, 32, 32, 0.3)",
-        width: "70%",
+        width: "90%",
+        justifyContent: "space-between",
     },
     utilityBoxContent: {
         width: "80%",
@@ -102,22 +163,16 @@ const page = StyleSheet.create({
         maxWidth: "80%",
         overflow: "hidden",
     },
-    button: {
-        overflow: "hidden",
-        marginRight: 100,
-        marginLeft: 100,
-        marginBottom: 10,
-        paddingTop: 20,
-        paddingBottom: 20,
-        backgroundColor: '#68a0cf',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-        alignItems: "center",
-    },
     text: {
         color: "white",
         fontSize: 15,
     },
+    testfornow: {
+        overflow: "hidden",
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#fff',
+    },
 });
+
 export default Matches;
