@@ -42,7 +42,7 @@ const SettingsPrivacySecurity = ({ navigation }) => {
 
                         <TouchableNativeFeedback onPress>
                             <View style={page.itemContent}>
-                                <Text style={page.text}>Delete Acccount</Text>
+                                <Text style={page.text}>Delete Account</Text>
                                 <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
