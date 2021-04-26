@@ -8,6 +8,8 @@ import Account from "./Login";
 import SettingsOptions from "./SettingsOptions";
 import SettingsAccount from "./SettingsAccount";
 import SettingsNotifications from "./SettingsNotifications";
+import SettingsHelp from "./SettingsHelp";
+import SettingsPrivacySecurity from "./SettingsPrivacySecurity";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const SettingsStack = createStackNavigator();
@@ -40,6 +42,16 @@ function SettingsStackScreen() {
                 name="notifications"
                 component={SettingsNotifications}
                 options={{ title: "NOTIFICATIONS" }}
+            />
+            <SettingsStack.Screen
+                name="privacy"
+                component={SettingsPrivacySecurity}
+                options={{ title: "PRIVACY & SECURITY" }}
+            />
+            <SettingsStack.Screen
+                name="help"
+                component={SettingsHelp}
+                options={{ title: "HELP & SUPPORT" }}
             />
         </SettingsStack.Navigator>
     );
