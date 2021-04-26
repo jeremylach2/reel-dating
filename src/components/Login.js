@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
     StyleSheet,
     Text,
-    useColorScheme,
     ImageBackground,
     View,
     Image,
     TextInput,
-    AppRegistry,
-    TouchableHighlight,
     TouchableOpacity,
 } from "react-native";
 import {
@@ -24,8 +18,8 @@ import {
 } from "react-native/Libraries/NewAppScreen";
 
 const Login = props => {
-    const [username, set_username] = React.useState("");
-    const [password, set_password] = React.useState("");
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
     const forgot = () => { };
 
     return (
@@ -37,32 +31,34 @@ const Login = props => {
                     style={page.logo}
                     source={require("../assets/images/logo.png")}
                 />
-                <View style={page.box}>
+                <View style={page.utilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Login</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_username(text)}
+                                style={page.userInput}
+                                onChangeText={text => setUsername(text)}
                                 value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_password(text)}
+                                style={page.userInput}
+                                onChangeText={text => setPassword(text)}
                                 value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
                             <TouchableOpacity>
-                                <View style={page.login_button}>
-                                    <Text style={page.login_text}>Login</Text>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Login</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity onPress={() => forgot}>
-                            <Text style={page.forgot_button}>Forgot My Password </Text>
+                            <View style={page.forgotButton}>
+                                <Text style={page.forgotButton}>Forgot My Password </Text>
+                            </View>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -89,7 +85,7 @@ const page = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
     },
-    box: {
+    utilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
@@ -116,31 +112,34 @@ const page = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
     },
-    form_content: {
+    formContent: {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "column",
         width: "100%",
     },
-    user_input: {
+    userInput: {
+        width: "100%",
+        maxWidth: "100%",
+        overflow: "hidden",
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
-        width: "100%",
     },
-    login_button: {
+    loginButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
-    login_text: {
+    loginText: {
         color: "black",
         textAlign: "center",
     },
-    forgot_button: {
+    forgotButton: {
+        alignItems: "center",
         color: "black",
         opacity: 0.6,
         textDecorationLine: "underline",

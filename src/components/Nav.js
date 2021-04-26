@@ -9,7 +9,7 @@ import SettingsAccount from "./SettingsAccount";
 import SettingsNotifications from "./SettingsNotifications";
 import SettingsHelp from "./SettingsHelp";
 import SettingsPrivacySecurity from "./SettingsPrivacySecurity";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SettingsStack = createStackNavigator();
 
@@ -73,7 +73,7 @@ const Nav = props => {
                                 : "settings-outline";
                         }
                         return (
-                            <Icon name={iconName} size={size} color={color} />
+                            <Ionicons name={iconName} size={size} color={color} />
                         );
                     },
                 })}
