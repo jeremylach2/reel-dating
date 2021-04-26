@@ -27,7 +27,7 @@ const SettingsOptions = ({ navigation }) => {
                         source={require("../assets/images/profile-picture-example.png")}
                         style={page.profile_pic}
                     />
-                    <View style={page.buttonContainer}>
+                    <View style={page.button_container}>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
                                 <Icon2
@@ -110,7 +110,7 @@ const page = StyleSheet.create({
         marginTop: "15%",
         marginBottom: "5%",
     },
-    buttonContainer: {
+    button_container: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },

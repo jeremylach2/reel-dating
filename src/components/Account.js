@@ -20,17 +20,17 @@ Stack.Navigator.defaultProps = {
 const Account = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="pt1">
-                <Stack.Screen name="pt1" component={Accountpt1} />
-                <Stack.Screen name="pt2" component={Accountpt2} />
+            <Stack.Navigator initialRouteName="pg1">
+                <Stack.Screen name="pg1" component={AccountPage1} />
+                <Stack.Screen name="pg2" component={AccountPage2} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
 
-const Accountpt1 = ({ navigation }) => {
-    const [user, setUser] = React.useState("");
-    const [pass, setPass] = React.useState("");
+const AccountPage1 = ({ navigation }) => {
+    const [username, set_username] = React.useState("");
+    const [password, set_password] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -46,26 +46,26 @@ const Accountpt1 = ({ navigation }) => {
                         <Text style={page.title}>Create Account</Text>
                         <View style={page.form_content}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setUser(text)}
-                                value={user}
+                                style={page.user_input}
+                                onChangeText={text => set_username(text)}
+                                value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setPass(text)}
-                                value={pass}
+                                style={page.user_input}
+                                onChangeText={text => set_password(text)}
+                                value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
-                            <TouchableOpacity onPress={() => navigation.navigate("pt2")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("pg2")}>
                                 <View style={page.login_button}>
                                     <Text style={page.login_text}>Continue</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <Text style={page.return}>Returning User? Login Here!</Text>
+                                <Text style={page.return_button}>Returning User? Login Here!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -75,37 +75,38 @@ const Accountpt1 = ({ navigation }) => {
     );
 };
 
-const Accountpt2 = props => {
-    const [num, setNum] = React.useState("");
-    const [first, setFirst] = React.useState("");
-    const [last, setLast] = React.useState("");
+const AccountPage2 = props => {
+    const [phone_num, set_phoneNum] = React.useState("");
+    const [first_name, set_firstName] = React.useState("");
+    const [last_name, set_lastName] = React.useState("");
+
     return (
         <View style={page.container}>
             <ImageBackground
                 source={require("../assets/images/background-login.jpg")}
                 style={page.background}>
-                <View style={page.box2}>
+                <View style={page.long_box}>
                     <View style={page.form}>
                         <Text style={page.title}>Create Account</Text>
                         <View style={page.form_content}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setFirst(text)}
-                                value={first}
+                                style={page.user_input}
+                                onChangeText={text => set_firstName(text)}
+                                value={first_name}
                                 placeholder="First Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setLast(text)}
-                                value={last}
+                                style={page.user_input}
+                                onChangeText={text => set_lastName(text)}
+                                value={last_name}
                                 placeholder="Last Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setNum(text)}
-                                value={num}
+                                style={page.user_input}
+                                onChangeText={text => set_phoneNum(text)}
+                                value={phone_num}
                                 placeholder="Phone Number"
                                 placeholderTextColor="black"
                                 keyboardType={"number-pad"}
@@ -149,7 +150,7 @@ const page = StyleSheet.create({
         justifyContent: "center",
         alignContent: "center",
     },
-    box2: {
+    long_box: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
@@ -182,7 +183,7 @@ const page = StyleSheet.create({
         flexDirection: "column",
         width: "100%",
     },
-    login: {
+    user_input: {
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
@@ -200,7 +201,7 @@ const page = StyleSheet.create({
         color: "black",
         textAlign: "center",
     },
-    return: {
+    return_button: {
         textAlign: "center",
         color: "white",
         opacity: 0.6,

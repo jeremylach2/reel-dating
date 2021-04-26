@@ -18,7 +18,7 @@ import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Icon4 from 'react-native-vector-icons/Ionicons';
 
 const SettingsHelp = ({ navigation }) => {
-    const [problem, sendProblem] = React.useState("");
+    const [problem, send_problem] = React.useState("");
 
 
     return (
@@ -29,10 +29,10 @@ const SettingsHelp = ({ navigation }) => {
                 resizeMode="cover">
                 <View style={page.box}>
                     <View style={page.item_container}>
-                        <View style={page.box_container}>
+                        <View style={page.box}>
                             <Text style={page.text}>Enter your Problem: </Text>
                             <TextInput
-                                onChangeText={text => sendProblem(text)}
+                                onChangeText={text => send_problem(text)}
                                 value={problem}
                                 placeholder="Type here..."
                                 placeholderTextColor="white"
@@ -69,26 +69,6 @@ const page = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
-    },
-    item_content: {
-        margin: 24,
-        borderBottomWidth: 1,
-        borderColor: "white",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    header_content: {
-        borderBottomWidth: 1,
-        borderColor: "white",
-        margin: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    header: {
-        color: "white",
-        fontSize: 20,
     },
     text: {
         color: "white",

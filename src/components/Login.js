@@ -24,8 +24,8 @@ import {
 } from "react-native/Libraries/NewAppScreen";
 
 const Login = props => {
-    const [user, setUser] = React.useState("");
-    const [pass, setPass] = React.useState("");
+    const [username, set_username] = React.useState("");
+    const [password, set_password] = React.useState("");
     const forgot = () => { };
 
     return (
@@ -42,16 +42,16 @@ const Login = props => {
                         <Text style={page.title}>Login</Text>
                         <View style={page.form_content}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setUser(text)}
-                                value={user}
+                                style={page.user_input}
+                                onChangeText={text => set_username(text)}
+                                value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setPass(text)}
-                                value={pass}
+                                style={page.user_input}
+                                onChangeText={text => set_password(text)}
+                                value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
@@ -62,7 +62,7 @@ const Login = props => {
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity onPress={() => forgot}>
-                            <Text style={page.forgot}>Forgot My Password </Text>
+                            <Text style={page.forgot_button}>Forgot My Password </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -122,7 +122,7 @@ const page = StyleSheet.create({
         flexDirection: "column",
         width: "100%",
     },
-    login: {
+    user_input: {
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
@@ -140,7 +140,7 @@ const page = StyleSheet.create({
         color: "black",
         textAlign: "center",
     },
-    forgot: {
+    forgot_button: {
         color: "black",
         opacity: 0.6,
         textDecorationLine: "underline",

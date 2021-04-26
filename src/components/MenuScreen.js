@@ -20,9 +20,9 @@ const quotes = [
 ];
 
 const MenuScreen = props => {
-    const [status, setStatus] = useState(false);
-    const [dot, setDot] = useState(1);
-    const [quote, setQuote] = useState(() => quotePicker);
+    const [status, set_status] = useState(false);
+    const [dot, set_dot] = useState(1);
+    const [quote, set_quote] = useState(() => quotePicker);
     const AnimOpacity = new Animated.Value(0.5);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const MenuScreen = props => {
     useEffect(() => {
         let dots = dot === 5 ? 0 : dot + 1;
         const interval = setInterval(() => {
-            setDot(dots);
+            set_dot(dots);
         }, 1000);
         return () => clearInterval(interval);
     }, [dot]);
@@ -50,11 +50,11 @@ const MenuScreen = props => {
 
     const quotePicker = () => {
         const index = Math.floor(Math.random() * quotes.length);
-        setQuote(quotes[index]);
+        set_quote(quotes[index]);
     };
 
-    let text1 = status ? "Searching" : "Not Searching";
-    let text2 = dot === 0 ? "" : ".".repeat(dot);
+    let currStatus = status ? "Searching" : "Not Searching";
+    let searching = dot === 0 ? "" : ".".repeat(dot);
     return (
         <View style={page.container}>
             <ImageBackground
@@ -66,11 +66,11 @@ const MenuScreen = props => {
                 />
                 <Text style={page.quote}>{quote}</Text>
                 <View style={page.active}>
-                    <Text style={page.search}>
-                        {text1}
-                        {status ? text2 : ""}
+                    <Text style={page.search_status}>
+                        {currStatus}
+                        {status ? searching : ""}
                     </Text>
-                    <TouchableOpacity onPress={() => setStatus(!status)}>
+                    <TouchableOpacity onPress={() => set_status(!status)}>
                         {status && (
                             <Pulse
                                 color={"orange"}
@@ -82,7 +82,7 @@ const MenuScreen = props => {
                         )}
                         <Animated.View
                             style={[
-                                page.powerContainer,
+                                page.power_container,
                                 status
                                     ? {
                                         opacity: AnimOpacity,
@@ -97,7 +97,7 @@ const MenuScreen = props => {
                             <Icon
                                 name="power-off"
                                 size={60}
-                                style={page.power}
+                                style={page.power_status}
                                 color={status ? "rgb(251, 255, 0)" : "black"}
                             />
                         </Animated.View>
@@ -124,7 +124,7 @@ const page = StyleSheet.create({
         alignItems: "center",
         marginTop: "10%",
     },
-    search: {
+    search_status: {
         alignSelf: "center",
         color: "white",
         fontFamily: "sans-serif-light",
@@ -134,10 +134,10 @@ const page = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10,
     },
-    power: {
+    power_status: {
         overflow: "hidden",
     },
-    powerContainer: {
+    power_container: {
         justifyContent: "center",
         alignItems: "center",
         width: 220,

@@ -3,9 +3,9 @@ import { Image, Text, View, StyleSheet, TextInput, TouchableHighlight, Touchable
 //https://codepen.io/tnmaysharma/pen/KzLGOw
 
 const ForgotPassword = props => {
-    const [email, setEmail] = React.useState("");
-    const [pass1, setPass1] = React.useState("");
-    const [pass2, setPass2] = React.useState("");
+    const [email, set_email] = React.useState("");
+    const [password_first, set_firstPassword] = React.useState("");
+    const [password_second, set_secondPassword] = React.useState("");
     //probably would want something that checks pass1 == pass2.
     //also something that would check in database to see if email address has
     //	an account attached to it.
@@ -24,23 +24,23 @@ const ForgotPassword = props => {
                         <Text style={page.title}>Reset Password</Text>
                         <View style={page.form_content}>
                             <TextInput
-                                style={page.forgotPassword}
-                                onChangeText={text => setEmail(text)}
+                                style={page.user_input}
+                                onChangeText={text => set_email(text)}
                                 value={email}
                                 placeholder="Email Address"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.forgotPassword}
-                                onChangeText={text => setPass1(text)}
-                                value={pass1}
+                                style={page.user_input}
+                                onChangeText={text => set_firstPassword(text)}
+                                value={password_first}
                                 placeholder="New Password"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.forgotPassword}
-                                onChangeText={text => setPass2(text)}
-                                value={pass2}
+                                style={page.user_input}
+                                onChangeText={text => set_secondPassword(text)}
+                                value={password_second}
                                 placeholder="Retype Password"
                                 placeholderTextColor="black"
                             />
@@ -108,7 +108,7 @@ const page = StyleSheet.create({
         flexDirection: "column",
         width: "100%",
     },
-    forgotPassword: {
+    user_input: {
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
@@ -125,11 +125,6 @@ const page = StyleSheet.create({
     reset_text: {
         color: "black",
         textAlign: "center",
-    },
-    return: {
-        textAlign: "center",
-        color: "white",
-        opacity: 0.6
     },
 });
 
