@@ -5,22 +5,15 @@ import {
     Text,
     ImageBackground,
     View,
-    Image,
     TextInput,
-    Platform,
     TouchableNativeFeedback,
-    StatusBar,
-    ScrollView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons';
-import Icon5 from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const SettingsHelp = ({ navigation }) => {
-    const [problem, send_problem] = React.useState("");
+    const [problem, sendProblem] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -28,16 +21,16 @@ const SettingsHelp = ({ navigation }) => {
                 source={require("../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
-                <View style={page.box}>
-                    <View style={page.item_container}>
-                        <View style={page.header_content}>
-                            <Icon4
+                <View style={page.utilityBox}>
+                    <View style={page.itemContainer}>
+                        <View style={page.headerContent}>
+                            <Ionicons
                                 name="help-buoy"
                                 size={25}
                                 color="white"
                             />
                             <Text style={page.header}>HELP & SUPPORT</Text>
-                            <Icon4
+                            <Ionicons
                                 name="help-buoy"
                                 size={25}
                                 color="white"
@@ -50,20 +43,19 @@ const SettingsHelp = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={page.box}>
-                    <TextInput
-                        style={{
-                            height: 300, width: "95%", borderColor: 'white', borderWidth: 1,
-                            marginBottom: 20, color: "white", placeholder: "Write about your problem here...",
-                            placeholderTextColor: "white", size: 25, textAlignVertical: "top"
-                        }}
+                <View style={page.utilityBox}>
+                    <TextInput style={page.userInput}
+                        color="white"
+                        placeholder="Write about your problem here..."
+                        placeholderTextColor="white"
+                        size={25}
                     />
                 </View>
 
                 <View style={page.button}>
                     <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
                         <View>
-                            <Icon5
+                            <Feather
                                 name="send"
                                 size={25}
                                 color="white"
@@ -86,28 +78,20 @@ const page = StyleSheet.create({
         height: '100%',
         flex: 1,
     },
-    box: {
-        flex: 2,
+    utilityBox: {
+        flex: 1,
         display: "flex",
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
     },
-    item_container: {
+    itemContainer: {
         alignItems: "center",
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
-    item_content: {
-        margin: 24,
-        borderBottomWidth: 1,
-        borderColor: "white",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    header_content: {
+    headerContent: {
         borderBottomWidth: 1,
         borderColor: "white",
         margin: 10,
@@ -118,6 +102,14 @@ const page = StyleSheet.create({
     header: {
         color: "white",
         fontSize: 20,
+    },
+    userInput: {
+        height: 300,
+        width: "95%",
+        borderColor: 'white',
+        borderWidth: 1,
+        marginBottom: 20,
+        textAlignVertical: "top"
     },
     text: {
         color: "white",

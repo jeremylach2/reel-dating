@@ -20,17 +20,17 @@ Stack.Navigator.defaultProps = {
 const Account = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="pg1">
-                <Stack.Screen name="pg1" component={AccountPage1} />
-                <Stack.Screen name="pg2" component={AccountPage2} />
+            <Stack.Navigator initialRouteName="accountInfo">
+                <Stack.Screen name="accountInfo" component={AccountInfo} />
+                <Stack.Screen name="accountDetails" component={AccountDetails} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
 
-const AccountPage1 = ({ navigation }) => {
-    const [username, set_username] = React.useState("");
-    const [password, set_password] = React.useState("");
+const AccountInfo = ({ navigation }) => {
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -41,31 +41,31 @@ const AccountPage1 = ({ navigation }) => {
                     style={page.logo}
                     source={require("../assets/images/logo.png")}
                 />
-                <View style={page.box}>
+                <View style={page.utilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Create Account</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_username(text)}
+                                style={page.userInput}
+                                onChangeText={text => setUsername(text)}
                                 value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_password(text)}
+                                style={page.userInput}
+                                onChangeText={text => setPassword(text)}
                                 value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
-                            <TouchableOpacity onPress={() => navigation.navigate("pg2")}>
-                                <View style={page.login_button}>
-                                    <Text style={page.login_text}>Continue</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate("accountDetails")}>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Continue</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <Text style={page.return_button}>Returning User? Login Here!</Text>
+                                <Text style={page.returnButton}>Returning User? Login Here!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -75,45 +75,45 @@ const AccountPage1 = ({ navigation }) => {
     );
 };
 
-const AccountPage2 = props => {
-    const [phone_num, set_phoneNum] = React.useState("");
-    const [first_name, set_firstName] = React.useState("");
-    const [last_name, set_lastName] = React.useState("");
+const AccountDetails= props => {
+    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
 
     return (
         <View style={page.container}>
             <ImageBackground
                 source={require("../assets/images/background-login.jpg")}
                 style={page.background}>
-                <View style={page.long_box}>
+                <View style={page.longUtilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Create Account</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_firstName(text)}
-                                value={first_name}
+                                style={page.userInput}
+                                onChangeText={text => setFirstName(text)}
+                                value={firstName}
                                 placeholder="First Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_lastName(text)}
-                                value={last_name}
+                                style={page.userInput}
+                                onChangeText={text => setLastName(text)}
+                                value={lastName}
                                 placeholder="Last Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.user_input}
-                                onChangeText={text => set_phoneNum(text)}
-                                value={phone_num}
+                                style={page.userInput}
+                                onChangeText={text => setPhoneNumber(text)}
+                                value={phoneNumber}
                                 placeholder="Phone Number"
                                 placeholderTextColor="black"
                                 keyboardType={"number-pad"}
                             />
                             <TouchableOpacity>
-                                <View style={page.login_button}>
-                                    <Text style={page.login_text}>Join Reel</Text>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Join Reel</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -144,13 +144,13 @@ const page = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
     },
-    box: {
+    utilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
         alignContent: "center",
     },
-    long_box: {
+    longUtilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
@@ -177,31 +177,33 @@ const page = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
     },
-    form_content: {
+    formContent: {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "column",
         width: "100%",
     },
-    user_input: {
+    userInput: {
+        width: "100%",
+        maxWidth: "100%",
+        overflow: "hidden",
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
-        width: "100%",
     },
-    login_button: {
+    loginButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
-    login_text: {
+    loginText: {
         color: "black",
         textAlign: "center",
     },
-    return_button: {
+    returnButton: {
         textAlign: "center",
         color: "white",
         opacity: 0.6,

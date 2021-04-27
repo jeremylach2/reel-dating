@@ -9,7 +9,7 @@ import {
     Animated,
     TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
 import { set } from "react-native-reanimated";
 
@@ -20,9 +20,9 @@ const quotes = [
 ];
 
 const MenuScreen = props => {
-    const [status, set_status] = useState(false);
-    const [dot, set_dot] = useState(1);
-    const [quote, set_quote] = useState(() => quotePicker);
+    const [status, setStatus] = useState(false);
+    const [dot, setDot] = useState(1);
+    const [quote, setQuote] = useState(() => quotePicker);
     const AnimOpacity = new Animated.Value(0.5);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const MenuScreen = props => {
     useEffect(() => {
         let dots = dot === 5 ? 0 : dot + 1;
         const interval = setInterval(() => {
-            set_dot(dots);
+            setDot(dots);
         }, 1000);
         return () => clearInterval(interval);
     }, [dot]);
@@ -50,7 +50,7 @@ const MenuScreen = props => {
 
     const quotePicker = () => {
         const index = Math.floor(Math.random() * quotes.length);
-        set_quote(quotes[index]);
+        setQuote(quotes[index]);
     };
 
     let currStatus = status ? "Searching" : "Not Searching";
@@ -66,11 +66,11 @@ const MenuScreen = props => {
                 />
                 <Text style={page.quote}>{quote}</Text>
                 <View style={page.active}>
-                    <Text style={page.search_status}>
+                    <Text style={page.searchStatus}>
                         {currStatus}
                         {status ? searching : ""}
                     </Text>
-                    <TouchableOpacity onPress={() => set_status(!status)}>
+                    <TouchableOpacity onPress={() => setStatus(!status)}>
                         {status && (
                             <Pulse
                                 color={"orange"}
@@ -82,7 +82,7 @@ const MenuScreen = props => {
                         )}
                         <Animated.View
                             style={[
-                                page.power_container,
+                                page.powerContainer,
                                 status
                                     ? {
                                         opacity: AnimOpacity,
@@ -94,10 +94,10 @@ const MenuScreen = props => {
                                     },
                             ]}
                             onPress={{ opacity: AnimOpacity }}>
-                            <Icon
+                            <FontAwesome5
                                 name="power-off"
                                 size={60}
-                                style={page.power_status}
+                                style={page.powerStatus}
                                 color={status ? "rgb(251, 255, 0)" : "black"}
                             />
                         </Animated.View>
@@ -124,7 +124,7 @@ const page = StyleSheet.create({
         alignItems: "center",
         marginTop: "10%",
     },
-    search_status: {
+    searchStatus: {
         alignSelf: "center",
         color: "white",
         fontFamily: "sans-serif-light",
@@ -134,10 +134,10 @@ const page = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10,
     },
-    power_status: {
+    powerStatus: {
         overflow: "hidden",
     },
-    power_container: {
+    powerContainer: {
         justifyContent: "center",
         alignItems: "center",
         width: 220,

@@ -9,7 +9,9 @@ import SettingsAccount from "./SettingsAccount";
 import SettingsNotifications from "./SettingsNotifications";
 import SettingsHelp from "./SettingsHelp";
 import SettingsPrivacySecurity from "./SettingsPrivacySecurity";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import Matches from "./Matches";
 
 const SettingsStack = createStackNavigator();
 
@@ -71,9 +73,13 @@ const Nav = props => {
                             iconName = focused
                                 ? "settings"
                                 : "settings-outline";
+                        } else if (route.name === "Matches") {
+                            iconName = focused
+                                ? "heart"
+                                : "heart-outline";
                         }
                         return (
-                            <Icon name={iconName} size={size} color={color} />
+                            <Ionicons name={iconName} size={size} color={color} />
                         );
                     },
                 })}
@@ -81,6 +87,7 @@ const Nav = props => {
                     activeTintColor: "gray",
                     inactiveTintColor: "black",
                 }}>
+                <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />
                 <Tab.Screen name="Settings" component={SettingsStackScreen} />
             </Tab.Navigator>
