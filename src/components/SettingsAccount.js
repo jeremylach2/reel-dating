@@ -21,7 +21,7 @@ import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Icon4 from 'react-native-vector-icons/Ionicons'
 import Icon5 from 'react-native-vector-icons/Feather';
 import Icon6 from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import GestureRecognizer, {swipreDirections} from 'react-native-swipe-gestures';
 const SettingsAccount = ({ navigation }) => {
     const [first_name, set_firstName] = React.useState("");
     const [last_name, set_lastName] = React.useState("");
