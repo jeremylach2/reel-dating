@@ -11,11 +11,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const SettingsPrivacySecurity = ({ navigation }) => {
+const PrivacySecurity = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.utilityBox}>
@@ -100,4 +100,4 @@ const page = StyleSheet.create({
     },
 });
 
-export default SettingsPrivacySecurity;
+export default PrivacySecurity;
