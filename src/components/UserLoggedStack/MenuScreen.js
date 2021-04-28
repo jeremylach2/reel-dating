@@ -21,7 +21,7 @@ const quotePicker = () => {
 const MenuScreen = props => {
     const [status, setStatus] = useState(false);
     const [dot, setDot] = useState(1);
-    const [quote, set_quote] = useState(quotePicker());
+    const [quote, setQuote] = useState(quotePicker());
     const AnimOpacity = new Animated.Value(0.5);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const MenuScreen = props => {
     }, [dot]);
 
     useEffect(() => {
-        const interval = setInterval(() => set_quote(quotePicker()), 5000);
+        const interval = setInterval(() => setQuote(quotePicker()), 5000);
         return () => clearInterval(interval);
     }, [quote]);
 
