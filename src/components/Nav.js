@@ -24,6 +24,7 @@ function SettingsStackScreen() {
                     fontFamily: "sans-serif-light",
                     fontSize: 30,
                 },
+                gestureEnabled: true,
                 headerTintColor: "white",
                 headerTitleAlign: "center",
                 headerShown: true,
@@ -66,6 +67,7 @@ const Nav = props => {
             <Tab.Navigator
                 initialRouteName={"Home"}
                 screenOptions={({ route }) => ({
+
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
                         if (route.name === "Home") {
@@ -85,8 +87,15 @@ const Nav = props => {
                     },
                 })}
                 tabBarOptions={{
-                    activeTintColor: "gray",
-                    inactiveTintColor: "black",
+                    activeTintColor: "white",
+                    inactiveTintColor: "white",
+                    style: {
+                        backgroundColor: "rgba(22, 22, 22, 0.2)",
+                        position: "absolute",
+                        elevation: 0,
+                      }
+
+
                 }}>
                 <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />
