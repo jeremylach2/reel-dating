@@ -1,11 +1,13 @@
 import React from "react";
 
-import Settings from "./components/Settings";
 import Login from "./components/Login";
-import Account from "./components/Account";
+import MenuScreen from "./components/MenuScreen";
+import Settings from "./components/settings/Options";
+import Nav from "./components/Nav";
+import VideoCall from "./components/VideoCall"
 
 const App = props => {
-    return <Account />;
+    return (<VideoCall />);
 };
 
 export default App;

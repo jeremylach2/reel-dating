@@ -20,17 +20,17 @@ Stack.Navigator.defaultProps = {
 const Account = props => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="pt1">
-                <Stack.Screen name="pt1" component={Accountpt1} />
-                <Stack.Screen name="pt2" component={Accountpt2} />
+            <Stack.Navigator initialRouteName="accountInfo">
+                <Stack.Screen name="accountInfo" component={AccountInfo} />
+                <Stack.Screen name="accountDetails" component={AccountDetails} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
 
-const Accountpt1 = ({ navigation }) => {
-    const [user, setUser] = React.useState("");
-    const [pass, setPass] = React.useState("");
+const AccountInfo = ({ navigation }) => {
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -41,31 +41,31 @@ const Accountpt1 = ({ navigation }) => {
                     style={page.logo}
                     source={require("../assets/images/logo.png")}
                 />
-                <View style={page.box}>
+                <View style={page.utilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Create Account</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setUser(text)}
-                                value={user}
+                                style={page.userInput}
+                                onChangeText={text => setUsername(text)}
+                                value={username}
                                 placeholder="Username..."
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setPass(text)}
-                                value={pass}
+                                style={page.userInput}
+                                onChangeText={text => setPassword(text)}
+                                value={password}
                                 placeholder="Password..."
                                 placeholderTextColor="black"
                             />
-                            <TouchableOpacity onPress={() => navigation.navigate("pt2")}>
-                                <View style={page.login_button}>
-                                    <Text style={page.login_text}>Continue</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate("accountDetails")}>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Continue</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <Text style={page.return}>Returning User? Login Here!</Text>
+                                <Text style={page.returnButton}>Returning User? Login Here!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -75,44 +75,45 @@ const Accountpt1 = ({ navigation }) => {
     );
 };
 
-const Accountpt2 = props => {
-    const [num, setNum] = React.useState("");
-    const [first, setFirst] = React.useState("");
-    const [last, setLast] = React.useState("");
+const AccountDetails= props => {
+    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+
     return (
         <View style={page.container}>
             <ImageBackground
                 source={require("../assets/images/background-login.jpg")}
                 style={page.background}>
-                <View style={page.box2}>
+                <View style={page.longUtilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Create Account</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setFirst(text)}
-                                value={first}
+                                style={page.userInput}
+                                onChangeText={text => setFirstName(text)}
+                                value={firstName}
                                 placeholder="First Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setLast(text)}
-                                value={last}
+                                style={page.userInput}
+                                onChangeText={text => setLastName(text)}
+                                value={lastName}
                                 placeholder="Last Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.login}
-                                onChangeText={text => setNum(text)}
-                                value={num}
+                                style={page.userInput}
+                                onChangeText={text => setPhoneNumber(text)}
+                                value={phoneNumber}
                                 placeholder="Phone Number"
                                 placeholderTextColor="black"
                                 keyboardType={"number-pad"}
                             />
                             <TouchableOpacity>
-                                <View style={page.login_button}>
-                                    <Text style={page.login_text}>Join Reel</Text>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Join Reel</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -143,13 +144,13 @@ const page = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
     },
-    box: {
+    utilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
         alignContent: "center",
     },
-    box2: {
+    longUtilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
@@ -176,31 +177,33 @@ const page = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
     },
-    form_content: {
+    formContent: {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "column",
         width: "100%",
     },
-    login: {
+    userInput: {
+        width: "100%",
+        maxWidth: "100%",
+        overflow: "hidden",
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
-        width: "100%",
     },
-    login_button: {
+    loginButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
-    login_text: {
+    loginText: {
         color: "black",
         textAlign: "center",
     },
-    return: {
+    returnButton: {
         textAlign: "center",
         color: "white",
         opacity: 0.6,

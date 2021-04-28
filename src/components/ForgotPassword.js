@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { Image, Text, View, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity, PanResponder, ImageBackground } from "react-native";
+import { Image, Text, View, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 //https://codepen.io/tnmaysharma/pen/KzLGOw
 
 const ForgotPassword = props => {
     const [email, setEmail] = React.useState("");
-    const [pass1, setPass1] = React.useState("");
-    const [pass2, setPass2] = React.useState("");
-    //probably would want something that checks pass1 == pass2.
-    //also something that would check in database to see if email address has
-    //	an account attached to it.
+    const [firstPassword, setFirstPassword] = React.useState("");
+    const [secondPassword, setSecondPassword] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -19,34 +16,34 @@ const ForgotPassword = props => {
                     style={page.logo}
                     source={require("../assets/images/logo.png")}
                 />
-                <View style={page.box}>
+                <View style={page.utilityBox}>
                     <View style={page.form}>
                         <Text style={page.title}>Reset Password</Text>
-                        <View style={page.form_content}>
+                        <View style={page.formContent}>
                             <TextInput
-                                style={page.forgotPassword}
+                                style={page.userInput}
                                 onChangeText={text => setEmail(text)}
                                 value={email}
                                 placeholder="Email Address"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.forgotPassword}
-                                onChangeText={text => setPass1(text)}
-                                value={pass1}
+                                style={page.userInput}
+                                onChangeText={text => setFirstPassword(text)}
+                                value={firstPassword}
                                 placeholder="New Password"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.forgotPassword}
-                                onChangeText={text => setPass2(text)}
-                                value={pass2}
+                                style={page.userInput}
+                                onChangeText={text => setSecondPassword(text)}
+                                value={secondPassword}
                                 placeholder="Retype Password"
                                 placeholderTextColor="black"
                             />
                             <TouchableOpacity onPress>
-                                <View style={page.reset_button}>
-                                    <Text style={page.reset_text}>RESET</Text>
+                                <View style={page.resetButton}>
+                                    <Text style={page.resetText}>RESET</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -75,7 +72,7 @@ const page = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
     },
-    box: {
+    utilityBox: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
@@ -102,34 +99,31 @@ const page = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
     },
-    form_content: {
+    formContent: {
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "column",
         width: "100%",
     },
-    forgotPassword: {
+    userInput: {
+        width: "100%",
+        maxWidth: "100%",
+        overflow: "hidden",
         backgroundColor: "#B0C4DE",
         borderRadius: 4,
         padding: "3%",
         marginBottom: "2%",
-        width: "100%",
     },
-    reset_button: {
+    resetButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
-    reset_text: {
+    resetText: {
         color: "black",
         textAlign: "center",
-    },
-    return: {
-        textAlign: "center",
-        color: "white",
-        opacity: 0.6
     },
 });
 
