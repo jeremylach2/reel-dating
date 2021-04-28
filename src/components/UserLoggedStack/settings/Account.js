@@ -14,7 +14,6 @@ import {
     ScrollView,
     SafeAreaView,
 } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,14 +21,14 @@ import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Icon4 from 'react-native-vector-icons/Ionicons'
 import Icon5 from 'react-native-vector-icons/Feather';
 import Icon6 from 'react-native-vector-icons/MaterialCommunityIcons';
-import GestureRecognizer, {swipreDirections} from 'react-native-swipe-gestures';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
 const Account = ({ navigation }) => {
     const [first_name, set_firstName] = React.useState("");
     const [last_name, set_lastName] = React.useState("");
     const [username, set_username] = React.useState("");
     const [password, set_password] = React.useState("");
     const [email, set_email] = React.useState("");
-
 
     //Still need to add blocked accounts and profile picture change buttons - had issue with them before removing for overall well being.
     //Also change the button color for the update buttons.
