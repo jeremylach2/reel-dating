@@ -5,15 +5,12 @@ import {
     ImageBackground,
     View,
     Image,
-    TextInput,
-    Platform,
     TouchableNativeFeedback,
-    StatusBar,
 } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon3 from "react-native-vector-icons/MaterialIcons";
-import Icon4 from "react-native-vector-icons/Ionicons"
+import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SettingsOptions = ({ navigation }) => {
     return (
@@ -22,65 +19,65 @@ const SettingsOptions = ({ navigation }) => {
                 source={require("../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
-                <View style={page.box}>
+                <View style={page.utilityBox}>
                     <Image
                         source={require("../assets/images/profile-picture-example.png")}
-                        style={page.profile_pic}
+                        style={page.profilePic}
                     />
-                    <View style={page.button_container}>
+                    <View style={page.buttonContainer}>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
-                                <Icon2
+                                <MaterialCommunityIcons
                                     name="account"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Account</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <Text style={page.buttonText}>Account</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("notifications")}>
                             <View style={page.button}>
-                                <Icon3
+                                <MaterialIcons
                                     name="notifications"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Notifications</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <Text style={page.buttonText}>Notifications</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("questionnaire")}>
                             <View style={page.button}>
-                                <Icon
+                                <AntDesign
                                     name="questioncircle"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Change Questionnaire</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <Text style={page.buttonText}>Change Questionnaire</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("privacy")}>
                             <View style={page.button}>
-                                <Icon3
+                                <MaterialIcons
                                     name="security"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Privacy & Security</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <Text style={page.buttonText}>Privacy & Security</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
                             <View style={page.button}>
-                                <Icon4
+                                <Ionicons
                                     name="help-buoy"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Help & Support</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <Text style={page.buttonText}>Help & Support</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                     </View>
@@ -98,19 +95,19 @@ const page = StyleSheet.create({
         width: "100%",
         height: "100%",
     },
-    box: {
+    utilityBox: {
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
     },
-    profile_pic: {
+    profilePic: {
         width: 75,
         height: 75,
         marginTop: "15%",
         marginBottom: "5%",
     },
-    button_container: {
+    buttonContainer: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
@@ -122,7 +119,7 @@ const page = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
     },
-    button_text: {
+    buttonText: {
         color: "white",
     },
 });

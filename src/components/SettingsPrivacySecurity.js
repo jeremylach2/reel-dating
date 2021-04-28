@@ -5,18 +5,11 @@ import {
     Text,
     ImageBackground,
     View,
-    Image,
-    TextInput,
-    Platform,
     TouchableNativeFeedback,
-    StatusBar,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons';
-import ToggleSwitch from 'toggle-switch-react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const SettingsPrivacySecurity = ({ navigation }) => {
     return (
@@ -25,35 +18,34 @@ const SettingsPrivacySecurity = ({ navigation }) => {
                 source={require("../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
-                <View style={page.box}>
-                    <View style={page.item_container}>
-                        <View style={page.header_content}>
-                            <Icon3 name="security" size={25} color="white" />
+                <View style={page.utilityBox}>
+                    <View style={page.itemContainer}>
+                        <View style={page.headerContent}>
+                            <MaterialIcons name="security" size={25} color="white" />
                             <Text style={page.header}>Privacy and Security</Text>
-                            <Icon3 name="security" size={25} color="white" />
+                            <MaterialIcons name="security" size={25} color="white" />
                         </View>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={page.item_content}>
+                            <View style={page.itemContent}>
                                 <Text style={page.text}>Change Password</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={page.item_content}>
+                            <View style={page.itemContent}>
                                 <Text style={page.text}>Blocked Accounts</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={page.item_content}>
-                                <Text style={page.text}>Delete Acccount</Text>
-                                <Icon name="right" size={25} color="white" />
+                            <View style={page.itemContent}>
+                                <Text style={page.text}>Delete Account</Text>
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
-
                     </View>
                 </View>
             </ImageBackground>
@@ -70,7 +62,7 @@ const page = StyleSheet.create({
         height: '100%',
         flex: 1,
     },
-    box: {
+    utilityBox: {
         flex: 2,
         display: "flex",
         alignContent: "center",
@@ -78,11 +70,11 @@ const page = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    item_container: {
+    itemContainer: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
-    item_content: {
+    itemContent: {
         margin: 24,
         borderBottomWidth: 1,
         borderColor: "white",
@@ -90,7 +82,7 @@ const page = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
     },
-    header_content: {
+    headerContent: {
         borderBottomWidth: 1,
         borderColor: "white",
         margin: 10,
