@@ -67,7 +67,6 @@ const UserLoggedStack = props => {
             <Tab.Navigator
                 initialRouteName={"Home"}
                 screenOptions={({ route }) => ({
-
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
                         if (route.name === "Home") {
@@ -77,12 +76,14 @@ const UserLoggedStack = props => {
                                 ? "settings"
                                 : "settings-outline";
                         } else if (route.name === "Matches") {
-                            iconName = focused
-                                ? "heart"
-                                : "heart-outline";
+                            iconName = focused ? "heart" : "heart-outline";
                         }
                         return (
-                            <Ionicons name={iconName} size={size} color={color} />
+                            <Ionicons
+                                name={iconName}
+                                size={size}
+                                color={color}
+                            />
                         );
                     },
                 })}
@@ -93,9 +94,7 @@ const UserLoggedStack = props => {
                         backgroundColor: "rgba(22, 22, 22, 0.2)",
                         position: "absolute",
                         elevation: 0,
-                      }
-
-
+                    },
                 }}>
                 <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />
