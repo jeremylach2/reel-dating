@@ -11,12 +11,12 @@ import {
 
 import auth from "@react-native-firebase/auth";
 
-const Register = props => {
+const Register = ({ navigation }) => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [logError, setLogError] = React.useState();
 
-    const forgot = () => {};
+    const forgot = () => { };
 
     return (
         <View style={page.container}>
@@ -63,7 +63,17 @@ const Register = props => {
                                         });
                                 }}>
                                 <View style={page.loginButton}>
-                                    <Text style={page.loginText}>Register</Text>
+                                    <Text style={page.loginText}>
+                                        Join Reel
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("Login")}>
+                                <View style={page.forgotButton}>
+                                    <Text style={page.forgotButton}>
+                                        Returning User?
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                             {logError && (
