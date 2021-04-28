@@ -7,7 +7,7 @@ import Nav from "./components/Nav";
 import VideoCall from "./components/VideoCall"
 
 const App = props => {
-    return (<VideoCall />);
+    return (<Nav />);
 };
 
 export default App;
