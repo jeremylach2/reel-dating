@@ -1,0 +1,40 @@
+{
+    "project_info": {
+        "project_number": "18137580396",
+        "firebase_url": "https://reel-dating-default-rtdb.firebaseio.com",
+        "project_id": "reel-dating",
+        "storage_bucket": "reel-dating.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:18137580396:android:9a3130fc00dade8a73a949",
+                "android_client_info": {
+                    "package_name": "com.src"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "18137580396-atd4nj0iarf94ad9hp97cj0b5u7864uc.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyDbU3SlPEo_0-5mYsOl8LfTM8fgBnd8sm8"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "18137580396-atd4nj0iarf94ad9hp97cj0b5u7864uc.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

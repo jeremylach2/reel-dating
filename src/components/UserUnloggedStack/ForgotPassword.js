@@ -11,10 +11,10 @@ const ForgotPassword = props => {
         <View style={page.container}>
             <ImageBackground
                 style={page.background}
-                source={require("../assets/images/background-login.jpg")}>
+                source={require("../../assets/images/background-login.jpg")}>
                 <Image
                     style={page.logo}
-                    source={require("../assets/images/logo.png")}
+                    source={require("../../assets/images/logo.png")}
                 />
                 <View style={page.utilityBox}>
                     <View style={page.form}>

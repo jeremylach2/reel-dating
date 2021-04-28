@@ -15,7 +15,7 @@ const PrivacySecurity = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../../assets/images/background-settings.png")}
+                source={require("../../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.utilityBox}>

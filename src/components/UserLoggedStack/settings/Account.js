@@ -37,13 +37,13 @@ const Account = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../../assets/images/background-settings.png")}
+                source={require("../../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <ScrollView>
                     <View style={page.box}>
                         <Image
-                            source={require("../../assets/images/profile-picture-example.png")}
+                            source={require("../../../assets/images/profile-picture-example.png")}
                             style={page.profile_pic}
                         />
                         <View style={page.box_container}>

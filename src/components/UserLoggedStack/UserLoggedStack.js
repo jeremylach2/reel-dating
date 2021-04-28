@@ -4,12 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MenuScreen from "./MenuScreen";
+import Matches from "./Matches";
 import Options from "./settings/Options";
 import Account from "./settings/Account";
 import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
 import PrivacySecurity from "./settings/PrivacySecurity";
-import Matches from "./Matches";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SettingsStack = createStackNavigator();
@@ -61,13 +61,12 @@ function SettingsStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
-const Nav = props => {
+const UserLoggedStack = props => {
     return (
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName={"Home"}
                 screenOptions={({ route }) => ({
-
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
                         if (route.name === "Home") {
@@ -77,12 +76,14 @@ const Nav = props => {
                                 ? "settings"
                                 : "settings-outline";
                         } else if (route.name === "Matches") {
-                            iconName = focused
-                                ? "heart"
-                                : "heart-outline";
+                            iconName = focused ? "heart" : "heart-outline";
                         }
                         return (
-                            <Ionicons name={iconName} size={size} color={color} />
+                            <Ionicons
+                                name={iconName}
+                                size={size}
+                                color={color}
+                            />
                         );
                     },
                 })}
@@ -93,9 +94,7 @@ const Nav = props => {
                         backgroundColor: "rgba(22, 22, 22, 0.2)",
                         position: "absolute",
                         elevation: 0,
-                      }
-
-
+                    },
                 }}>
                 <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />
@@ -105,4 +104,4 @@ const Nav = props => {
     );
 };
 
-export default Nav;
+export default UserLoggedStack;
