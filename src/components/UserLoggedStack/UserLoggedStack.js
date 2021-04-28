@@ -10,7 +10,7 @@ import Account from "./settings/Account";
 import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
 import PrivacySecurity from "./settings/PrivacySecurity";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SettingsStack = createStackNavigator();
 
@@ -20,11 +20,13 @@ function SettingsStackScreen() {
             initialRouteName="options"
             screenOptions={{
                 headerTitleStyle: {
-                    alignSelf: "center",
                     color: "white",
                     fontFamily: "sans-serif-light",
                     fontSize: 30,
                 },
+                gestureEnabled: true,
+                headerTintColor: "white",
+                headerTitleAlign: "center",
                 headerShown: true,
                 headerTransparent: true,
             }}>
@@ -46,12 +48,12 @@ function SettingsStackScreen() {
             <SettingsStack.Screen
                 name="privacy"
                 component={PrivacySecurity}
-                options={{ title: "PRIVACY & SECURITY" }}
+                options={{ title: "PRIVACY" }}
             />
             <SettingsStack.Screen
                 name="help"
                 component={Help}
-                options={{ title: "HELP & SUPPORT" }}
+                options={{ title: "HELP" }}
             />
         </SettingsStack.Navigator>
     );
@@ -63,8 +65,9 @@ const UserLoggedStack = props => {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                initialRouteName="Home"
+                initialRouteName={"Home"}
                 screenOptions={({ route }) => ({
+
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
                         if (route.name === "Home") {
@@ -74,16 +77,25 @@ const UserLoggedStack = props => {
                                 ? "settings"
                                 : "settings-outline";
                         } else if (route.name === "Matches") {
-                            iconName = focused ? "heart" : "heart-outline";
+                            iconName = focused
+                                ? "heart"
+                                : "heart-outline";
                         }
                         return (
-                            <Icon name={iconName} size={size} color={color} />
+                            <Ionicons name={iconName} size={size} color={color} />
                         );
                     },
                 })}
                 tabBarOptions={{
-                    activeTintColor: "gray",
-                    inactiveTintColor: "black",
+                    activeTintColor: "white",
+                    inactiveTintColor: "white",
+                    style: {
+                        backgroundColor: "rgba(22, 22, 22, 0.2)",
+                        position: "absolute",
+                        elevation: 0,
+                      }
+
+
                 }}>
                 <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />
