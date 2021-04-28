@@ -4,11 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MenuScreen from "./MenuScreen";
-import SettingsOptions from "./SettingsOptions";
-import SettingsAccount from "./SettingsAccount";
-import SettingsNotifications from "./SettingsNotifications";
-import SettingsHelp from "./SettingsHelp";
-import SettingsPrivacySecurity from "./SettingsPrivacySecurity";
+import Options from "./settings/Options";
+import Account from "./settings/Account";
+import Notifications from "./settings/Notifications";
+import Help from "./settings/Help";
+import PrivacySecurity from "./settings/PrivacySecurity";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const SettingsStack = createStackNavigator();
@@ -29,27 +29,27 @@ function SettingsStackScreen() {
             }}>
             <SettingsStack.Screen
                 name="options"
-                component={SettingsOptions}
+                component={Options}
                 options={{ title: "SETTINGS" }}
             />
             <SettingsStack.Screen
                 name="account"
-                component={SettingsAccount}
+                component={Account}
                 options={{ title: "ACCOUNT" }}
             />
             <SettingsStack.Screen
                 name="notifications"
-                component={SettingsNotifications}
+                component={Notifications}
                 options={{ title: "NOTIFICATIONS" }}
             />
             <SettingsStack.Screen
                 name="privacy"
-                component={SettingsPrivacySecurity}
+                component={PrivacySecurity}
                 options={{ title: "PRIVACY & SECURITY" }}
             />
             <SettingsStack.Screen
                 name="help"
-                component={SettingsHelp}
+                component={Help}
                 options={{ title: "HELP & SUPPORT" }}
             />
         </SettingsStack.Navigator>

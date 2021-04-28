@@ -18,60 +18,42 @@ import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Icon4 from 'react-native-vector-icons/Ionicons';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-//Preferences --> to these three:
-//Push notifications
-//SMS notifications
-//Email notifications
-
-//Types of notifications app will send:
-//New matches, new messages, likes, superlikes
-
-const SettingsNotifications = ({ navigation }) => {
+const PrivacySecurity = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.box}>
                     <View style={page.item_container}>
                         <View style={page.header_content}>
-                            <Icon3 name="notifications" size={40} color="white" />
-                            <Text style={page.header}>NOTIFICATIONS</Text>
-                            <Icon3 name="notifications" size={40} color="white" />
+                            <Icon3 name="security" size={25} color="white" />
+                            <Text style={page.header}>Privacy and Security</Text>
+                            <Icon3 name="security" size={25} color="white" />
                         </View>
 
-                        <View style={page.item_content}>
-                            <Text style={page.text}>ON/OFF</Text>
-                            <ToggleSwitch
-                                onColor="blue"
-                                offColor="grey"
-                            />
-                        </View>
+                        <TouchableNativeFeedback onPress>
+                            <View style={page.item_content}>
+                                <Text style={page.text}>Change Password</Text>
+                                <Icon name="right" size={25} color="white" />
+                            </View>
+                        </TouchableNativeFeedback>
 
-                        <View style={page.item_content}>
-                            <Text style={page.text}>Messages</Text>
-                            <ToggleSwitch
-                                onColor="blue"
-                                offColor="grey"
-                            />
-                        </View>
+                        <TouchableNativeFeedback onPress>
+                            <View style={page.item_content}>
+                                <Text style={page.text}>Blocked Accounts</Text>
+                                <Icon name="right" size={25} color="white" />
+                            </View>
+                        </TouchableNativeFeedback>
 
-                        <View style={page.item_content}>
-                            <Text style={page.text}>New Matches</Text>
-                            <ToggleSwitch
-                                onColor="blue"
-                                offColor="grey"
-                            />
-                        </View>
+                        <TouchableNativeFeedback onPress>
+                            <View style={page.item_content}>
+                                <Text style={page.text}>Delete Acccount</Text>
+                                <Icon name="right" size={25} color="white" />
+                            </View>
+                        </TouchableNativeFeedback>
 
-                        <View style={page.item_content}>
-                            <Text style={page.text}>New Likes</Text>
-                            <ToggleSwitch
-                                onColor="blue"
-                                offColor="grey"
-                            />
-                        </View>
                     </View>
                 </View>
             </ImageBackground>
@@ -126,4 +108,4 @@ const page = StyleSheet.create({
     },
 });
 
-export default SettingsNotifications;
+export default PrivacySecurity;

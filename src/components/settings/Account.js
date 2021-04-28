@@ -15,6 +15,7 @@ import {
     SafeAreaView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
@@ -22,7 +23,7 @@ import Icon4 from 'react-native-vector-icons/Ionicons'
 import Icon5 from 'react-native-vector-icons/Feather';
 import Icon6 from 'react-native-vector-icons/MaterialCommunityIcons';
 import GestureRecognizer, {swipreDirections} from 'react-native-swipe-gestures';
-const SettingsAccount = ({ navigation }) => {
+const Account = ({ navigation }) => {
     const [first_name, set_firstName] = React.useState("");
     const [last_name, set_lastName] = React.useState("");
     const [username, set_username] = React.useState("");
@@ -37,13 +38,13 @@ const SettingsAccount = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <ScrollView>
                     <View style={page.box}>
                         <Image
-                            source={require("../assets/images/profile-picture-example.png")}
+                            source={require("../../assets/images/profile-picture-example.png")}
                             style={page.profile_pic}
                         />
                         <View style={page.box_container}>
@@ -216,4 +217,4 @@ const page = StyleSheet.create({
         fontSize: 15,
     },
 });
-export default SettingsAccount;
+export default Account;

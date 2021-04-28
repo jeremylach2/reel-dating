@@ -43,8 +43,6 @@ const VideoCall = () => {
                         color={"white"}
                     />
                 </TouchableOpacity>
-
-
             </View>
         </View>
     );
@@ -54,6 +52,8 @@ const page = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "rgba(22, 22, 22, 0.8)",
+        width: "100%",
+        height: "100%",
     },
     textContainer: {
         backgroundColor: "rgba(25, 22, 22, 0.2)",
@@ -75,14 +75,17 @@ const page = StyleSheet.create({
         justifyContent: "center",
         maxHeight: "82%",
         backgroundColor: "white",
+        zIndex: 1,
     },
     buttonsContainer: {
-        backgroundColor: "rgba(25, 22, 22, 0.2)",
+        flex: 1,
+        backgroundColor: "transparent",
         height: "10%",
         maxHeight: "10%",
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
+        zIndex: 2,
     },
 });
 export default VideoCall;

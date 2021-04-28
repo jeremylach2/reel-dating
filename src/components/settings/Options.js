@@ -13,73 +13,86 @@ import {
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon3 from "react-native-vector-icons/MaterialIcons";
-import Icon4 from "react-native-vector-icons/Ionicons"
+import Icon4 from "react-native-vector-icons/Ionicons";
 
-const SettingsOptions = ({ navigation }) => {
+const Options = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.box}>
                     <Image
-                        source={require("../assets/images/profile-picture-example.png")}
+                        source={require("../../assets/images/profile-picture-example.png")}
                         style={page.profile_pic}
                     />
                     <View style={page.button_container}>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
+                        <TouchableNativeFeedback
+                            onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
-                                <Icon2
-                                    name="account"
-                                    size={25}
-                                    color="white"
-                                />
+                                <Icon2 name="account" size={25} color="white" />
                                 <Text style={page.button_text}>Account</Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("notifications")}>
+                        <TouchableNativeFeedback
+                            onPress={() =>
+                                navigation.navigate("notifications")
+                            }>
                             <View style={page.button}>
                                 <Icon3
                                     name="notifications"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Notifications</Text>
+                                <Text style={page.button_text}>
+                                    Notifications
+                                </Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("questionnaire")}>
+                        <TouchableNativeFeedback
+                            onPress={() =>
+                                navigation.navigate("questionnaire")
+                            }>
                             <View style={page.button}>
                                 <Icon
                                     name="questioncircle"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Change Questionnaire</Text>
+                                <Text style={page.button_text}>
+                                    Change Questionnaire
+                                </Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("privacy")}>
+                        <TouchableNativeFeedback
+                            onPress={() => navigation.navigate("privacy")}>
                             <View style={page.button}>
                                 <Icon3
                                     name="security"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Privacy & Security</Text>
+                                <Text style={page.button_text}>
+                                    Privacy & Security
+                                </Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
-                        <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
+                        <TouchableNativeFeedback
+                            onPress={() => navigation.navigate("help")}>
                             <View style={page.button}>
                                 <Icon4
                                     name="help-buoy"
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Help & Support</Text>
+                                <Text style={page.button_text}>
+                                    Help & Support
+                                </Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
@@ -126,4 +139,4 @@ const page = StyleSheet.create({
         color: "white",
     },
 });
-export default SettingsOptions;
+export default Options;

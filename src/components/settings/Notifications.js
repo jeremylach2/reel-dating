@@ -10,68 +10,70 @@ import {
     Platform,
     TouchableNativeFeedback,
     StatusBar,
-    ScrollView,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon3 from 'react-native-vector-icons/MaterialIcons';
 import Icon4 from 'react-native-vector-icons/Ionicons';
-import Icon5 from 'react-native-vector-icons/Feather';
+import ToggleSwitch from 'toggle-switch-react-native';
 
-const SettingsHelp = ({ navigation }) => {
-    const [problem, send_problem] = React.useState("");
+//Preferences --> to these three:
+//Push notifications
+//SMS notifications
+//Email notifications
 
+//Types of notifications app will send:
+//New matches, new messages, likes, superlikes
+
+const SettingsNotifications = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.box}>
                     <View style={page.item_container}>
                         <View style={page.header_content}>
-                            <Icon4
-                                name="help-buoy"
-                                size={25}
-                                color="white"
-                            />
-                            <Text style={page.header}>HELP & SUPPORT</Text>
-                            <Icon4
-                                name="help-buoy"
-                                size={25}
-                                color="white"
+                            <Icon3 name="notifications" size={40} color="white" />
+                            <Text style={page.header}>NOTIFICATIONS</Text>
+                            <Icon3 name="notifications" size={40} color="white" />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>ON/OFF</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
                             />
                         </View>
 
-                        <View style={page.text}>
-                            <Text style={page.text}>What is your problem?</Text>
+                        <View style={page.item_content}>
+                            <Text style={page.text}>Messages</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>New Matches</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
+                        </View>
+
+                        <View style={page.item_content}>
+                            <Text style={page.text}>New Likes</Text>
+                            <ToggleSwitch
+                                onColor="blue"
+                                offColor="grey"
+                            />
                         </View>
                     </View>
                 </View>
-
-                <View style={page.box}>
-                    <TextInput
-                        style={{
-                            height: 300, width: "95%", borderColor: 'white', borderWidth: 1,
-                            marginBottom: 20, color: "white", placeholder: "Write about your problem here...",
-                            placeholderTextColor: "white", size: 25, textAlignVertical: "top"
-                        }}
-                    />
-                </View>
-
-                <View style={page.button}>
-                    <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
-                        <View>
-                            <Icon5
-                                name="send"
-                                size={25}
-                                color="white"
-                            />
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
-
             </ImageBackground>
         </View>
     );
@@ -95,7 +97,6 @@ const page = StyleSheet.create({
         alignItems: "center",
     },
     item_container: {
-        alignItems: "center",
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
@@ -123,19 +124,6 @@ const page = StyleSheet.create({
         color: "white",
         fontSize: 20,
     },
-    button: {
-        overflow: "hidden",
-        marginRight: 100,
-        marginLeft: 100,
-        marginBottom: 10,
-        paddingTop: 20,
-        paddingBottom: 20,
-        backgroundColor: '#68a0cf',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-        alignItems: "center",
-    },
 });
 
-export default SettingsHelp;
+export default SettingsNotifications;
