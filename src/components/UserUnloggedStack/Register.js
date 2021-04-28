@@ -1,51 +1,76 @@
-import React, { useState } from "react";
-import { Image, Text, View, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from "react-native";
-//https://codepen.io/tnmaysharma/pen/KzLGOw
+import React from "react";
+import {
+    StyleSheet,
+    Text,
+    ImageBackground,
+    View,
+    Image,
+    TextInput,
+    TouchableOpacity,
+} from "react-native";
 
-const ForgotPassword = props => {
+import auth from "@react-native-firebase/auth";
+
+const Register = props => {
     const [email, setEmail] = React.useState("");
-    const [firstPassword, setFirstPassword] = React.useState("");
-    const [secondPassword, setSecondPassword] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [logError, setLogError] = React.useState();
+
+    const forgot = () => {};
 
     return (
         <View style={page.container}>
             <ImageBackground
-                style={page.background}
-                source={require("../assets/images/background-login.jpg")}>
+                source={require("../../assets/images/background-login.jpg")}
+                style={page.background}>
                 <Image
                     style={page.logo}
-                    source={require("../assets/images/logo.png")}
+                    source={require("../../assets/images/logo.png")}
                 />
                 <View style={page.utilityBox}>
                     <View style={page.form}>
-                        <Text style={page.title}>Reset Password</Text>
+                        <Text style={page.title}>Create Account</Text>
                         <View style={page.formContent}>
                             <TextInput
                                 style={page.userInput}
                                 onChangeText={text => setEmail(text)}
                                 value={email}
-                                placeholder="Email Address"
+                                placeholder="Email"
                                 placeholderTextColor="black"
                             />
                             <TextInput
                                 style={page.userInput}
-                                onChangeText={text => setFirstPassword(text)}
-                                value={firstPassword}
-                                placeholder="New Password"
+                                onChangeText={text => setPassword(text)}
+                                value={password}
+                                placeholder="Password"
                                 placeholderTextColor="black"
+                                secureTextEntry={true}
                             />
-                            <TextInput
-                                style={page.userInput}
-                                onChangeText={text => setSecondPassword(text)}
-                                value={secondPassword}
-                                placeholder="Retype Password"
-                                placeholderTextColor="black"
-                            />
-                            <TouchableOpacity onPress>
-                                <View style={page.resetButton}>
-                                    <Text style={page.resetText}>RESET</Text>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    auth()
+                                        .createUserWithEmailAndPassword(
+                                            email,
+                                            password
+                                        )
+                                        .then(() => {
+                                            console.log(
+                                                "User account created & signed in!"
+                                            );
+                                        })
+                                        .catch(error => {
+                                            setLogError(error);
+                                        });
+                                }}>
+                                <View style={page.loginButton}>
+                                    <Text style={page.loginText}>Register</Text>
                                 </View>
                             </TouchableOpacity>
+                            {logError && (
+                                <Text style={page.loginErrorText}>
+                                    {logError}
+                                </Text>
+                            )}
                         </View>
                     </View>
                 </View>
@@ -77,13 +102,13 @@ const page = StyleSheet.create({
         flexWrap: "wrap",
         justifyContent: "center",
         alignContent: "center",
-        height: 400,
+
     },
     title: {
         fontWeight: "bold",
         textAlign: "center",
         color: "white",
-        fontSize: 22,
+        fontSize: 25,
     },
     form: {
         backgroundColor: "transparent",
@@ -114,17 +139,27 @@ const page = StyleSheet.create({
         padding: "3%",
         marginBottom: "2%",
     },
-    resetButton: {
+    loginButton: {
         backgroundColor: "#FFFFFF",
         borderRadius: 4,
         padding: "4%",
         marginBottom: "4%",
         width: "100%",
     },
-    resetText: {
+    loginText: {
         color: "black",
+        textAlign: "center",
+    },
+    forgotButton: {
+        alignItems: "center",
+        color: "black",
+        opacity: 0.6,
+        textDecorationLine: "underline",
+    },
+    loginErrorText: {
+        color: "red",
         textAlign: "center",
     },
 });
 
-export default ForgotPassword;
+export default Register;

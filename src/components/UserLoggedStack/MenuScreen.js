@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
-import quotes from "../assets/quotes.js";
+import quotes from "../../assets/quotes.js";
 
 const quotePicker = () => {
     const index = Math.floor(Math.random() * quotes.length);
@@ -19,8 +19,8 @@ const quotePicker = () => {
 };
 
 const MenuScreen = props => {
-    const [status, set_status] = useState(false);
-    const [dot, set_dot] = useState(1);
+    const [status, setStatus] = useState(false);
+    const [dot, setDot] = useState(1);
     const [quote, set_quote] = useState(quotePicker());
     const AnimOpacity = new Animated.Value(0.5);
 
@@ -51,11 +51,11 @@ const MenuScreen = props => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-menu.png")}
+                source={require("../../assets/images/background-menu.png")}
                 style={page.background}>
                 <Image
                     style={page.logo}
-                    source={require("../assets/images/logo.png")}
+                    source={require("../../assets/images/logo.png")}
                 />
                 <Text style={page.quote}>{quote}</Text>
                 <View style={page.active}>

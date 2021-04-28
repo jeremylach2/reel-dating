@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import {
     StyleSheet,
@@ -123,7 +123,6 @@ const AccountDetails= props => {
         </View>
     );
 };
-
 
 const page = StyleSheet.create({
     background: {

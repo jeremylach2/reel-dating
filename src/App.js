@@ -1,26 +1,37 @@
-import React, { useState } from "react";
-import { Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text } from "react-native";
 
-import { firebase } from '@react-native-firebase/database';
+import database from "@react-native-firebase/database";
+import auth from "@react-native-firebase/auth";
 
-const fb = firebase
-    .app()
-    .database("https://reel-dating-default-rtdb.firebaseio.com");
+import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
+import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
+
+const fb = database();
 
 const App = props => {
-    const [user, setUser] = useState({});
+    // Set an initializing state whilst Firebase connects
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
 
-    fb.ref("/users/1")
-        .once("value")
-        .then(v => setUser(v.val()));
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    }
 
-    return (
-        <Text>
-            {user && user.name
-                ? `${user.name.first} ${user.name.last}`
-                : "No user."}
-        </Text>
-    );
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    }, []);
+
+    if (initializing) return null;
+
+    if (!user) {
+        return <UserUnloggedStack />;
+    }
+
+    return <UserLoggedStack />;
 };
 
 export default App;

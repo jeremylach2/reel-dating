@@ -15,16 +15,18 @@ import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon3 from "react-native-vector-icons/MaterialIcons";
 import Icon4 from "react-native-vector-icons/Ionicons";
 
+import auth from "@react-native-firebase/auth";
+
 const Options = ({ navigation }) => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../../assets/images/background-settings.png")}
+                source={require("../../../assets/images/background-settings.png")}
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.box}>
                     <Image
-                        source={require("../../assets/images/profile-picture-example.png")}
+                        source={require("../../../assets/images/profile-picture-example.png")}
                         style={page.profile_pic}
                     />
                     <View style={page.button_container}>
@@ -93,6 +95,18 @@ const Options = ({ navigation }) => {
                                 <Text style={page.button_text}>
                                     Help & Support
                                 </Text>
+                                <Icon name="right" size={25} color="white" />
+                            </View>
+                        </TouchableNativeFeedback>
+                        <TouchableNativeFeedback
+                            onPress={() => auth().signOut()}>
+                            <View style={page.button}>
+                                <Icon4
+                                    name="help-buoy"
+                                    size={25}
+                                    color="white"
+                                />
+                                <Text style={page.button_text}>Sign Out</Text>
                                 <Icon name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>

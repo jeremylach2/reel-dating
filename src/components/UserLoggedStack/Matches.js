@@ -18,7 +18,7 @@ const MatchNotContacted = props => {
         <TouchableNativeFeedback>
             <View style={page.utilityBox}>
                 <Image
-                    source={require("../assets/images/profile-picture-example.png")}
+                    source={require("../../assets/images/profile-picture-example.png")}
                     style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
                 />
                 <Text style={page.text}>Name</Text>
@@ -33,7 +33,7 @@ const MatchContacted = props => {
             <View style={page.utilityBoxContent}>
                 <View style={page.utilityBox}>
                     <Image
-                        source={require("../assets/images/profile-picture-example.png")}
+                        source={require("../../assets/images/profile-picture-example.png")}
                         style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
                     />
                     <Text style={page.text}>Name</Text>
@@ -49,7 +49,7 @@ const Matches = props => {
     return (
         <View style={page.container}>
             <ImageBackground
-                source={require("../assets/images/background-matches.png")} //change the background at some point
+                source={require("../../assets/images/background-matches.png")} //change the background at some point
                 style={page.background}
                 resizeMode="cover">
                 <ScrollView>
