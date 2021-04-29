@@ -5,15 +5,14 @@ import {
     ImageBackground,
     View,
     Image,
-    TextInput,
-    Platform,
     TouchableNativeFeedback,
-    StatusBar,
+    ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon3 from "react-native-vector-icons/MaterialIcons";
-import Icon4 from "react-native-vector-icons/Ionicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import AccountIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import auth from "@react-native-firebase/auth";
 
@@ -33,9 +32,9 @@ const Options = ({ navigation }) => {
                         <TouchableNativeFeedback
                             onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
-                                <Icon2 name="account" size={25} color="white" />
+                                <AccountIcon name="account" size={25} color="white" />
                                 <Text style={page.button_text}>Account</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
@@ -43,7 +42,7 @@ const Options = ({ navigation }) => {
                                 navigation.navigate("notifications")
                             }>
                             <View style={page.button}>
-                                <Icon3
+                                <MaterialIcons
                                     name="notifications"
                                     size={25}
                                     color="white"
@@ -51,7 +50,7 @@ const Options = ({ navigation }) => {
                                 <Text style={page.button_text}>
                                     Notifications
                                 </Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
@@ -59,7 +58,7 @@ const Options = ({ navigation }) => {
                                 navigation.navigate("questionnaire")
                             }>
                             <View style={page.button}>
-                                <Icon
+                                <AntDesign
                                     name="questioncircle"
                                     size={25}
                                     color="white"
@@ -67,13 +66,13 @@ const Options = ({ navigation }) => {
                                 <Text style={page.button_text}>
                                     Change Questionnaire
                                 </Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
                             onPress={() => navigation.navigate("privacy")}>
                             <View style={page.button}>
-                                <Icon3
+                                <MaterialIcons
                                     name="security"
                                     size={25}
                                     color="white"
@@ -81,13 +80,13 @@ const Options = ({ navigation }) => {
                                 <Text style={page.button_text}>
                                     Privacy & Security
                                 </Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
                             onPress={() => navigation.navigate("help")}>
                             <View style={page.button}>
-                                <Icon4
+                                <Ionicons
                                     name="help-buoy"
                                     size={25}
                                     color="white"
@@ -95,19 +94,19 @@ const Options = ({ navigation }) => {
                                 <Text style={page.button_text}>
                                     Help & Support
                                 </Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
                             onPress={() => auth().signOut()}>
                             <View style={page.button}>
-                                <Icon4
-                                    name="help-buoy"
+                                <FontAwesome
+                                    name="sign-out"
                                     size={25}
                                     color="white"
                                 />
                                 <Text style={page.button_text}>Sign Out</Text>
-                                <Icon name="right" size={25} color="white" />
+                                <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                     </View>
