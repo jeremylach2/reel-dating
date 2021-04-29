@@ -29,8 +29,6 @@ const SettingsNotifications = ({ navigation }) => {
                     <View style={page.itemContainer}>
                         <View style={page.headerContent}>
                             <MaterialIcons name="notifications" size={40} color="white" />
-                            <Text style={page.header}>NOTIFICATIONS</Text>
-                            <MaterialIcons name="notifications" size={40} color="white" />
                         </View>
 
                         <View style={page.itemContent}>
@@ -101,12 +99,8 @@ const page = StyleSheet.create({
         justifyContent: "space-between",
     },
     headerContent: {
-        borderBottomWidth: 1,
-        borderColor: "white",
         margin: 10,
-        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
     },
     header: {
         color: "white",

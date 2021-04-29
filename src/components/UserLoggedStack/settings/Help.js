@@ -5,22 +5,18 @@ import {
     Text,
     ImageBackground,
     View,
-    Image,
     TextInput,
-    Platform,
     TouchableNativeFeedback,
-    StatusBar,
-    ScrollView,
 } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons';
-import Icon5 from 'react-native-vector-icons/Feather';
+import { NavigationContainer } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon3 from "react-native-vector-icons/MaterialIcons";
+import Icon4 from "react-native-vector-icons/Ionicons";
+import Icon5 from "react-native-vector-icons/Feather";
 
 const Help = ({ navigation }) => {
-    const [problem, send_problem] = React.useState("");
+    const [problem, sendProblem] = React.useState("");
 
     return (
         <View style={page.container}>
@@ -29,72 +25,60 @@ const Help = ({ navigation }) => {
                 style={page.background}
                 resizeMode="cover">
                 <View style={page.box}>
-                    <View style={page.item_container}>
-                        <View style={page.header_content}>
-                            <Icon4
-                                name="help-buoy"
-                                size={25}
-                                color="white"
-                            />
-                            <Text style={page.header}>HELP & SUPPORT</Text>
-                            <Icon4
-                                name="help-buoy"
-                                size={25}
-                                color="white"
-                            />
+                    <View style={page.titleBox}>
+                        <View style={page.headerContent}>
+                            <Icon4 name="help-buoy" size={25} color="white" />
                         </View>
 
-                        <View style={page.text}>
-                            <Text style={page.text}>What is your problem?</Text>
+                        <View style={page.title}>
+                            <Text style={page.title}>What is your problem?</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={page.box}>
                     <TextInput
-                        style={{
-                            height: 300, width: "95%", borderColor: 'white', borderWidth: 1,
-                            marginBottom: 20, color: "white", placeholder: "Write about your problem here...",
-                            placeholderTextColor: "white", size: 25, textAlignVertical: "top"
-                        }}
+                        style={[
+                            page.textBox,
+                        ]}
+                        size="25"
+                        label="Problem"
+                        placeholder="Write about your problem here..."
+                        placeholderTextColor="white"
                     />
                 </View>
 
                 <View style={page.button}>
-                    <TouchableNativeFeedback onPress={() => navigation.navigate("help")}>
+                    <TouchableNativeFeedback
+                        onPress={() => navigation.navigate("help")}>
                         <View>
-                            <Icon5
-                                name="send"
-                                size={25}
-                                color="white"
-                            />
+                            <Icon5 name="send" size={25} color="white" />
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-
             </ImageBackground>
         </View>
     );
-}
+};
 
 const page = StyleSheet.create({
     container: {
         flex: 1,
     },
     background: {
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
         flex: 1,
     },
     box: {
-        flex: 2,
+        flex: 1,
         display: "flex",
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
     },
-    item_container: {
+    titleBox: {
         alignItems: "center",
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
@@ -107,19 +91,16 @@ const page = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
     },
-    header_content: {
-        borderBottomWidth: 1,
+    headerContent: {
         borderColor: "white",
         margin: 10,
-        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
     },
     header: {
         color: "white",
         fontSize: 20,
     },
-    text: {
+    title: {
         color: "white",
         fontSize: 20,
     },
@@ -130,11 +111,20 @@ const page = StyleSheet.create({
         marginBottom: 10,
         paddingTop: 20,
         paddingBottom: 20,
-        backgroundColor: '#68a0cf',
+        backgroundColor: "#68a0cf",
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#fff',
+        borderColor: "#fff",
         alignItems: "center",
+    },
+    textBox: {
+        height: 300,
+        width: "95%",
+        borderColor: "white",
+        borderWidth: 1,
+        marginBottom: 20,
+        color: "white",
+        textAlignVertical: "top",
     },
 });
 
