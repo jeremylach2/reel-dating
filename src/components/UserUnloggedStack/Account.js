@@ -132,7 +132,6 @@ const page = StyleSheet.create({
         flex: 1,
         resizeMode: "cover",
         justifyContent: "center",
-
     },
     logo: {
         resizeMode: "contain",
