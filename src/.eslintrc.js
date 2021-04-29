@@ -12,5 +12,6 @@ module.exports = {
         quotes: ["error", "double"],
         indent: ["error", 4],
         "object-curly-spacing": ["error", "always"],
+        curly: ["error", "multi"],
     },
 };

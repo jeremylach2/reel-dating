@@ -18,7 +18,7 @@ const quotePicker = () => {
     return quotes[index];
 };
 
-const MenuScreen = props => {
+const MenuScreen = ({ user }) => {
     const [status, setStatus] = useState(false);
     const [dot, setDot] = useState(1);
     const [quote, setQuote] = useState(quotePicker());
@@ -45,9 +45,9 @@ const MenuScreen = props => {
         return () => clearInterval(interval);
     }, [quote]);
 
-
     let currStatus = status ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
+
     return (
         <View style={page.container}>
             <ImageBackground
