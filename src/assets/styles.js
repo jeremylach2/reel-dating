@@ -170,7 +170,6 @@ export default {
                     flex: 1,
                     justifyContent: "space-evenly",
                     alignItems: "center",
-                    marginVertical: 24,
                 },
                 buttonText: {
                     fontSize: 20,
@@ -196,16 +195,14 @@ export default {
                     borderBottomWidth: 1,
                     borderColor: "white",
                     margin: 10,
-                    flexDirection: "row",
                     alignItems: "center",
-                    justifyContent: "space-between",
                 },
                 itemContainer: {
                     backgroundColor: "rgba(32, 32, 32, 0.3)",
                     width: "70%",
                 },
                 itemContent: {
-                    margin: 24,
+                    margin: 16,
                     borderBottomWidth: 1,
                     borderColor: "white",
                     flexDirection: "row",
@@ -257,7 +254,7 @@ export default {
                     textAlignVertical: "top",
                 },
                 textInputBox: {
-                    marginTop: 100,
+                    marginTop: "5%",
                     flexDirection: "row",
                     alignSelf: "center",
                     width: "96%",
@@ -295,9 +292,8 @@ export default {
                     justifyContent: "center",
                     alignItems: "center",
                     */
-
+                   // display: "flex",
                     flex: 1,
-                    display: "flex",
                     alignContent: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",

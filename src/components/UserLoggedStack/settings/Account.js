@@ -45,17 +45,23 @@ const Account = ({ navigation }) => {
                         <View
                             style={
                                 styles.userLoggedStack.settings.settings
-                                    .utilityBoxContainer
+                                    .itemContainer
                             }>
-                            <MaterialIcons
-                                name="account"
-                                size={35}
-                                color="white"
-                            />
                             <View
                                 style={
                                     styles.userLoggedStack.settings.settings
-                                        .utilityBoxContent
+                                        .headerContent
+                                }>
+                                <MaterialIcons
+                                    name="account"
+                                    size={40}
+                                    color="white"
+                                />
+                            </View>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
                                 }>
                                 <Text
                                     style={
@@ -76,7 +82,7 @@ const Account = ({ navigation }) => {
                             <View
                                 style={
                                     styles.userLoggedStack.settings.settings
-                                        .utilityBoxContent
+                                        .itemContent
                                 }>
                                 <Text
                                     style={
@@ -97,7 +103,7 @@ const Account = ({ navigation }) => {
                             <View
                                 style={
                                     styles.userLoggedStack.settings.settings
-                                        .utilityBoxContent
+                                        .itemContent
                                 }>
                                 <Text
                                     style={

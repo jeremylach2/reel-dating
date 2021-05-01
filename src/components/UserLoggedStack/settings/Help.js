@@ -6,7 +6,6 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    KeyboardAvoidingView
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import styles from "../../../assets/styles.js";
@@ -15,8 +14,7 @@ const Help = ({ navigation }) => {
     const [problem, sendProblem] = React.useState("");
 
     return (
-        <View
-        style={styles.userLoggedStack.settings.settings.container}>
+        <View style={styles.userLoggedStack.settings.settings.container}>
             <ImageBackground
                 source={require("../../../assets/images/background-settings.png")}
                 style={styles.userLoggedStack.settings.settings.background}
@@ -34,7 +32,7 @@ const Help = ({ navigation }) => {
                                     .textInputBox
                             }
                             color="white"
-                            placeholder="Type Your Problem Here"
+                            placeholder="Type Your Problem Here..."
                             placeholderTextColor="white"
                             multiline={true}
                             numberOfLines={5}

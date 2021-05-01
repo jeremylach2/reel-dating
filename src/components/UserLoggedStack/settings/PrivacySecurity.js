@@ -7,9 +7,9 @@ import {
     View,
     TouchableNativeFeedback,
 } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { NavigationContainer } from "@react-navigation/native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import styles from "../../../assets/styles.js";
 
 const PrivacySecurity = ({ navigation }) => {
@@ -19,32 +19,85 @@ const PrivacySecurity = ({ navigation }) => {
                 source={require("../../../assets/images/background-settings.png")}
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
-                <View style={styles.userLoggedStack.settings.settings.utilityBox}>
-                    <View style={styles.userLoggedStack.settings.settings.itemContainer}>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <MaterialIcons name="security" size={25} color="white" />
-                            <Text style={styles.userLoggedStack.settings.settings.header}>Privacy and Security</Text>
-                            <MaterialIcons name="security" size={25} color="white" />
+                <View
+                    style={styles.userLoggedStack.settings.settings.utilityBox}>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings
+                                .itemContainer
+                        }>
+                        <View
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .headerContent
+                            }>
+                            <MaterialIcons
+                                name="security"
+                                size={40}
+                                color="white"
+                            />
                         </View>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.securityText}>Change Password</Text>
-                                <AntDesign name="right" size={25} color="white" />
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .securityText
+                                    }>
+                                    Change Password
+                                </Text>
+                                <AntDesign
+                                    name="right"
+                                    size={25}
+                                    color="white"
+                                />
                             </View>
                         </TouchableNativeFeedback>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.securityText}>Blocked Accounts</Text>
-                                <AntDesign name="right" size={25} color="white" />
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .securityText
+                                    }>
+                                    Blocked Accounts
+                                </Text>
+                                <AntDesign
+                                    name="right"
+                                    size={25}
+                                    color="white"
+                                />
                             </View>
                         </TouchableNativeFeedback>
 
                         <TouchableNativeFeedback onPress>
-                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.securityText}>Delete Account</Text>
-                                <AntDesign name="right" size={25} color="white" />
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .securityText
+                                    }>
+                                    Delete Account
+                                </Text>
+                                <AntDesign
+                                    name="right"
+                                    size={25}
+                                    color="white"
+                                />
                             </View>
                         </TouchableNativeFeedback>
                     </View>
@@ -52,6 +105,6 @@ const PrivacySecurity = ({ navigation }) => {
             </ImageBackground>
         </View>
     );
-}
+};
 
 export default PrivacySecurity;
