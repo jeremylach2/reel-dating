@@ -42,13 +42,11 @@ const Login = ({ navigation }) => {
                         </Text>
                         <View
                             style={
-                                styles.userUnloggedStack.userUnloggedStack
-                                    .formContent
+                                styles.userUnloggedStack.userUnloggedStack.formContent
                             }>
                             <TextInput
                                 style={
-                                    styles.userUnloggedStack.userUnloggedStack
-                                        .userInput
+                                    styles.userUnloggedStack.userUnloggedStack.userInput
                                 }
                                 onChangeText={text => setEmail(text)}
                                 value={email}
@@ -57,8 +55,7 @@ const Login = ({ navigation }) => {
                             />
                             <TextInput
                                 style={
-                                    styles.userUnloggedStack.userUnloggedStack
-                                        .userInput
+                                    styles.userUnloggedStack.userUnloggedStack.userInput
                                 }
                                 onChangeText={text => setPassword(text)}
                                 value={password}
@@ -84,13 +81,11 @@ const Login = ({ navigation }) => {
                                 }}>
                                 <View
                                     style={
-                                        styles.userUnloggedStack
-                                            .userUnloggedStack.loginButton
+                                        styles.userUnloggedStack.userUnloggedStack.loginButton
                                     }>
                                     <Text
                                         style={
-                                            styles.userUnloggedStack
-                                                .userUnloggedStack.loginText
+                                            styles.userUnloggedStack.userUnloggedStack.loginText
                                         }>
                                         Login
                                     </Text>
@@ -99,23 +94,20 @@ const Login = ({ navigation }) => {
                             {logError && (
                                 <Text
                                     style={
-                                        styles.userUnloggedStack
-                                            .userUnloggedStack.loginErrorText
+                                        styles.userUnloggedStack.userUnloggedStack.loginErrorText
                                     }>
                                     Invalid email or password.
                                 </Text>
                             )}
                         </View>
-                        <TouchableOpacity onPress={() => forgot}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
                             <View
                                 style={
-                                    styles.userUnloggedStack.userUnloggedStack
-                                        .forgotButton
+                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
                                 }>
                                 <Text
                                     style={
-                                        styles.userUnloggedStack
-                                            .userUnloggedStack.forgotButton
+                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
                                     }>
                                     Forgot My Password
                                 </Text>
@@ -125,13 +117,11 @@ const Login = ({ navigation }) => {
                             onPress={() => navigation.navigate("Register")}>
                             <View
                                 style={
-                                    styles.userUnloggedStack.userUnloggedStack
-                                        .forgotButton
+                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
                                 }>
                                 <Text
                                     style={
-                                        styles.userUnloggedStack
-                                            .userUnloggedStack.forgotButton
+                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
                                     }>
                                     Create an Account
                                 </Text>

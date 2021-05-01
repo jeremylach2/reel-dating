@@ -95,6 +95,7 @@ const UserLoggedStack = props => {
                         position: "absolute",
                         elevation: 0,
                     },
+                    keyboardHidesTabBar: true,
                 }}>
                 <Tab.Screen name="Matches" component={Matches} />
                 <Tab.Screen name="Home" component={MenuScreen} />

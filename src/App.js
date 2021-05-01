@@ -6,17 +6,22 @@ import auth from "@react-native-firebase/auth";
 
 import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
+import ForgotPassword from "./components/UserUnloggedStack/ForgotPassword.js";
 
 const fb = database();
 
 const App = props => {
     // Set an initializing state whilst Firebase connects
-    return <UserLoggedStack />
+    //return <UserLoggedStack />
+    
+    return <UserLoggedStack/>
+
     /*
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
 
     // Handle user state changes
+    
     function onAuthStateChanged(user) {
         setUser(user);
         if (initializing) setInitializing(false);
