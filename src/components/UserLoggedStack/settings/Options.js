@@ -26,14 +26,14 @@ const Options = ({ navigation }) => {
                 <View style={page.box}>
                     <Image
                         source={require("../../../assets/images/profile-picture-example.png")}
-                        style={page.profile_pic}
+                        style={page.profilePicture}
                     />
-                    <View style={page.button_container}>
+                    <View style={page.buttonContainer}>
                         <TouchableNativeFeedback
                             onPress={() => navigation.navigate("account")}>
                             <View style={page.button}>
                                 <AccountIcon name="account" size={25} color="white" />
-                                <Text style={page.button_text}>Account</Text>
+                                <Text style={page.buttonText}>Account</Text>
                                 <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
@@ -47,7 +47,7 @@ const Options = ({ navigation }) => {
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>
+                                <Text style={page.buttonText}>
                                     Notifications
                                 </Text>
                                 <AntDesign name="right" size={25} color="white" />
@@ -63,7 +63,7 @@ const Options = ({ navigation }) => {
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>
+                                <Text style={page.buttonText}>
                                     Change Questionnaire
                                 </Text>
                                 <AntDesign name="right" size={25} color="white" />
@@ -77,7 +77,7 @@ const Options = ({ navigation }) => {
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>
+                                <Text style={page.buttonText}>
                                     Privacy & Security
                                 </Text>
                                 <AntDesign name="right" size={25} color="white" />
@@ -91,7 +91,7 @@ const Options = ({ navigation }) => {
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>
+                                <Text style={page.buttonText}>
                                     Help & Support
                                 </Text>
                                 <AntDesign name="right" size={25} color="white" />
@@ -105,7 +105,7 @@ const Options = ({ navigation }) => {
                                     size={25}
                                     color="white"
                                 />
-                                <Text style={page.button_text}>Sign Out</Text>
+                                <Text style={page.buttonText}>Sign Out</Text>
                                 <AntDesign name="right" size={25} color="white" />
                             </View>
                         </TouchableNativeFeedback>
@@ -130,13 +130,13 @@ const page = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    profile_pic: {
+    profilePicture: {
         width: 75,
         height: 75,
         marginTop: "15%",
         marginBottom: "5%",
     },
-    button_container: {
+    buttonContainer: {
         backgroundColor: "rgba(32, 32, 32, 0.3)",
         width: "70%",
     },
@@ -148,7 +148,7 @@ const page = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
     },
-    button_text: {
+    buttonText: {
         color: "white",
     },
 });

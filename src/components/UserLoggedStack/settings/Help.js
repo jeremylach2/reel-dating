@@ -9,11 +9,8 @@ import {
     TouchableNativeFeedback,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon3 from "react-native-vector-icons/MaterialIcons";
-import Icon4 from "react-native-vector-icons/Ionicons";
-import Icon5 from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import Feather from "react-native-vector-icons/Feather";
 
 const Help = ({ navigation }) => {
     const [problem, sendProblem] = React.useState("");
@@ -27,7 +24,7 @@ const Help = ({ navigation }) => {
                 <View style={page.box}>
                     <View style={page.titleBox}>
                         <View style={page.headerContent}>
-                            <Icon4 name="help-buoy" size={25} color="white" />
+                            <Ionicons name="help-buoy" size={25} color="white" />
                         </View>
 
                         <View style={page.title}>
@@ -52,7 +49,7 @@ const Help = ({ navigation }) => {
                     <TouchableNativeFeedback
                         onPress={() => navigation.navigate("help")}>
                         <View>
-                            <Icon5 name="send" size={25} color="white" />
+                            <Feather name="send" size={25} color="white" />
                         </View>
                     </TouchableNativeFeedback>
                 </View>

@@ -97,6 +97,17 @@ export default {
                 color: "red",
                 textAlign: "center",
             },
+            resetButton: {
+                backgroundColor: "#FFFFFF",
+                borderRadius: 4,
+                padding: "4%",
+                marginBottom: "4%",
+                width: "100%",
+            },
+            resetText: {
+                color: "black",
+                textAlign: "center",
+            },
         }),
     },
 };

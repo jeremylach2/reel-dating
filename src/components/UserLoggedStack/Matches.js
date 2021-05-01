@@ -136,12 +136,6 @@ const page = StyleSheet.create({
         color: "white",
         fontSize: 15,
     },
-    testfornow: {
-        overflow: "hidden",
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-    },
 });
 
 export default Matches;
