@@ -4,12 +4,147 @@ import { StyleSheet } from "react-native";
 export default {
     userLoggedStack: {
         userLoggedStack: StyleSheet.create({
-
+            //styles.userLoggedStack.userLoggedStack.
+            container: {
+                flex: 1,
+            },
+            background: {
+                width: '100%',
+                height: '100%',
+                flex: 1,
+            },
+            utilityBox: {
+                alignContent: "center",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+            },
+            profilePic: {
+                width: 75,
+                height: 75,
+                marginTop: "15%",
+                marginBottom: "5%",
+            },
+            headerContent: {
+                borderBottomWidth: 1,
+                borderColor: "white",
+                margin: 10,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+            },
+            header: {
+                color: "white",
+                fontSize: 20,
+            },
+            utilityBoxContainer: {
+                alignItems: "center",
+                backgroundColor: "rgba(32, 32, 32, 0.3)",
+                width: "90%",
+                justifyContent: "space-between",
+            },
+            utilityBoxContent: {
+                width: "80%",
+                margin: 5,
+                borderBottomWidth: 1,
+                borderColor: "white",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                maxWidth: "80%",
+                overflow: "hidden",
+            },
+            text: {
+                color: "white",
+                fontSize: 15,
+            },
+            menuBackground: {
+                flex: 1,
+            },
+            logo: {
+                resizeMode: "contain",
+                height: 150,
+                width: "100%",
+            },
+            active: {
+                alignItems: "center",
+                marginTop: "10%",
+            },
+            searchStatus: {
+                alignSelf: "center",
+                color: "white",
+                fontFamily: "sans-serif-light",
+                fontSize: 30,
+                marginBottom: "6%",
+                textShadowColor: "rgba(0, 0, 0, 0.75)",
+                textShadowOffset: {width: -1, height: 1},
+                textShadowRadius: 10,
+            },
+            powerStatus: {
+                overflow: "hidden",
+            },
+            powerContainer: {
+                justifyContent: "center",
+                alignItems: "center",
+                width: 220,
+                height: 220,
+                borderRadius: 110,
+                borderColor: "black",
+                backgroundColor: "rgba(32, 32, 32, 0.3)",
+            },
+            quote: {
+                fontSize: 20,
+                color: "rgba(255, 255, 255, 0.85)",
+                textAlign: "center",
+                fontStyle: "italic",
+                fontFamily: "sans-serif-light",
+                textShadowColor: "rgba(0, 0, 0, 0.75)",
+                textShadowOffset: {width: -1, height: 1},
+                textShadowRadius: 10,
+            },
+            videoContainer: {
+                flex: 1,
+                backgroundColor: "rgba(22, 22, 22, 0.8)",
+                width: "100%",
+                height: "100%",
+            },
+            textContainer: {
+                backgroundColor: "rgba(25, 22, 22, 0.2)",
+                height: "8%",
+                justifyContent: "center",
+            },
+            videoText: {
+                alignSelf: "center",
+                color: "white",
+                fontFamily: "sans-serif-light",
+                textShadowColor: "rgba(0, 0, 0, 0.75)",
+                textShadowOffset: { width: -1, height: 1 },
+                textShadowRadius: 10,
+                fontSize: 25,
+            },
+            videoContainer: {
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                maxHeight: "82%",
+                backgroundColor: "white",
+                zIndex: 1,
+            },
+            buttonsContainer: {
+                flex: 1,
+                backgroundColor: "transparent",
+                height: "10%",
+                maxHeight: "10%",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                zIndex: 2,
+            },
         }),
         settings: {
             settings: StyleSheet.create({//I recommend in the future we alphabetize this.
-                
-                //style.userLoggedStack.settings.settings
+
+                //styles.userLoggedStack.settings.settings
                 container: {
                     flex: 1,
                 },
@@ -31,7 +166,7 @@ export default {
                     alignContent: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",
-                    alignItems: "center",  
+                    alignItems: "center",
                 },
                 profilePicture: {
                     width: 75,

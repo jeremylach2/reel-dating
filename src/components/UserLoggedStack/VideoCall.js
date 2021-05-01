@@ -8,20 +8,21 @@ import {
 import MuteButton from "react-native-vector-icons/Octicons";
 import EndCall from "react-native-vector-icons/AntDesign";
 import FlipCam from "react-native-vector-icons/MaterialIcons";
+import styles from "../../assets/styles.js";
 
 const VideoCall = () => {
     const [muted, setMuted] = useState(false);
     return (
-        <View style={page.container}>
-            <View style={page.textContainer}>
-                <Text style={page.text}>
+        <View style={styles.userLoggedStack.userLoggedStack.container}>
+            <View style={styles.userLoggedStack.userLoggedStack.textContainer}>
+                <Text style={styles.userLoggedStack.userLoggedStack.videoText}>
                     You're Talking With Emma
                 </Text>
             </View>
-            <View style={page.videoContainer}>
+            <View style={styles.userLoggedStack.userLoggedStack.videoContainer}>
                 <Text>Video call will go here</Text>
             </View>
-            <View style={page.buttonsContainer}>
+            <View style={styles.userLoggedStack.userLoggedStack.buttonsContainer}>
                 <TouchableOpacity onPress={() => setMuted(!muted)}>
                     <MuteButton
                         name={muted ? "mute" : "unmute"}
@@ -48,8 +49,11 @@ const VideoCall = () => {
     );
 };
 
+/* wasn't able to test, but assuming that this works.
+commented out just in case we need backup, even though clean code says not to do this...
+
 const page = StyleSheet.create({
-    container: {
+    videoContainer: {
         flex: 1,
         backgroundColor: "rgba(22, 22, 22, 0.8)",
         width: "100%",
@@ -60,7 +64,7 @@ const page = StyleSheet.create({
         height: "8%",
         justifyContent: "center",
     },
-    text: {
+    videoText: {
         alignSelf: "center",
         color: "white",
         fontFamily: "sans-serif-light",
@@ -88,4 +92,6 @@ const page = StyleSheet.create({
         zIndex: 2,
     },
 });
+*/
+
 export default VideoCall;
