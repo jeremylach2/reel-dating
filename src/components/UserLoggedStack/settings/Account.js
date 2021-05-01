@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
+import styles from "../../../assets/styles.js";
 
 const Account = ({ navigation }) => {
     const [firstName, setFirstName] = React.useState("");
@@ -30,25 +31,25 @@ const Account = ({ navigation }) => {
     //Also, why would you have change password here? shouldn't it be it's own thing or redirect somewhere else?
 
     return (
-        <View style={page.container}>
+        <View style={styles.userLoggedStack.settings.settings.container}>
             <ImageBackground
                 source={require("../../../assets/images/background-settings.png")}
-                style={page.background}
+                style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <ScrollView>
-                    <View style={page.box}>
+                    <View style={styles.userLoggedStack.settings.settings.utilityBox}>
                         <Image
                             source={require("../../../assets/images/profile-picture-example.png")}
-                            style={page.profile_pic}
+                            style={styles.userLoggedStack.settings.settings.profilePicture}
                         />
-                        <View style={page.boxContainer}>
+                        <View style={styles.userLoggedStack.settings.settings.utilityBoxContainer}>
                             <MaterialIcons
                                 name="account"
                                 size={35}
                                 color="white"
                             />
-                            <View style={page.box_content}>
-                                <Text style={page.text}>First Name: </Text>
+                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>First Name: </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setFirstName(text)}
@@ -58,8 +59,8 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View style={page.box_content}>
-                                <Text style={page.text}>Last Name: </Text>
+                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>Last Name: </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setLastName(text)}
@@ -69,8 +70,8 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View style={page.box_content}>
-                                <Text style={page.text}>Email: </Text>
+                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>Email: </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setEmail(text)}
@@ -81,13 +82,13 @@ const Account = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={page.buttonContainer}>
+                    <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
                         <TouchableOpacity>
                             <LinearGradient
                                 colors={["#ff79cd", "#aa2ee6"]}
-                                style={page.linearGradient}
+                                style={styles.userLoggedStack.settings.settings.linearGradient}
                                 start={{ x: 0.7, y: 0 }}>
-                                <Text style={page.buttonText}> Change </Text>
+                                <Text style={styles.userLoggedStack.settings.settings.buttonText}> Change </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
@@ -118,85 +119,4 @@ const Account = ({ navigation }) => {
     />
 </View>
 */
-
-const page = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    background: {
-        width: "100%",
-        height: "100%",
-        flex: 1,
-    },
-    box: {
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    profile_pic: {
-        width: 75,
-        height: 75,
-        marginTop: "15%",
-        marginBottom: "5%",
-    },
-    headerContent: {
-        borderBottomWidth: 1,
-        borderColor: "white",
-        margin: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    header: {
-        color: "white",
-        fontSize: 20,
-    },
-    boxContainer: {
-        alignItems: "center",
-        backgroundColor: "rgba(32, 32, 32, 0.3)",
-        width: "70%",
-    },
-    box_content: {
-        width: "80%",
-        margin: 5,
-        borderBottomWidth: 1,
-        borderColor: "white",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        maxWidth: "80%",
-        overflow: "hidden",
-    },
-    button_box: {
-        display: "flex",
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    buttonContainer: {
-        flex: 1,
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        marginVertical: 24,
-    },
-    linearGradient: {
-        marginTop: "15%",
-        width: 220,
-        height: 50,
-        borderRadius: 110,
-    },
-    buttonText: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-        color: "#ffffff",
-        backgroundColor: "transparent",
-    },
-    text: {
-        color: "white",
-        fontSize: 15,
-    },
-});
 export default Account;

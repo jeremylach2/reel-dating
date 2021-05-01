@@ -7,12 +7,170 @@ export default {
 
         }),
         settings: {
-            settings: StyleSheet.create({
+            settings: StyleSheet.create({//I recommend in the future we alphabetize this.
+                
                 //style.userLoggedStack.settings.settings
-            }),
-            help: StyleSheet.create({
+                container: {
+                    flex: 1,
+                },
+                background: {
+                    width: "100%",
+                    height: "100%",
+                    flex: 1,
+                },
+                utilityBox: {
+                    /* this was the code for account.js in settings, but it doesn't change with help.js style
+                    alignContent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    */
 
-            }),
+                    flex: 1,
+                    display: "flex",
+                    alignContent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",  
+                },
+                profilePicture: {
+                    width: 75,
+                    height: 75,
+                    marginTop: "15%",
+                    marginBottom: "5%",
+                },
+                headerContent: {
+                    borderBottomWidth: 1,
+                    borderColor: "white",
+                    margin: 10,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                },
+                header: {
+                    color: "white",
+                    fontSize: 20,
+                },
+                utilityBoxContainer: {
+                    alignItems: "center",
+                    backgroundColor: "rgba(32, 32, 32, 0.3)",
+                    width: "70%",
+                },
+                utilityBoxContent: {
+                    width: "80%",
+                    margin: 5,
+                    borderBottomWidth: 1,
+                    borderColor: "white",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    maxWidth: "80%",
+                    overflow: "hidden",
+                },
+                buttonContainer: {
+                    flex: 1,
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                    marginVertical: 24,
+                },
+                optionsButtonContainer: {
+                    backgroundColor: "rgba(32, 32, 32, 0.3)",
+                    width: "70%",
+                },
+                linearGradient: {
+                    marginTop: "15%",
+                    width: 220,
+                    height: 50,
+                    borderRadius: 110,
+                },
+                buttonText: {
+                    fontSize: 20,
+                    textAlign: "center",
+                    margin: 10,
+                    color: "#ffffff",
+                    backgroundColor: "transparent",
+                },
+                accountText: {
+                    color: "white",
+                    fontSize: 15,
+                },
+                securityText: {
+                    color: "white",
+                    fontSize: 20,
+                },
+                notificationText: {
+                    color: "white",
+                    fontSize: 23,
+                },
+                optionsText: {
+                    color: "white",
+                },
+                optionsButton: {
+                    margin: 24,
+                    borderBottomWidth: 1,
+                    borderColor: "white",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                },
+                titleBox: {
+                    alignItems: "center",
+                    backgroundColor: "rgba(32, 32, 32, 0.3)",
+                    width: "70%",
+                },
+                itemContent: {
+                    margin: 24,
+                    borderBottomWidth: 1,
+                    borderColor: "white",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                },
+                headerContent: {
+                    /* Notifications issue here, Reece can explain.
+                    borderColor: "white",
+                    margin: 10,
+                    alignItems: "center",
+                    */
+
+                    borderBottomWidth: 1,
+                    borderColor: "white",
+                    margin: 10,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                },
+                title: {
+                    color: "white",
+                    fontSize: 20,
+                },
+                button: {
+                    overflow: "hidden",
+                    marginRight: 100,
+                    marginLeft: 100,
+                    marginBottom: 10,
+                    paddingTop: 20,
+                    paddingBottom: 20,
+                    backgroundColor: "#68a0cf",
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    borderColor: "#fff",
+                    alignItems: "center",
+                },
+                textBox: {
+                    height: 300,
+                    width: "95%",
+                    borderColor: "white",
+                    borderWidth: 1,
+                    marginBottom: 20,
+                    color: "white",
+                    textAlignVertical: "top",
+                },
+                itemContainer: {
+                    backgroundColor: "rgba(32, 32, 32, 0.3)",
+                    width: "70%",
+                },
+            })
         }
 
     },
