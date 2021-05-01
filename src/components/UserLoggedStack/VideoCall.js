@@ -13,7 +13,7 @@ import styles from "../../assets/styles.js";
 const VideoCall = () => {
     const [muted, setMuted] = useState(false);
     return (
-        <View style={styles.userLoggedStack.userLoggedStack.container}>
+        <View style={styles.userLoggedStack.userLoggedStack.videoUtilityBox}>
             <View style={styles.userLoggedStack.userLoggedStack.textContainer}>
                 <Text style={styles.userLoggedStack.userLoggedStack.videoText}>
                     You're Talking With Emma
@@ -53,7 +53,7 @@ const VideoCall = () => {
 commented out just in case we need backup, even though clean code says not to do this...
 
 const page = StyleSheet.create({
-    videoContainer: {
+    videoUtilityBox: {
         flex: 1,
         backgroundColor: "rgba(22, 22, 22, 0.8)",
         width: "100%",
