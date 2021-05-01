@@ -142,8 +142,7 @@ export default {
             },
         }),
         settings: {
-            settings: StyleSheet.create({//I recommend in the future we alphabetize this.
-
+            settings: StyleSheet.create({
                 //styles.userLoggedStack.settings.settings
                 accountText: {
                     color: "white",
@@ -256,6 +255,29 @@ export default {
                     marginBottom: 20,
                     color: "white",
                     textAlignVertical: "top",
+                },
+                textInputBox: {
+                    marginTop: 100,
+                    flexDirection: "row",
+                    alignSelf: "center",
+                    width: "96%",
+                    marginLeft: 2,
+                    marginRight: 2,
+                    marginBottom: 10,
+                    minHeight: 150,
+                    maxWidth: "90%",
+                    minWidth: "90%",
+                    backgroundColor: "transparent",
+                    borderWidth: 1,
+                    borderColor: "gray",
+                    paddingLeft: 10,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                },
+                textInputContainer: {
+                    marginTop: "40%",
+                    alignItems: "center",
+                    width: "70%",
                 },
                 title: {
                     color: "white",

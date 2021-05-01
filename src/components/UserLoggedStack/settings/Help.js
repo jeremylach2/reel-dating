@@ -1,58 +1,68 @@
-import React, { Component } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import {
-    StyleSheet,
     Text,
     ImageBackground,
     View,
     TextInput,
-    TouchableNativeFeedback,
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Feather from "react-native-vector-icons/Feather";
+import LinearGradient from "react-native-linear-gradient";
 import styles from "../../../assets/styles.js";
 
 const Help = ({ navigation }) => {
     const [problem, sendProblem] = React.useState("");
 
     return (
-        <View style={styles.userLoggedStack.settings.settings.container}>
+        <View
+        style={styles.userLoggedStack.settings.settings.container}>
             <ImageBackground
                 source={require("../../../assets/images/background-settings.png")}
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
-                <View style={styles.userLoggedStack.settings.settings.utilityBox}>
-                    <View style={styles.userLoggedStack.settings.settings.titleBox}>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Ionicons name="help-buoy" size={25} color="white" />
-                        </View>
-
-                        <View style={styles.userLoggedStack.settings.settings.title}>
-                            <Text style={styles.userLoggedStack.settings.settings.title}>What is your problem?</Text>
-                        </View>
+                <View
+                    style={styles.userLoggedStack.settings.settings.utilityBox}>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings
+                                .textInputContainer
+                        }>
+                        <TextInput
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .textInputBox
+                            }
+                            color="white"
+                            placeholder="Type Your Problem Here"
+                            placeholderTextColor="white"
+                            multiline={true}
+                            numberOfLines={5}
+                        />
                     </View>
                 </View>
 
-                <View style={styles.userLoggedStack.settings.settings.utilityBox}>
-                    <TextInput
-                        style={[
-                            styles.userLoggedStack.settings.settings.textBox,
-                        ]}
-                        size="25"
-                        label="Problem"
-                        placeholder="Write about your problem here..."
-                        placeholderTextColor="white"
-                    />
-                </View>
-
-                <View style={styles.userLoggedStack.settings.settings.button}>
-                    <TouchableNativeFeedback
-                        onPress={() => navigation.navigate("help")}>
-                        <View>
-                            <Feather name="send" size={25} color="white" />
-                        </View>
-                    </TouchableNativeFeedback>
+                <View
+                    style={
+                        styles.userLoggedStack.settings.settings.buttonContainer
+                    }>
+                    <TouchableOpacity>
+                        <LinearGradient
+                            colors={["#ff79cd", "#aa2ee6"]}
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .linearGradient
+                            }
+                            start={{ x: 0.7, y: 0 }}>
+                            <Text
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .buttonText
+                                }>
+                                Send Problem
+                            </Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </View>

@@ -1,18 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import {
-    StyleSheet,
     Text,
     ImageBackground,
     View,
     Image,
     TextInput,
-    Platform,
-    TouchableNativeFeedback,
-    StatusBar,
-    Button,
     ScrollView,
-    SafeAreaView,
     TouchableOpacity,
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -37,19 +31,39 @@ const Account = ({ navigation }) => {
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <ScrollView>
-                    <View style={styles.userLoggedStack.settings.settings.utilityBox}>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings.utilityBox
+                        }>
                         <Image
                             source={require("../../../assets/images/profile-picture-example.png")}
-                            style={styles.userLoggedStack.settings.settings.profilePicture}
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .profilePicture
+                            }
                         />
-                        <View style={styles.userLoggedStack.settings.settings.utilityBoxContainer}>
+                        <View
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .utilityBoxContainer
+                            }>
                             <MaterialIcons
                                 name="account"
                                 size={35}
                                 color="white"
                             />
-                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.accountText}>First Name: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .utilityBoxContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    First Name:{" "}
+                                </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setFirstName(text)}
@@ -59,8 +73,18 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.accountText}>Last Name: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .utilityBoxContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    Last Name:{" "}
+                                </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setLastName(text)}
@@ -70,8 +94,18 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View style={styles.userLoggedStack.settings.settings.utilityBoxContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.accountText}>Email: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .utilityBoxContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    Email:{" "}
+                                </Text>
                                 <TextInput
                                     color="white"
                                     onChangeText={text => setEmail(text)}
@@ -82,13 +116,27 @@ const Account = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings
+                                .buttonContainer
+                        }>
                         <TouchableOpacity>
                             <LinearGradient
                                 colors={["#ff79cd", "#aa2ee6"]}
-                                style={styles.userLoggedStack.settings.settings.linearGradient}
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .linearGradient
+                                }
                                 start={{ x: 0.7, y: 0 }}>
-                                <Text style={styles.userLoggedStack.settings.settings.buttonText}> Change </Text>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .buttonText
+                                    }>
+                                    {" "}
+                                    Change{" "}
+                                </Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
