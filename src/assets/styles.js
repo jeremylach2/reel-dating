@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 export default {
     userLoggedStack: {
         userLoggedStack: StyleSheet.create({
-            //styles.userLoggedStack.userLoggedStack.
             active: {
                 alignItems: "center",
                 marginTop: "10%",
@@ -44,6 +43,7 @@ export default {
                 height: 150,
                 width: "100%",
             },
+
             menuBackground: {
                 flex: 1,
             },
@@ -113,6 +113,7 @@ export default {
                 borderColor: "white",
                 flexDirection: "row",
                 alignItems: "center",
+                alignSelf: "center",
                 justifyContent: "space-between",
                 maxWidth: "80%",
                 overflow: "hidden",
