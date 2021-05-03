@@ -12,6 +12,7 @@ import {
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
+import styles from "../../assets/styles.js";
 
 const quotePicker = () => {
     const index = Math.floor(Math.random() * quotes.length);
@@ -49,17 +50,17 @@ const MenuScreen = ({ user }) => {
     let searching = dot === 0 ? "" : ".".repeat(dot);
 
     return (
-        <View style={page.container}>
+        <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
                 source={require("../../assets/images/background-menu.png")}
-                style={page.background}>
+                style={styles.userLoggedStack.userLoggedStack.menuBackground}>
                 <Image
-                    style={page.logo}
+                    style={styles.userLoggedStack.userLoggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
-                <Text style={page.quote}>{quote}</Text>
-                <View style={page.active}>
-                    <Text style={page.searchStatus}>
+                <Text style={styles.userLoggedStack.userLoggedStack.quote}>{quote}</Text>
+                <View style={styles.userLoggedStack.userLoggedStack.active}>
+                    <Text style={styles.userLoggedStack.userLoggedStack.searchStatus}>
                         {currStatus}
                         {status ? searching : ""}
                     </Text>
@@ -75,7 +76,7 @@ const MenuScreen = ({ user }) => {
                         )}
                         <Animated.View
                             style={[
-                                page.powerContainer,
+                                styles.userLoggedStack.userLoggedStack.powerContainer,
                                 status
                                     ? {
                                         opacity: AnimOpacity,
@@ -90,7 +91,7 @@ const MenuScreen = ({ user }) => {
                             <FontAwesome5
                                 name="power-off"
                                 size={60}
-                                style={page.powerStatus}
+                                style={styles.userLoggedStack.userLoggedStack.powerStatus}
                                 color={status ? "rgb(251, 255, 0)" : "black"}
                             />
                         </Animated.View>
@@ -100,55 +101,5 @@ const MenuScreen = ({ user }) => {
         </View>
     );
 };
-
-const page = StyleSheet.create({
-    background: {
-        flex: 1,
-    },
-    logo: {
-        resizeMode: "contain",
-        height: 150,
-        width: "100%",
-    },
-    container: {
-        flex: 1,
-    },
-    active: {
-        alignItems: "center",
-        marginTop: "10%",
-    },
-    searchStatus: {
-        alignSelf: "center",
-        color: "white",
-        fontFamily: "sans-serif-light",
-        fontSize: 30,
-        marginBottom: "6%",
-        textShadowColor: "rgba(0, 0, 0, 0.75)",
-        textShadowOffset: {width: -1, height: 1},
-        textShadowRadius: 10,
-    },
-    powerStatus: {
-        overflow: "hidden",
-    },
-    powerContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        width: 220,
-        height: 220,
-        borderRadius: 110,
-        borderColor: "black",
-        backgroundColor: "rgba(32, 32, 32, 0.3)",
-    },
-    quote: {
-        fontSize: 20,
-        color: "rgba(255, 255, 255, 0.85)",
-        textAlign: "center",
-        fontStyle: "italic",
-        fontFamily: "sans-serif-light",
-        textShadowColor: "rgba(0, 0, 0, 0.75)",
-        textShadowOffset: {width: -1, height: 1},
-        textShadowRadius: 10,
-    },
-});
 
 export default MenuScreen;

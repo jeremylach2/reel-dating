@@ -19,29 +19,43 @@ const Login = ({ navigation }) => {
     const forgot = () => {};
 
     return (
-        <View style={styles.userUnloggedStack.container}>
+        <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
                 source={require("../../assets/images/background-login.jpg")}
-                style={styles.userUnloggedStack.background}>
+                style={styles.userUnloggedStack.userUnloggedStack.background}>
                 <Image
-                    style={styles.userUnloggedStack.logo}
+                    style={styles.userUnloggedStack.userUnloggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
-                <View style={styles.userUnloggedStack.utilityBox}>
-                    <View style={styles.userUnloggedStack.form}>
-                        <Text style={styles.userUnloggedStack.title}>
+                <View
+                    style={
+                        styles.userUnloggedStack.userUnloggedStack.utilityBox
+                    }>
+                    <View
+                        style={styles.userUnloggedStack.userUnloggedStack.form}>
+                        <Text
+                            style={
+                                styles.userUnloggedStack.userUnloggedStack.title
+                            }>
                             Login
                         </Text>
-                        <View style={styles.userUnloggedStack.formContent}>
+                        <View
+                            style={
+                                styles.userUnloggedStack.userUnloggedStack.formContent
+                            }>
                             <TextInput
-                                style={styles.userUnloggedStack.userInput}
+                                style={
+                                    styles.userUnloggedStack.userUnloggedStack.userInput
+                                }
                                 onChangeText={text => setEmail(text)}
                                 value={email}
                                 placeholder="Email"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={styles.userUnloggedStack.userInput}
+                                style={
+                                    styles.userUnloggedStack.userUnloggedStack.userInput
+                                }
                                 onChangeText={text => setPassword(text)}
                                 value={password}
                                 placeholder="Password"
@@ -66,11 +80,11 @@ const Login = ({ navigation }) => {
                                 }}>
                                 <View
                                     style={
-                                        styles.userUnloggedStack.loginButton
+                                        styles.userUnloggedStack.userUnloggedStack.loginButton
                                     }>
                                     <Text
                                         style={
-                                            styles.userUnloggedStack.loginText
+                                            styles.userUnloggedStack.userUnloggedStack.loginText
                                         }>
                                         Login
                                     </Text>
@@ -79,17 +93,20 @@ const Login = ({ navigation }) => {
                             {logError && (
                                 <Text
                                     style={
-                                        styles.userUnloggedStack.loginErrorText
+                                        styles.userUnloggedStack.userUnloggedStack.loginErrorText
                                     }>
                                     Invalid email or password.
                                 </Text>
                             )}
                         </View>
-                        <TouchableOpacity onPress={() => forgot}>
-                            <View style={styles.userUnloggedStack.forgotButton}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+                            <View
+                                style={
+                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
+                                }>
                                 <Text
                                     style={
-                                        styles.userUnloggedStack.forgotButton
+                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
                                     }>
                                     Forgot My Password
                                 </Text>
@@ -97,10 +114,13 @@ const Login = ({ navigation }) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => navigation.navigate("Register")}>
-                            <View style={styles.userUnloggedStack.forgotButton}>
+                            <View
+                                style={
+                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
+                                }>
                                 <Text
                                     style={
-                                        styles.userUnloggedStack.forgotButton
+                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
                                     }>
                                     Create an Account
                                 </Text>

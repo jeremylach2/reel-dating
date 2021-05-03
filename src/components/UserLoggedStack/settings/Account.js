@@ -1,94 +1,120 @@
-import React, { Component } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import {
-    StyleSheet,
     Text,
     ImageBackground,
     View,
     Image,
     TextInput,
-    Platform,
-    TouchableNativeFeedback,
-    StatusBar,
-    Button,
     ScrollView,
-    SafeAreaView,
+    TouchableOpacity,
 } from "react-native";
-
-import Icon from 'react-native-vector-icons/AntDesign';
-import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon3 from 'react-native-vector-icons/MaterialIcons';
-import Icon4 from 'react-native-vector-icons/Ionicons'
-import Icon5 from 'react-native-vector-icons/Feather';
-import Icon6 from 'react-native-vector-icons/MaterialCommunityIcons';
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import LinearGradient from "react-native-linear-gradient";
+import styles from "../../../assets/styles.js";
 
 const Account = ({ navigation }) => {
-    const [first_name, set_firstName] = React.useState("");
-    const [last_name, set_lastName] = React.useState("");
-    const [username, set_username] = React.useState("");
-    const [password, set_password] = React.useState("");
-    const [email, set_email] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [email, setEmail] = React.useState("");
 
     //Still need to add blocked accounts and profile picture change buttons - had issue with them before removing for overall well being.
     //Also change the button color for the update buttons.
     //Also, why would you have change password here? shouldn't it be it's own thing or redirect somewhere else?
 
     return (
-        <View style={page.container}>
+        <View style={styles.userLoggedStack.settings.settings.container}>
             <ImageBackground
                 source={require("../../../assets/images/background-settings.png")}
-                style={page.background}
+                style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <ScrollView>
-                    <View style={page.box}>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings.utilityBox
+                        }>
                         <Image
                             source={require("../../../assets/images/profile-picture-example.png")}
-                            style={page.profile_pic}
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .profilePicture
+                            }
                         />
-                        <View style={page.box_container}>
-                            <View style={page.header_content}>
-                                <Icon2
+                        <View
+                            style={
+                                styles.userLoggedStack.settings.settings
+                                    .itemContainer
+                            }>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .headerContent
+                                }>
+                                <MaterialIcons
                                     name="account"
-                                    size={25}
-                                    color="white"
-                                />
-                                <Text style={page.header}>ACCOUNT</Text>
-                                <Icon2
-                                    name="account"
-                                    size={25}
+                                    size={40}
                                     color="white"
                                 />
                             </View>
-
-                            <View style={page.box_content}>
-                                <Text style={page.text}>First Name: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    First Name:{" "}
+                                </Text>
                                 <TextInput
                                     color="white"
-                                    onChangeText={text => set_firstName(text)}
-                                    value={first_name}
+                                    onChangeText={text => setFirstName(text)}
+                                    value={firstName}
                                     placeholder="First Name Sample"
                                     placeholderTextColor="white"
                                 />
                             </View>
 
-                            <View style={page.box_content}>
-                                <Text style={page.text}>Last Name: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    Last Name:{" "}
+                                </Text>
                                 <TextInput
-
                                     color="white"
-                                    onChangeText={text => set_lastName(text)}
-                                    value={last_name}
+                                    onChangeText={text => setLastName(text)}
+                                    value={lastName}
                                     placeholder="Last Name Sample"
                                     placeholderTextColor="white"
                                 />
                             </View>
 
-                            <View style={page.box_content}>
-                                <Text style={page.text}>Email: </Text>
+                            <View
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .itemContent
+                                }>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .accountText
+                                    }>
+                                    Email:{" "}
+                                </Text>
                                 <TextInput
                                     color="white"
-                                    onChangeText={text => set_email(text)}
+                                    onChangeText={text => setEmail(text)}
                                     value={email}
                                     placeholder="Email Sample"
                                     placeholderTextColor="white"
@@ -96,23 +122,35 @@ const Account = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={page.button}>
-                        <TouchableNativeFeedback onPress>
-                            <View>
-                                <Icon6
-                                    name="update"
-                                    size={25}
-                                    color="white"
-                                />
-                            </View>
-                        </TouchableNativeFeedback>
+                    <View
+                        style={
+                            styles.userLoggedStack.settings.settings
+                                .buttonContainer
+                        }>
+                        <TouchableOpacity>
+                            <LinearGradient
+                                colors={["#ff79cd", "#aa2ee6"]}
+                                style={
+                                    styles.userLoggedStack.settings.settings
+                                        .linearGradient
+                                }
+                                start={{ x: 0.7, y: 0 }}>
+                                <Text
+                                    style={
+                                        styles.userLoggedStack.settings.settings
+                                            .buttonText
+                                    }>
+                                    {" "}
+                                    Change{" "}
+                                </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </ImageBackground>
         </View>
-    )
+    );
 };
-
 
 /* 
 <View style={page.box_content}>
@@ -135,85 +173,4 @@ const Account = ({ navigation }) => {
     />
 </View>
 */
-
-const page = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    background: {
-        width: '100%',
-        height: '100%',
-        flex: 1,
-    },
-    box: {
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    profile_pic: {
-        width: 75,
-        height: 75,
-        marginTop: "15%",
-        marginBottom: "5%",
-    },
-    header_content: {
-        borderBottomWidth: 1,
-        borderColor: "white",
-        margin: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    header: {
-        color: "white",
-        fontSize: 20,
-    },
-    box_container: {
-        alignItems: "center",
-        backgroundColor: "rgba(32, 32, 32, 0.3)",
-        width: "70%",
-    },
-    box_content: {
-        width: "80%",
-        margin: 5,
-        borderBottomWidth: 1,
-        borderColor: "white",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        maxWidth: "80%",
-        overflow: "hidden",
-    },
-    button_box: {
-        display: "flex",
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    button_container: {
-        alignItems: "center",
-        backgroundColor: "rgba(32, 32, 32, 0.3)",
-        width: 200,
-        height: 25,
-    },
-    button: {
-        overflow: "hidden",
-        marginRight: 100,
-        marginLeft: 100,
-        marginBottom: 10,
-        paddingTop: 20,
-        paddingBottom: 20,
-        backgroundColor: '#68a0cf',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#fff',
-        alignItems: "center",
-    },
-    text: {
-        color: "white",
-        fontSize: 15,
-    },
-});
 export default Account;

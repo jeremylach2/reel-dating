@@ -14,6 +14,11 @@ import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
 const App = props => {
     // Set an initializing state whilst Firebase connects
+    //return <UserLoggedStack />
+    
+    return <UserLoggedStack/>
+
+    /*
     const [initializing, setInitializing] = useState(true);
     const [authUser, setAuthUser] = useState();
 
