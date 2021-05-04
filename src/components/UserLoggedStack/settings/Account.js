@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "react-native-gesture-handler";
 import {
     Text,
@@ -12,12 +12,12 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
 import styles from "../../../assets/styles.js";
+import UserContext from "../../../lib/UserContext";
 
 const Account = ({ navigation }) => {
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const { user } = useContext(UserContext);
+    const [firstName, setFirstName] = React.useState(user.name.first);
+    const [lastName, setLastName] = React.useState(user.name.last);
     const [email, setEmail] = React.useState("");
 
     //Still need to add blocked accounts and profile picture change buttons - had issue with them before removing for overall well being.

@@ -20,6 +20,15 @@ class Users {
                 return this.getUserByUID(uid);
             });
     }
+
+    static async updateUserByUID(uid, data) {
+        return fb
+            .ref(`/users/${uid}`)
+            .update(data)
+            .then(() => {
+                return this.getUserByUID(uid);
+            });
+    }
 }
 
 export default Users;

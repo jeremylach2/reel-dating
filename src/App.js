@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { AppState } from "react-native";
 
 import database from "@react-native-firebase/database";
 import auth from "@react-native-firebase/auth";
 
 import Users from "./lib/Users";
-
-const fb = database();
+import UserContext from "./lib/UserContext";
 
 import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
 const App = props => {
+    const appState = useRef(AppState.currentState);
     // Set an initializing state whilst Firebase connects
-    //return <UserLoggedStack />
-    
-    return <UserLoggedStack/>
-
-    /*
     const [initializing, setInitializing] = useState(true);
     const [authUser, setAuthUser] = useState();
-
     const [dbUserInitializing, setDBUserInitializing] = useState(true);
     const [user, setUser] = useState();
+    const [userActive, setUserActive] = useState(false);
+    const [appStatus, setAppStatus] = useState(appState.current);
 
     // Handle user state changes
     function onAuthStateChanged(fbUser) {
@@ -31,36 +27,61 @@ const App = props => {
         if (initializing) setInitializing(false);
     }
 
-    useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber;
-    }, []);
+    const handleAppStateChange = nextAppState => {
+        appState.current = nextAppState;
+        setAppStatus(appState.current);
+    };
 
-    if (initializing) return null;
+    const changeUserActive = (active, uid = authUser.uid) => {
+        setUserActive(active);
 
-    if (!authUser) return <UserUnloggedStack />;
+        Users.updateUserByUID(uid, {
+            active,
+        });
+    };
 
-    Users.getUserByUID(authUser.uid).then(dbUser => {
-        setUser(dbUser);
-        if (dbUserInitializing) setDBUserInitializing(false);
-    });
-
-    function onUserCreate(fbUser) {
+    function onUserCreate() {
         Users.getUserByUID(authUser.uid).then(dbUser => {
             setUser(dbUser);
             if (dbUserInitializing) setDBUserInitializing(false);
         });
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => auth().onAuthStateChanged(onAuthStateChanged), []);
+
+    useEffect(() => {
+        AppState.addEventListener("change", handleAppStateChange);
+        console.log("effect thing", authUser ? authUser.uid : "none!");
+
+        return () =>
+            AppState.removeEventListener("change", handleAppStateChange);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    if (appStatus !== "active") if (userActive) changeUserActive(false);
+
+    if (initializing) return null;
+
+    if (!authUser) return <UserUnloggedStack />;
+
+    if (authUser && !user)
+        Users.getUserByUID(authUser.uid).then(dbUser => {
+            setUser(dbUser);
+            if (dbUserInitializing) setDBUserInitializing(false);
+        });
+
     if (dbUserInitializing) return null;
-    else if (!dbUserInitializing && !user) {
-        //Users.createUserWithUID(authUser.uid);
+    else if (!dbUserInitializing && !user)
         return (
             <AccountDetails uid={authUser.uid} onUserCreate={onUserCreate} />
         );
-    }
 
-    return <UserLoggedStack user={user} />;
+    return (
+        <UserContext.Provider value={{ user, changeUserActive, userActive }}>
+            <UserLoggedStack />
+        </UserContext.Provider>
+    );
 };
 
 export default App;
