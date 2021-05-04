@@ -1,17 +1,15 @@
 import { StyleSheet } from "react-native";
 
-
 export default {
     userLoggedStack: {
         userLoggedStack: StyleSheet.create({
-            //styles.userLoggedStack.userLoggedStack.
             active: {
                 alignItems: "center",
                 marginTop: "10%",
             },
             background: {
-                width: '100%',
-                height: '100%',
+                width: "100%",
+                height: "100%",
                 flex: 1,
             },
             buttonsContainer: {
@@ -44,6 +42,7 @@ export default {
                 height: 150,
                 width: "100%",
             },
+
             menuBackground: {
                 flex: 1,
             },
@@ -72,7 +71,7 @@ export default {
                 fontStyle: "italic",
                 fontFamily: "sans-serif-light",
                 textShadowColor: "rgba(0, 0, 0, 0.75)",
-                textShadowOffset: {width: -1, height: 1},
+                textShadowOffset: { width: -1, height: 1 },
                 textShadowRadius: 10,
             },
             searchStatus: {
@@ -82,7 +81,7 @@ export default {
                 fontSize: 30,
                 marginBottom: "6%",
                 textShadowColor: "rgba(0, 0, 0, 0.75)",
-                textShadowOffset: {width: -1, height: 1},
+                textShadowOffset: { width: -1, height: 1 },
                 textShadowRadius: 10,
             },
             text: {
@@ -113,6 +112,7 @@ export default {
                 borderColor: "white",
                 flexDirection: "row",
                 alignItems: "center",
+                alignSelf: "center",
                 justifyContent: "space-between",
                 maxWidth: "80%",
                 overflow: "hidden",
@@ -140,6 +140,9 @@ export default {
                 width: "100%",
                 height: "100%",
             },
+            chat: StyleSheet.create({
+                
+            }),
         }),
         settings: {
             settings: StyleSheet.create({
@@ -292,7 +295,7 @@ export default {
                     justifyContent: "center",
                     alignItems: "center",
                     */
-                   // display: "flex",
+                    // display: "flex",
                     flex: 1,
                     alignContent: "center",
                     flexWrap: "wrap",
@@ -315,9 +318,8 @@ export default {
                     maxWidth: "80%",
                     overflow: "hidden",
                 },
-            })
-        }
-
+            }),
+        },
     },
     userUnloggedStack: {
         userUnloggedStack: StyleSheet.create({
