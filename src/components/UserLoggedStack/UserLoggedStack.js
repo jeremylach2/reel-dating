@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MenuScreen from "./MenuScreen";
 import Matches from "./Matches";
-import MatchesText from "./MatchesText"
+import MatchesText from "./MatchesText";
 import Options from "./settings/Options";
 import Account from "./settings/Account";
 import Notifications from "./settings/Notifications";
@@ -23,14 +23,8 @@ function MatchesStackScreen() {
                 gestureEnabled: true,
                 headerShown: false,
             }}>
-             <MatchesStack.Screen
-                name="matches"
-                component={Matches}
-            />
-            <MatchesStack.Screen
-                name="matchesText"
-                component={MatchesText}
-            />
+            <MatchesStack.Screen name="matches" component={Matches} />
+            <MatchesStack.Screen name="matchesText" component={MatchesText} />
         </MatchesStack.Navigator>
     );
 }

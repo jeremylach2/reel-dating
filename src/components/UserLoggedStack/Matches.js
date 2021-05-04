@@ -7,7 +7,6 @@ import {
     Image,
     FlatList,
     TouchableNativeFeedback,
-    ScrollView,
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "../../assets/styles.js";
@@ -139,7 +138,7 @@ function MatchContacted({ item, navigation }) {
     );
 }
 
-const Matches = ( { navigation }) => {
+const Matches = ({ navigation }) => {
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -184,7 +183,7 @@ const Matches = ( { navigation }) => {
                         <FlatList
                             style={{ width: "100%", alignContent: "center" }}
                             data={bothMatchedList}
-                            renderItem={MatchContacted}
+                            renderItem={({item}) => <MatchContacted navigation={navigation} item={item}/>}
                             keyExtractor={item => item.id}
                         />
                     </View>
