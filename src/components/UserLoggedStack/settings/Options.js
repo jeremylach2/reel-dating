@@ -205,41 +205,4 @@ const Options = ({ navigation }) => {
     );
 };
 
-const page = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    background: {
-        width: "100%",
-        height: "100%",
-    },
-    utilityBox: {
-        alignContent: "center",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    profilePicture: {
-        width: 75,
-        height: 75,
-        marginTop: "15%",
-        marginBottom: "5%",
-    },
-    buttonContainer: {
-        backgroundColor: "rgba(32, 32, 32, 0.3)",
-        width: "70%",
-    },
-    button: {
-        margin: 24,
-        borderBottomWidth: 1,
-        borderColor: "white",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    buttonText: {
-        color: "white",
-    },
-});
-
 export default Options;
