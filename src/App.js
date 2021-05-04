@@ -14,9 +14,9 @@ const App = props => {
     // Set an initializing state whilst Firebase connects
     //return <UserLoggedStack />
     
-    return <UserLoggedStack/>
+    //return <UserLoggedStack/>
 
-    /*
+    
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
 
@@ -39,7 +39,7 @@ const App = props => {
     }
 
     return <UserLoggedStack />;
-    */
+    
 };
 
 export default App;

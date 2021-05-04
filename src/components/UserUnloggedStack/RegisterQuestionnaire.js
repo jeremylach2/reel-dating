@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import RadioButtonRN from "radio-buttons-react-native";
-import styles from "../../../assets/styles.js";
+import styles from "../../assets/styles.js";
 
 function Interest(props) {
     return (
@@ -28,7 +28,7 @@ function Interest(props) {
 }
 
 
-const Questionaire = ({ navigation }) => {
+const RegisterQuestionnaire = ({ navigation }) => {
     const [checked, setChecked] = React.useState(false);
 
     const agePreference = [
@@ -100,7 +100,7 @@ const Questionaire = ({ navigation }) => {
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>
             <ImageBackground
-                source={require("../../../assets/images/background-settings.png")}
+                source={require("../../assets/images/background-settings.png")}
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <ScrollView>
@@ -172,7 +172,7 @@ const Questionaire = ({ navigation }) => {
                                     start={{ x: 0.7, y: 0 }}>
                                     <Text style={styles.userLoggedStack.settings.settings.buttonText}>
                                         {" "}
-                                    Update{" "}
+                                    Finish Questionnaire{" "}
                                     </Text>
                                 </LinearGradient>
                             </TouchableOpacity>
@@ -185,4 +185,4 @@ const Questionaire = ({ navigation }) => {
 };
 
 
-export default Questionaire;
+export default RegisterQuestionnaire;
