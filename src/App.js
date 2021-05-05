@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AppState } from "react-native";
 
-import database from "@react-native-firebase/database";
 import auth from "@react-native-firebase/auth";
 
 import Users from "./lib/Users";
@@ -54,8 +53,7 @@ const App = props => {
         AppState.addEventListener("change", handleAppStateChange);
         console.log("effect thing", authUser ? authUser.uid : "none!");
 
-        return () =>
-            AppState.removeEventListener("change", handleAppStateChange);
+        return () => AppState.removeEventListener("change", handleAppStateChange);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -73,9 +71,7 @@ const App = props => {
 
     if (dbUserInitializing) return null;
     else if (!dbUserInitializing && !user)
-        return (
-            <AccountDetails uid={authUser.uid} onUserCreate={onUserCreate} />
-        );
+        return <AccountDetails uid={authUser.uid} onUserCreate={onUserCreate} />;
 
     return (
         <UserContext.Provider value={{ user, changeUserActive, userActive }}>
