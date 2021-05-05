@@ -31,43 +31,17 @@ const Account = ({ navigation }) => {
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <ScrollView>
-                    <View
-                        style={
-                            styles.userLoggedStack.settings.settings.utilityBox
-                        }>
+                    <View style={styles.userLoggedStack.settings.settings.utilityBox}>
                         <Image
                             source={require("../../../assets/images/profile-picture-example.png")}
-                            style={
-                                styles.userLoggedStack.settings.settings
-                                    .profilePicture
-                            }
+                            style={styles.userLoggedStack.settings.settings.profilePicture}
                         />
-                        <View
-                            style={
-                                styles.userLoggedStack.settings.settings
-                                    .itemContainer
-                            }>
-                            <View
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .headerContent
-                                }>
-                                <MaterialIcons
-                                    name="account"
-                                    size={40}
-                                    color="white"
-                                />
+                        <View style={styles.userLoggedStack.settings.settings.itemContainer}>
+                            <View style={styles.userLoggedStack.settings.settings.headerContent}>
+                                <MaterialIcons name="account" size={40} color="white" />
                             </View>
-                            <View
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .itemContent
-                                }>
-                                <Text
-                                    style={
-                                        styles.userLoggedStack.settings.settings
-                                            .accountText
-                                    }>
+                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
                                     First Name:{" "}
                                 </Text>
                                 <TextInput
@@ -79,16 +53,8 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .itemContent
-                                }>
-                                <Text
-                                    style={
-                                        styles.userLoggedStack.settings.settings
-                                            .accountText
-                                    }>
+                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
                                     Last Name:{" "}
                                 </Text>
                                 <TextInput
@@ -100,16 +66,8 @@ const Account = ({ navigation }) => {
                                 />
                             </View>
 
-                            <View
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .itemContent
-                                }>
-                                <Text
-                                    style={
-                                        styles.userLoggedStack.settings.settings
-                                            .accountText
-                                    }>
+                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
                                     Email:{" "}
                                 </Text>
                                 <TextInput
@@ -122,24 +80,13 @@ const Account = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-                    <View
-                        style={
-                            styles.userLoggedStack.settings.settings
-                                .buttonContainer
-                        }>
+                    <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
                         <TouchableOpacity>
                             <LinearGradient
                                 colors={["#ff79cd", "#aa2ee6"]}
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .linearGradient
-                                }
+                                style={styles.userLoggedStack.settings.settings.linearGradient}
                                 start={{ x: 0.7, y: 0 }}>
-                                <Text
-                                    style={
-                                        styles.userLoggedStack.settings.settings
-                                            .buttonText
-                                    }>
+                                <Text style={styles.userLoggedStack.settings.settings.buttonText}>
                                     {" "}
                                     Change{" "}
                                 </Text>
@@ -152,7 +99,7 @@ const Account = ({ navigation }) => {
     );
 };
 
-/* 
+/*
 <View style={page.box_content}>
     <Text style={page.text}>Username: </Text>
     <TextInput

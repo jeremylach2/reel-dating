@@ -1,14 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect, useContext } from "react";
-import {
-    StyleSheet,
-    Text,
-    ImageBackground,
-    View,
-    Image,
-    Animated,
-    TouchableOpacity,
-} from "react-native";
+import { Text, ImageBackground, View, Image, Animated, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
@@ -24,6 +16,7 @@ const MenuScreen = () => {
     const { user, changeUserActive, userActive } = useContext(UserContext);
     const [dot, setDot] = useState(1);
     const [quote, setQuote] = useState(quotePicker());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const AnimOpacity = new Animated.Value(0.5);
 
     useEffect(() => {
@@ -59,19 +52,13 @@ const MenuScreen = () => {
                     style={styles.userLoggedStack.userLoggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
-                <Text style={styles.userLoggedStack.userLoggedStack.quote}>
-                    {quote}
-                </Text>
+                <Text style={styles.userLoggedStack.userLoggedStack.quote}>{quote}</Text>
                 <View style={styles.userLoggedStack.userLoggedStack.active}>
-                    <Text
-                        style={
-                            styles.userLoggedStack.userLoggedStack.searchStatus
-                        }>
+                    <Text style={styles.userLoggedStack.userLoggedStack.searchStatus}>
                         {currStatus}
                         {userActive ? searching : ""}
                     </Text>
-                    <TouchableOpacity
-                        onPress={() => changeUserActive(!userActive)}>
+                    <TouchableOpacity onPress={() => changeUserActive(!userActive)}>
                         {userActive && (
                             <Pulse
                                 color={"orange"}
@@ -83,30 +70,17 @@ const MenuScreen = () => {
                         )}
                         <Animated.View
                             style={[
-                                styles.userLoggedStack.userLoggedStack
-                                    .powerContainer,
+                                styles.userLoggedStack.userLoggedStack.powerContainer,
                                 userActive
-                                    ? {
-                                        opacity: AnimOpacity,
-                                        backgroundColor: "rgb(240, 196, 77)",
-                                    }
-                                    : {
-                                        opacity: 1,
-                                        backgroundColor:
-                                            "rgba(32, 32, 32, 0.3)",
-                                    },
+                                    ? { opacity: AnimOpacity, backgroundColor: "rgb(240, 196, 77)" }
+                                    : { opacity: 1, backgroundColor: "rgba(32, 32, 32, 0.3)" },
                             ]}
                             onPress={{ opacity: AnimOpacity }}>
                             <FontAwesome5
                                 name="power-off"
                                 size={60}
-                                style={
-                                    styles.userLoggedStack.userLoggedStack
-                                        .powerStatus
-                                }
-                                color={
-                                    userActive ? "rgb(251, 255, 0)" : "black"
-                                }
+                                style={styles.userLoggedStack.userLoggedStack.powerStatus}
+                                color={userActive ? "rgb(251, 255, 0)" : "black"}
                             />
                         </Animated.View>
                     </TouchableOpacity>
