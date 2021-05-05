@@ -140,13 +140,9 @@ export default {
                 width: "100%",
                 height: "100%",
             },
-            chat: StyleSheet.create({
-                
-            }),
         }),
         settings: {
             settings: StyleSheet.create({
-                //styles.userLoggedStack.settings.settings
                 accountText: {
                     color: "white",
                     fontSize: 15,
@@ -242,6 +238,35 @@ export default {
                     height: 75,
                     marginTop: "15%",
                     marginBottom: "5%",
+                },
+                questionnaireButton: {
+                    marginTop: "15%",
+                    width: 120,
+                    height: 25,
+                    borderRadius: 110,
+                    alignItems: "center",
+                },
+                questionnaireButtonBox: {
+                    //backgroundColor: "rgba(22, 22, 22, 0.8)",
+                    alignContent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                },
+                questionnaireButtonContainer: {
+                    flex: 1,
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "space-evenly",
+                    marginBottom: "15%",
+                },
+                questionnaireButtonText: {
+                    color: "white",
+                    alignItems: "center",
+                    fontSize: 15,
+                },
+                questionnaireRadioContainer: {
+                    width: "90%",
                 },
                 securityText: {
                     color: "white",

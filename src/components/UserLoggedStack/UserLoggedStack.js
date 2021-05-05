@@ -10,6 +10,7 @@ import Options from "./settings/Options";
 import Account from "./settings/Account";
 import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
+import Questionnaire from "./settings/Questionnaire"
 import PrivacySecurity from "./settings/PrivacySecurity";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -61,6 +62,11 @@ function SettingsStackScreen() {
                 name="notifications"
                 component={Notifications}
                 options={{ title: "NOTIFICATIONS" }}
+            />
+            <SettingsStack.Screen
+                name="questionnaire"
+                component={Questionnaire}
+                options={{ headerShown: false }}
             />
             <SettingsStack.Screen
                 name="privacy"
