@@ -239,6 +239,11 @@ export default {
                     marginTop: "15%",
                     marginBottom: "5%",
                 },
+                questionnaireBox: {
+                    alignItems: "center",
+                    backgroundColor: "rgba(32, 32, 32, 0.3)",
+                    width: "90%",
+                },
                 questionnaireButton: {
                     marginTop: "15%",
                     width: 120,
@@ -267,6 +272,12 @@ export default {
                 },
                 questionnaireRadioContainer: {
                     width: "90%",
+                },
+                questionnaireSliderContainer: {
+                    flex: 1,
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "space-evenly",
                 },
                 securityText: {
                     color: "white",

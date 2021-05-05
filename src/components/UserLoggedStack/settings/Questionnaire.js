@@ -6,9 +6,11 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
+    TextInput,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import RadioButtonRN from "radio-buttons-react-native";
+import Slider from "@react-native-community/slider";
 import styles from "../../../assets/styles.js";
 
 const agePreference = [
@@ -79,7 +81,9 @@ const interestsList = [
 
 const Questionaire = ({ navigation }) => {
     const [interests, setInterests] = useState(interestsList);
-
+    const [sliderValue, setSliderValue] = useState(18);
+    const [radiusRange, setRadiusRange] = useState('');
+    const [height, setHeight] = useState('');
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>
@@ -95,20 +99,56 @@ const Questionaire = ({ navigation }) => {
                             <Text style={styles.userLoggedStack.settings.settings.header}>QUESTIONNAIRE</Text>
                         </View>
 
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.accountText}>What is your age preference?</Text>
+                        <View style={styles.userLoggedStack.settings.settings.questionnaireBox}>
+
+                            <View style={styles.userLoggedStack.settings.settings.headerContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>What is your age?</Text>
+                            </View>
+                            <View style={styles.userLoggedStack.settings.settings.questionnaireSliderContainer}>
+                                <Slider
+                                    style={{ width: "80%" }}
+                                    initialValue={18}
+                                    minimumValue={18}
+                                    maximumValue={100}
+                                    minimumTrackTintColor="#FFFFFF"
+                                    maximumTrackTintColor="#000000"
+                                    onValueChange={
+                                        (sliderValue) => setSliderValue(sliderValue)
+                                    }
+                                    step={1}
+                                />
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
+                                    Your Age : {sliderValue}
+                                </Text>
+                            </View>
+
+                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
+                                    What is your desired mile radius? :{" "}
+                                </Text>
+                                <TextInput
+                                    color="white"
+                                    value={radiusRange}
+                                    placeholder="Mile Radius"
+                                    placeholderTextColor="white"
+                                />
+                            </View>
+
+
+                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
+                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
+                                    What is your height? :{" "}
+                                </Text>
+                                <TextInput
+                                    color="white"
+                                    value={height}
+                                    placeholder="Your Height"
+                                    placeholderTextColor="white"
+                                />
+                            </View>
+
                         </View>
-                        <View style={styles.userLoggedStack.settings.settings.questionnaireRadioContainer}>
-                            <RadioButtonRN
-                                data={agePreference}
-                                deactiveColor="white"
-                                activeColor="white"
-                                boxDeactiveBgColor="transparent"
-                                boxActiveBgColor="rgba(22, 22, 22, 0.2)"
-                                textColor="white"
-                                selectedBtn={(e) => console.log(e)}
-                            />
-                        </View>
+
                         <View style={styles.userLoggedStack.settings.settings.headerContent}>
                             <Text style={styles.userLoggedStack.settings.settings.accountText}>Who would you like to see?</Text>
                         </View>
@@ -127,7 +167,7 @@ const Questionaire = ({ navigation }) => {
                             <Text style={styles.userLoggedStack.settings.settings.accountText}>Select all that interest you.</Text>
                         </View>
                         <View style={styles.userLoggedStack.settings.settings.questionnaireButtonContainer}>
-                            
+
                             <Interest interest="Sports" />
                             <Interest interest="Working Out" />
                             <Interest interest="Fishing" />
@@ -141,16 +181,36 @@ const Questionaire = ({ navigation }) => {
                             <Interest interest="Music" />
                             <Interest interest="Netflix" />
                             <Interest interest="Travel" />
-                            <Interest interest="Politics" />
                             <Interest interest="Movies" />
                             <Interest interest="Photography" />
                             <Interest interest="Hiking" />
                             <Interest interest="Reading" />
                             <Interest interest="Fashion" />
                             <Interest interest="Cycling" />
-                            <Interest interest="Religion" />
-                            
+
                         </View>
+
+                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
+                            <Text style={styles.userLoggedStack.settings.settings.accountText}>Select what describes your lifestyle.</Text>
+                        </View>
+                        <View style={styles.userLoggedStack.settings.settings.questionnaireButtonContainer}>
+
+                            <Interest interest="Republican" />
+                            <Interest interest="Democrat" />
+                            <Interest interest="Moderate" />
+                            <Interest interest="Christian" />
+                            <Interest interest="Catholic" />
+                            <Interest interest="Buddhist" />
+                            <Interest interest="Hindu" />
+                            <Interest interest="Jewish" />
+                            <Interest interest="Muslim" />
+                            <Interest interest="Spiritual" />
+                            <Interest interest="Agnostic" />
+                            <Interest interest="Athiest" />
+                            <Interest interest="Unaffliated" />
+
+                        </View>
+
                     </View>
 
                     <View style={styles.userLoggedStack.settings.settings.questionnaireButtonBox}>
