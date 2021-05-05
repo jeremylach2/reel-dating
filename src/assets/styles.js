@@ -140,13 +140,9 @@ export default {
                 width: "100%",
                 height: "100%",
             },
-            chat: StyleSheet.create({
-                
-            }),
         }),
         settings: {
             settings: StyleSheet.create({
-                //styles.userLoggedStack.settings.settings
                 accountText: {
                     color: "white",
                     fontSize: 15,
@@ -251,7 +247,7 @@ export default {
                     alignItems: "center",
                 },
                 questionnaireButtonBox: {
-                    backgroundColor: "rgba(22, 22, 22, 0.8)",
+                    //backgroundColor: "rgba(22, 22, 22, 0.8)",
                     alignContent: "center",
                     flexWrap: "wrap",
                     justifyContent: "center",
@@ -269,11 +265,8 @@ export default {
                     alignItems: "center",
                     fontSize: 15,
                 },
-                questionnaireUtilityBox: {
-                    flex: 1,
-                    backgroundColor: "rgba(22, 22, 22, 0.8)",
-                    width: "140%",
-                    height: "140%",
+                questionnaireRadioContainer: {
+                    width: "90%",
                 },
                 securityText: {
                     color: "white",
