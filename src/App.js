@@ -12,7 +12,6 @@ const fb = database();
 
 const App = props => {
     // Set an initializing state whilst Firebase connects
-    //return <UserLoggedStack />
     
     return <UserLoggedStack/>
 

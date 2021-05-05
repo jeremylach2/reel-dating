@@ -48,7 +48,7 @@ const Register = ({ navigation }) => {
                                 secureTextEntry={true}
                             />
                             <TouchableOpacity
-                                onPress={() => {
+                                onPress={() => { //Add RegisterQuestionnaire somewhere right here.
                                     auth()
                                         .createUserWithEmailAndPassword(
                                             email,
