@@ -249,6 +249,8 @@ export default {
                     width: 120,
                     height: 25,
                     borderRadius: 110,
+                    borderWidth: 1,
+                    borderColor: "white",
                     alignItems: "center",
                 },
                 questionnaireButtonBox: {

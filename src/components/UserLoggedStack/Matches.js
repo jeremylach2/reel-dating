@@ -110,16 +110,12 @@ function MatchNotContacted({ item }) {
             </View>
         </TouchableNativeFeedback>
     );
-};
+}
 
 function MatchContacted({ item, navigation }) {
     return (
-        <TouchableNativeFeedback
-            onPress={() => navigation.navigate("matchesText")}>
-            <View
-                style={
-                    styles.userLoggedStack.userLoggedStack.utilityBoxContent
-                }>
+        <TouchableNativeFeedback onPress={() => navigation.navigate("matchesText")}>
+            <View style={styles.userLoggedStack.userLoggedStack.utilityBoxContent}>
                 <View style={styles.userLoggedStack.userLoggedStack.utilityBox}>
                     <Image
                         source={require("../../assets/images/profile-picture-example.png")}
@@ -146,44 +142,28 @@ const Matches = ({ navigation }) => {
                 style={styles.userLoggedStack.userLoggedStack.background}
                 resizeMode="cover">
                 <View style={styles.userLoggedStack.userLoggedStack.utilityBox}>
-                    <View
-                        style={
-                            styles.userLoggedStack.userLoggedStack
-                                .utilityBoxContent
-                        }>
+                    <View style={styles.userLoggedStack.userLoggedStack.utilityBoxContent}>
                         <FlatList
                             data={notMatchList}
                             renderItem={MatchNotContacted}
                             keyExtractor={item => item.id}
                             horizontal={true}
-                            ItemSeparatorComponent={() => (
-                                <View style={{ width: 16 }} />
-                            )}
+                            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
                         />
                     </View>
 
-                    <View
-                        style={
-                            styles.userLoggedStack.userLoggedStack
-                                .utilityBoxContainer
-                        }>
-                        <View
-                            style={
-                                styles.userLoggedStack.userLoggedStack
-                                    .headerContent
-                            }>
-                            <Text
-                                style={
-                                    styles.userLoggedStack.userLoggedStack
-                                        .header
-                                }>
+                    <View style={styles.userLoggedStack.userLoggedStack.utilityBoxContainer}>
+                        <View style={styles.userLoggedStack.userLoggedStack.headerContent}>
+                            <Text style={styles.userLoggedStack.userLoggedStack.header}>
                                 YOUR MATCHES
                             </Text>
                         </View>
                         <FlatList
                             style={{ width: "100%", alignContent: "center" }}
                             data={bothMatchedList}
-                            renderItem={({item}) => <MatchContacted navigation={navigation} item={item}/>}
+                            renderItem={({ item }) => (
+                                <MatchContacted navigation={navigation} item={item} />
+                            )}
                             keyExtractor={item => item.id}
                         />
                     </View>
