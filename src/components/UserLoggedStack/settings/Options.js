@@ -21,10 +21,6 @@ const Options = ({ navigation }) => {
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
                 <View style={styles.userLoggedStack.settings.settings.utilityBox}>
-                    <Image
-                        source={require("../../../assets/images/profile-picture-example.png")}
-                        style={styles.userLoggedStack.settings.settings.profilePicture}
-                    />
                     <View style={styles.userLoggedStack.settings.settings.optionsButtonContainer}>
                         <TouchableNativeFeedback onPress={() => navigation.navigate("account")}>
                             <View style={styles.userLoggedStack.settings.settings.optionsButton}>

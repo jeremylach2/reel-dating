@@ -18,7 +18,9 @@ const MenuScreen = () => {
     const [quote, setQuote] = useState(quotePicker());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const AnimOpacity = new Animated.Value(0.5);
+    const maxDots = 5;
 
+    // Gives pulsating opacity effect to button
     useEffect(() => {
         Animated.timing(AnimOpacity, {
             toValue: 1,
@@ -27,14 +29,16 @@ const MenuScreen = () => {
         }).start();
     }, [AnimOpacity]);
 
+    // Adds dot effect to searching
     useEffect(() => {
-        let dots = dot === 5 ? 0 : dot + 1;
+        let dots = dot === maxDots ? 0 : dot + 1;
         const interval = setInterval(() => {
             setDot(dots);
         }, 1000);
         return () => clearInterval(interval);
     }, [dot]);
 
+    // Timer to change quotes every 30s
     useEffect(() => {
         const interval = setInterval(() => setQuote(quotePicker()), 30000);
         return () => clearInterval(interval);
