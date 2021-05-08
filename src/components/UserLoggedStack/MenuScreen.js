@@ -36,7 +36,7 @@ const MenuScreen = () => {
     }, [dot]);
 
     useEffect(() => {
-        const interval = setInterval(() => setQuote(quotePicker()), 5000);
+        const interval = setInterval(() => setQuote(quotePicker()), 30000);
         return () => clearInterval(interval);
     }, [quote]);
 
