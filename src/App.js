@@ -11,6 +11,10 @@ import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
 const App = props => {
+    return (
+    <UserLoggedStack />
+    );
+    /*
     const appState = useRef(AppState.currentState);
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
@@ -78,6 +82,7 @@ const App = props => {
             <UserLoggedStack />
         </UserContext.Provider>
     );
+    */
 };
 
 export default App;
