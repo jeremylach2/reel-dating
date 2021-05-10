@@ -13,14 +13,6 @@ import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
 const App = props => {
-    useEffect(() => {
-        SplashScreen.hide();
-    }, []);
-
-    return (
-        <UserLoggedStack />
-    );
-    /*
     const appState = useRef(AppState.currentState);
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
@@ -56,6 +48,10 @@ const App = props => {
         });
     }
 
+    useEffect(() => {
+        SplashScreen.hide();
+    }, []);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => auth().onAuthStateChanged(onAuthStateChanged), []);
 
@@ -88,7 +84,6 @@ const App = props => {
             <UserLoggedStack />
         </UserContext.Provider>
     );
-    */
 };
 
 export default App;
