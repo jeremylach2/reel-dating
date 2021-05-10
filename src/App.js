@@ -10,9 +10,12 @@ import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
+//Delete this later:
+import MatchMade from "./components/UserLoggedStack/MatchMade.js";
+
 const App = props => {
     return (
-    <UserLoggedStack />
+        <MatchMade />
     );
     /*
     const appState = useRef(AppState.currentState);
