@@ -8,7 +8,10 @@ class Users {
             .ref(`/users/${uid}`)
             .once("value")
             .then(snapshot => {
-                return snapshot.val();
+                return {
+                    id: uid,
+                    ...snapshot.val(),
+                };
             });
     }
 
@@ -27,6 +30,22 @@ class Users {
             .update(data)
             .then(() => {
                 return this.getUserByUID(uid);
+            });
+    }
+
+    static async getAll() {
+        return fb
+            .ref("/users")
+            .once("value")
+            .then(snapshot => {
+                const users = snapshot.val();
+
+                return Object.keys(users).map(u => {
+                    return {
+                        id: u,
+                        ...users[u],
+                    };
+                });
             });
     }
 }
