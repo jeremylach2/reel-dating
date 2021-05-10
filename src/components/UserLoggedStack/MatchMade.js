@@ -1,89 +1,65 @@
 import React, { useState } from "react";
+import "react-native-gesture-handler";
 import {
     Text,
+    ImageBackground,
     View,
     TouchableOpacity,
+    Modal,
+    Image,
 } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
 import styles from "../../assets/styles.js";
 
 const MatchMade = () => {
-    const [muted, setMuted] = useState(false);
     return (
-        <View style={styles.userLoggedStack.settings.settings.container}>
+        <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
-                source={require("../../../assets/images/background-question.png")}
-                style={styles.userLoggedStack.settings.settings.background}
+                source={require("../../assets/images/background-menu.png")}
+                style={styles.userLoggedStack.userLoggedStack.menuBackground}
                 resizeMode="cover">
-                <ScrollView>
-                    <View style={styles.userLoggedStack.settings.settings.utilityBox}>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.header}>
-                                QUESTIONNAIRE
+                <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
+                    <Text style={styles.userLoggedStack.userLoggedStack.matchMadeHeader}>
+                        Match Made!
                             </Text>
-                        </View>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                What Age Would You Like to See?
+                </View>
+                <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
+                    <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                        Match Name Here, Their Age
                             </Text>
-                        </View>
-                        <Slider
-                            style={{ width: "80%" }}
-                            initialValue={18}
-                            minimumValue={18}
-                            maximumValue={100}
-                            minimumTrackTintColor="#FFFFFF"
-                            maximumTrackTintColor="#000000"
-                            onValueChange={sliderValue => setSliderValue(sliderValue)}
-                            step={1}
-                        />
-                        <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                            Age : {sliderValue}
-                        </Text>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                Who would you like to see?
-                            </Text>
-                        </View>
-                        <View
-                            style={
-                                styles.userLoggedStack.settings.settings.questionnaireRadioContainer
-                            }>
-                            <RadioButtonRN
-                                data={sexPreference}
-                                deactiveColor="white"
-                                activeColor="white"
-                                boxDeactiveBgColor="transparent"
-                                boxActiveBgColor="rgba(22, 22, 22, 0.2)"
-                                textColor="white"
-                                selectedBtn={e => console.log(e)}
-                            />
-                        </View>
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                Select all that interest you.
-                            </Text>
-                        </View>
-                        <View
-                            style={
-                                styles.userLoggedStack.settings.settings
-                                    .questionnaireButtonContainer
-                            }>
-                            <QuestionnaireList items={interests} updateItem={updateInterest} />
-                        </View>
-
-                        <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                            <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                Select what describes your lifestyle.
-                            </Text>
-                        </View>
-                    </View>
+                </View>
+                <View style={styles.userLoggedStack.userLoggedStack.matchMadeSecondaryContainer}>
+                    <Image
+                        source={require("../../assets/images/profile-picture-example.png")} //this would be the person's photo, not the user's.
+                        style={styles.userLoggedStack.userLoggedStack.matchMadeProfilePicture} //Check this with another emulator to make sure it isn't off centered.
+                    />
                     <View
                         style={
-                            styles.userLoggedStack.settings.settings.questionnaireButtonContainer
+                            styles.userLoggedStack.userLoggedStack
+                                .matchMadeButtonContainer
                         }>
-                        <QuestionnaireList items={lifestyles} updateItem={updateLifestyle} />
+                        <TouchableOpacity onPress>
+                            <LinearGradient
+                                colors={["#46a0db", "#e00ba0"]}
+                                style={styles.userLoggedStack.userLoggedStack.matchMadeButton}
+                                start={{ x: 0.7, y: 0 }}>
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeButtonText}>
+                                    Decline.
+                                    </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress>
+                            <LinearGradient
+                                colors={["#46a0db", "#e00ba0"]}
+                                style={styles.userLoggedStack.userLoggedStack.matchMadeButton}
+                                start={{ x: 0.7, y: 0 }}>
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeButtonText}>
+                                    Call!
+                                    </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
                     </View>
-                </ScrollView>
+                </View>
             </ImageBackground>
         </View>
     );

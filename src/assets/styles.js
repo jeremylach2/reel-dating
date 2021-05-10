@@ -42,7 +42,54 @@ export default {
                 height: 150,
                 width: "100%",
             },
-
+            matchMadeButton: {
+                marginBottom: "10%",
+                width: 120,
+                height: 25,
+                borderRadius: 110,
+                borderWidth: 1,
+                borderColor: "white",
+                alignItems: "center",
+            },
+            matchMadeButtonContainer: {
+                flexDirection: "row",
+                justifyContent: "space-between",
+            },
+            matchMadeButtonText: {
+                color: "white",
+                alignItems: "center",
+                fontSize: 15,
+            },
+            matchMadeHeader: {
+                marginTop: "5%",
+                color: "white",
+                fontSize: 30,
+            },
+            matchMadeHeaderContent: {
+                margin: 5,
+                alignItems: "center",
+            },
+            matchMadeProfilePicture: {
+                width: "90%",
+                height: "80%",
+                marginTop: "15%",
+                marginBottom: "5%",
+            },
+            matchMadeSecondaryContainer: {
+                flex: 1,
+                alignItems: "center",
+            },
+            matchMadeText: {
+                color: "white",
+                fontSize: 15,
+            },
+            matchMadeUtilityBox: {
+                flex: 1,
+                alignContent: "center",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+            },
             menuBackground: {
                 flex: 1,
             },

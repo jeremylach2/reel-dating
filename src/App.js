@@ -10,14 +10,7 @@ import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
-//Delete this later:
-import MatchMade from "./components/UserLoggedStack/MatchMade.js";
-
 const App = props => {
-    return (
-        <MatchMade />
-    );
-    /*
     const appState = useRef(AppState.currentState);
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
@@ -85,7 +78,6 @@ const App = props => {
             <UserLoggedStack />
         </UserContext.Provider>
     );
-    */
 };
 
 export default App;
