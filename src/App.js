@@ -6,13 +6,19 @@ import auth from "@react-native-firebase/auth";
 import Users from "./lib/Users";
 import UserContext from "./lib/UserContext";
 
+import SplashScreen from "react-native-splash-screen";
+
 import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
 
 const App = props => {
+    useEffect(() => {
+        SplashScreen.hide();
+    }, []);
+
     return (
-    <UserLoggedStack />
+        <UserLoggedStack />
     );
     /*
     const appState = useRef(AppState.currentState);
