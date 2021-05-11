@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import MuteButton from "react-native-vector-icons/Octicons";
 import EndCall from "react-native-vector-icons/AntDesign";
 import FlipCam from "react-native-vector-icons/MaterialIcons";
@@ -24,25 +19,13 @@ const VideoCall = () => {
             </View>
             <View style={styles.userLoggedStack.userLoggedStack.buttonsContainer}>
                 <TouchableOpacity onPress={() => setMuted(!muted)}>
-                    <MuteButton
-                        name={muted ? "mute" : "unmute"}
-                        size={40}
-                        color={"white"}
-                    />
+                    <MuteButton name={muted ? "mute" : "unmute"} size={40} color={"white"} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <EndCall
-                        name={"closecircle"}
-                        size={40}
-                        color={"red"}
-                    />
+                    <EndCall name={"closecircle"} size={40} color={"red"} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <FlipCam
-                        name={"flip-camera-ios"}
-                        size={40}
-                        color={"white"}
-                    />
+                    <FlipCam name={"flip-camera-ios"} size={40} color={"white"} />
                 </TouchableOpacity>
             </View>
         </View>

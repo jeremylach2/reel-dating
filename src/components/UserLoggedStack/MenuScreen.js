@@ -6,7 +6,7 @@ import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
 import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";
-
+import userMatching from "../../lib/UserMatching.js";
 const quotePicker = () => {
     const index = Math.floor(Math.random() * quotes.length);
     return quotes[index];
@@ -46,6 +46,11 @@ const MenuScreen = () => {
 
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
+
+
+    // to check if matches are being searched for
+    // add time interval in the future.
+    if (userActive) userMatching(user);
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
