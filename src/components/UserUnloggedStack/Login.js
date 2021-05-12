@@ -16,7 +16,7 @@ const Login = ({ navigation }) => {
     const [password, setPassword] = React.useState("");
     const [logError, setLogError] = React.useState();
 
-    const forgot = () => {};
+    const forgot = () => { };
 
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
@@ -28,34 +28,24 @@ const Login = ({ navigation }) => {
                     source={require("../../assets/images/logo.png")}
                 />
                 <View
-                    style={
-                        styles.userUnloggedStack.userUnloggedStack.utilityBox
-                    }>
+                    style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
                     <View
                         style={styles.userUnloggedStack.userUnloggedStack.form}>
                         <Text
-                            style={
-                                styles.userUnloggedStack.userUnloggedStack.title
-                            }>
+                            style={styles.userUnloggedStack.userUnloggedStack.title}>
                             Login
                         </Text>
                         <View
-                            style={
-                                styles.userUnloggedStack.userUnloggedStack.formContent
-                            }>
+                            style={styles.userUnloggedStack.userUnloggedStack.formContent}>
                             <TextInput
-                                style={
-                                    styles.userUnloggedStack.userUnloggedStack.userInput
-                                }
+                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
                                 onChangeText={text => setEmail(text)}
                                 value={email}
                                 placeholder="Email"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={
-                                    styles.userUnloggedStack.userUnloggedStack.userInput
-                                }
+                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
                                 onChangeText={text => setPassword(text)}
                                 value={password}
                                 placeholder="Password"
@@ -79,35 +69,25 @@ const Login = ({ navigation }) => {
                                         });
                                 }}>
                                 <View
-                                    style={
-                                        styles.userUnloggedStack.userUnloggedStack.loginButton
-                                    }>
+                                    style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
                                     <Text
-                                        style={
-                                            styles.userUnloggedStack.userUnloggedStack.loginText
-                                        }>
+                                        style={styles.userUnloggedStack.userUnloggedStack.loginText}>
                                         Login
                                     </Text>
                                 </View>
                             </TouchableOpacity>
                             {logError && (
                                 <Text
-                                    style={
-                                        styles.userUnloggedStack.userUnloggedStack.loginErrorText
-                                    }>
+                                    style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
                                     Invalid email or password.
                                 </Text>
                             )}
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
                             <View
-                                style={
-                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
-                                }>
+                                style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                 <Text
-                                    style={
-                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
-                                    }>
+                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                     Forgot My Password
                                 </Text>
                             </View>
@@ -115,13 +95,9 @@ const Login = ({ navigation }) => {
                         <TouchableOpacity
                             onPress={() => navigation.navigate("Register")}>
                             <View
-                                style={
-                                    styles.userUnloggedStack.userUnloggedStack.forgotButton
-                                }>
+                                style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                 <Text
-                                    style={
-                                        styles.userUnloggedStack.userUnloggedStack.forgotButton
-                                    }>
+                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                     Create an Account
                                 </Text>
                             </View>
