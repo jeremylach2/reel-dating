@@ -10,7 +10,7 @@ import Options from "./settings/Options";
 import Account from "./settings/Account";
 import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
-import Questionnaire from "./settings/Questionnaire"
+import Questionnaire from "./settings/Questionnaire";
 import PrivacySecurity from "./settings/PrivacySecurity";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -73,11 +73,7 @@ function SettingsStackScreen() {
                 component={PrivacySecurity}
                 options={{ title: "PRIVACY" }}
             />
-            <SettingsStack.Screen
-                name="help"
-                component={Help}
-                options={{ title: "HELP" }}
-            />
+            <SettingsStack.Screen name="help" component={Help} options={{ title: "HELP" }} />
         </SettingsStack.Navigator>
     );
 }
@@ -95,19 +91,11 @@ const UserLoggedStack = props => {
                         if (route.name === "Home") {
                             iconName = focused ? "home" : "home-outline";
                         } else if (route.name === "Settings") {
-                            iconName = focused
-                                ? "settings"
-                                : "settings-outline";
+                            iconName = focused ? "settings" : "settings-outline";
                         } else if (route.name === "Matches") {
                             iconName = focused ? "heart" : "heart-outline";
                         }
-                        return (
-                            <Ionicons
-                                name={iconName}
-                                size={size}
-                                color={color}
-                            />
-                        );
+                        return <Ionicons name={iconName} size={size} color={color} />;
                     },
                 })}
                 tabBarOptions={{
