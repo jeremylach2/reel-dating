@@ -361,6 +361,23 @@ export default {
     },
     userUnloggedStack: {
         userUnloggedStack: StyleSheet.create({
+            accountDetailsText: {
+                color: "white",
+                fontSize: 15,
+                textAlign: "center",
+            },
+            accountDetailsTitle: {
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "white",
+                fontSize: 22,
+            },
+            accountDetailsUtilityBox: {
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignContent: "center",
+            },
             background: {
                 flex: 1,
             },
@@ -418,6 +435,13 @@ export default {
                 resizeMode: "contain",
                 height: 150,
                 width: "100%",
+            },
+            longUtilityBox: {
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignContent: "center",
+                height: 400,
             },
             resetButton: {
                 backgroundColor: "#FFFFFF",
