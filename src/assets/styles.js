@@ -51,19 +51,34 @@ export default {
                 borderColor: "white",
                 alignItems: "center",
             },
+            matchMadeButtonCircle: {
+                alignItems: "center",
+                justifyContent: "center",
+                borderColor: "white",
+                borderWidth: 1,
+                height: 120,
+                width: 120,
+                borderRadius: 120,
+            },
             matchMadeButtonContainer: {
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
             },
             matchMadeButtonText: {
                 color: "white",
                 alignItems: "center",
                 fontSize: 15,
             },
+            matchMadeHeart: {
+                marginTop: "10%",
+                alignItems: "center",
+                marginBottom: "8%",
+            },
             matchMadeHeader: {
                 marginTop: "5%",
                 color: "white",
                 fontSize: 30,
+                fontFamily: "sans-serif-light",
             },
             matchMadeHeaderContent: {
                 margin: 5,
@@ -75,13 +90,10 @@ export default {
                 marginTop: "15%",
                 marginBottom: "5%",
             },
-            matchMadeSecondaryContainer: {
-                flex: 1,
-                alignItems: "center",
-            },
             matchMadeText: {
                 color: "white",
-                fontSize: 15,
+                fontSize: 20,
+                fontFamily: "sans-serif-light",
             },
             matchMadeUtilityBox: {
                 flex: 1,
