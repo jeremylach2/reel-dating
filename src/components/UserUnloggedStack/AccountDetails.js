@@ -9,35 +9,52 @@ import {
     TouchableOpacity,
 } from "react-native";
 
+import Slider from "@react-native-community/slider";
 import Users from "../../lib/Users";
+import styles from "../../assets/styles.js";
+
 
 const AccountDetails = ({ uid, onUserCreate }) => {
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
+    const [sliderValue, setSliderValue] = React.useState(18);
 
     return (
-        <View style={page.container}>
+        <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
                 source={require("../../assets/images/background-login.jpg")}
-                style={page.background}>
-                <View style={page.longUtilityBox}>
-                    <View style={page.form}>
-                        <Text style={page.title}>Details</Text>
-                        <View style={page.formContent}>
+                style={styles.userUnloggedStack.userUnloggedStack.background}>
+                <View style={styles.userUnloggedStack.userUnloggedStack.longUtilityBox}>
+                    <View style={styles.userUnloggedStack.userUnloggedStack.form}>
+                        <Text style={styles.userUnloggedStack.userUnloggedStack.title}>Details</Text>
+                        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
                             <TextInput
-                                style={page.userInput}
+                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
                                 onChangeText={text => setFirstName(text)}
                                 value={firstName}
                                 placeholder="First Name"
                                 placeholderTextColor="black"
                             />
                             <TextInput
-                                style={page.userInput}
+                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
                                 onChangeText={text => setLastName(text)}
                                 value={lastName}
                                 placeholder="Last Name"
                                 placeholderTextColor="black"
                             />
+                            <Slider
+                                style={{ width: "100%" }}
+                                initialValue={18}
+                                minimumValue={18}
+                                maximumValue={100}
+                                minimumTrackTintColor="#FFFFFF"
+                                maximumTrackTintColor="#000000"
+                                onValueChange={sliderValue => setSliderValue(sliderValue)}
+                                step={1}
+                            />
+                            <Text style={styles.userUnloggedStack.userUnloggedStack.accountDetailsText}>
+                                Age : {sliderValue}
+                            </Text>
                             <TouchableOpacity
                                 onPress={() => {
                                     Users.createUserWithUID(uid, {
@@ -47,8 +64,8 @@ const AccountDetails = ({ uid, onUserCreate }) => {
                                         },
                                     }).then(() => onUserCreate());
                                 }}>
-                                <View style={page.loginButton}>
-                                    <Text style={page.loginText}>
+                                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
                                         Join Reel
                                     </Text>
                                 </View>
@@ -60,91 +77,5 @@ const AccountDetails = ({ uid, onUserCreate }) => {
         </View>
     );
 };
-
-const page = StyleSheet.create({
-    background: {
-        flex: 1,
-    },
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center",
-
-    },
-    logo: {
-        resizeMode: "contain",
-        height: 150,
-        width: "100%",
-    },
-    container: {
-        flex: 1,
-        flexDirection: "row",
-    },
-    utilityBox: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignContent: "center",
-    },
-    longUtilityBox: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignContent: "center",
-        height: 400,
-    },
-    title: {
-        fontWeight: "bold",
-        textAlign: "center",
-        color: "white",
-        fontSize: 22,
-    },
-    form: {
-        backgroundColor: "transparent",
-        borderColor: "white",
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderRadius: 8,
-        padding: "5%",
-        paddingBottom: "1%",
-        marginTop: "1%",
-        width: "70%",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        justifyContent: "center",
-    },
-    formContent: {
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        width: "100%",
-    },
-    userInput: {
-        width: "100%",
-        maxWidth: "100%",
-        overflow: "hidden",
-        backgroundColor: "#B0C4DE",
-        borderRadius: 4,
-        padding: "3%",
-        marginBottom: "2%",
-    },
-    loginButton: {
-        backgroundColor: "#FFFFFF",
-        borderRadius: 4,
-        padding: "4%",
-        marginBottom: "4%",
-        width: "100%",
-    },
-    loginText: {
-        color: "black",
-        textAlign: "center",
-    },
-    returnButton: {
-        textAlign: "center",
-        color: "white",
-        opacity: 0.6,
-        textDecorationLine: "underline",
-    },
-});
 
 export default AccountDetails;
