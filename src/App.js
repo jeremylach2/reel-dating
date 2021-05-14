@@ -10,17 +10,9 @@ import SplashScreen from "react-native-splash-screen";
 
 import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
-import AccountDetails from "./components/UserUnloggedStack/AccountDetails.js";
-import MatchMade from "./components/UserLoggedStack/MatchMade.js";
+import RegisterDetails from "./components/UserUnloggedStack/RegisterDetails.js";
 
 const App = props => {
-
-
-    const appState = useRef(AppState.currentState);
-    // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [authUser, setAuthUser] = useState();
-
     const applicationState = useRef(AppState.currentState);
     const [appState, setAppState] = useState(applicationState.current);
 
@@ -81,7 +73,7 @@ const App = props => {
 
     if (dbUserInitializing) return null;
     else if (!dbUserInitializing && !user)
-        return <AccountDetails uid={firebaseUser.uid} onUserCreate={onUserCreate} />;
+        return <RegisterDetails uid={firebaseUser.uid} onUserCreate={onUserCreate} />;
 
     return (
         <UserContext.Provider value={{ user, changeUserActive, userActive }}>
