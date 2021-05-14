@@ -5,6 +5,7 @@ import auth from "@react-native-firebase/auth";
 
 const ForgotPasswordUserInput = () => {
     const [email, setEmail] = React.useState("");
+    const [logError, setLogError] = React.useState();
 
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
@@ -19,6 +20,9 @@ const ForgotPasswordUserInput = () => {
             <TouchableOpacity
                 onPress={() => {
                     auth().sendPasswordResetEmail(email);
+                    setLogError(
+                        "If a user exists with this email, you should receive an email shortly."
+                    );
                 }}>
                 <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
                     <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
@@ -26,6 +30,12 @@ const ForgotPasswordUserInput = () => {
                     </Text>
                 </View>
             </TouchableOpacity>
+
+            {logError && (
+                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                    {logError}
+                </Text>
+            )}
         </View>
     );
 };
