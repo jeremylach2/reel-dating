@@ -99,25 +99,4 @@ const Account = ({ navigation }) => {
     );
 };
 
-/*
-<View style={page.box_content}>
-    <Text style={page.text}>Username: </Text>
-    <TextInput
-        onChangeText={text => set_username(text)}
-        value={username}
-        placeholder="Username Sample"
-        placeholderTextColor="white"
-    />
-</View>
-
-<View style={page.box_content}>
-    <Text style={page.text}>Password: </Text>
-    <TextInput
-        onChangeText={text => set_password(text)}
-        value={password}
-        placeholder="Password Sample?"
-        placeholderTextColor="white"
-    />
-</View>
-*/
 export default Account;

@@ -1,79 +1,60 @@
 import React from "react";
-import {
-    StyleSheet,
-    Text,
-    ImageBackground,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-} from "react-native";
+import { Text, ImageBackground, View, Image, TextInput, TouchableOpacity } from "react-native";
 
 import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
 
-const RegisterUserInput = ({ navigation }) => {
+const RegisterUserInput = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [logError, setLogError] = React.useState();
 
     return (
-        <View style={styles.userUnloggedStack.userUnloggedStack.form}>
-            <Text style={styles.userUnloggedStack.userUnloggedStack.title}>Create Account</Text>
-            <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-                
-                <TextInput
-                    style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                    onChangeText={text => setEmail(text)}
-                    value={email}
-                    placeholder="Email"
-                    placeholderTextColor="black"
-                />
-                <TextInput
-                    style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                    onChangeText={text => setPassword(text)}
-                    value={password}
-                    placeholder="Password"
-                    placeholderTextColor="black"
-                    secureTextEntry={true}
-                />
+        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
+            <TextInput
+                style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                onChangeText={text => setEmail(text)}
+                value={email}
+                placeholder="Email"
+                placeholderTextColor="black"
+            />
+            <TextInput
+                style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                onChangeText={text => setPassword(text)}
+                value={password}
+                placeholder="Password"
+                placeholderTextColor="black"
+                secureTextEntry={true}
+            />
 
-                <TouchableOpacity
-                    onPress={() => { //Add RegisterQuestionnaire somewhere right here.
-                        auth()
-                            .createUserWithEmailAndPassword(
-                                email,
-                                password
-                            )
-                            .then(() => {
-                                console.log(
-                                    "User account created & signed in!"
-                                );
-                            })
-                            .catch(error => {
-                                setLogError(error);
-                            });
-                    }}>
-                    <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                        <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
-                            Join Reel
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-
-                {logError && (
-                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
-                        {logError}
+            <TouchableOpacity
+                onPress={() => {
+                    auth()
+                        .createUserWithEmailAndPassword(email, password)
+                        .then(() => {
+                            console.log("User account created & signed in!");
+                        })
+                        .catch(error => {
+                            setLogError(error);
+                        });
+                }}>
+                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
+                        Join Reel
                     </Text>
-                )}
-            </View>
+                </View>
+            </TouchableOpacity>
+
+            {logError && (
+                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                    {logError}
+                </Text>
+            )}
         </View>
     );
-}
+};
 
 const Register = ({ navigation }) => {
-    const forgot = () => { };
-
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
@@ -83,20 +64,22 @@ const Register = ({ navigation }) => {
                     style={styles.userUnloggedStack.userUnloggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
-
                 <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
-                    <RegisterUserInput />
-                </View>
-
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("Login")}>
-                    <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                        <Text style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                            Returning User?
+                    <View style={styles.userUnloggedStack.userUnloggedStack.form}>
+                        <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
+                            Create Account
                         </Text>
+                        <RegisterUserInput />
+                        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                            <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                <Text
+                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                    Returning User?
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
-
+                </View>
             </ImageBackground>
         </View>
     );

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-    Text,
-    ImageBackground,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-} from "react-native";
+import { Text, ImageBackground, View, Image, TextInput, TouchableOpacity } from "react-native";
 
 import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
@@ -16,10 +9,8 @@ const LoginUserInput = () => {
     const [password, setPassword] = React.useState("");
     const [logError, setLogError] = React.useState();
 
-
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-
             <TextInput
                 style={styles.userUnloggedStack.userUnloggedStack.userInput}
                 onChangeText={text => setEmail(text)}
@@ -39,23 +30,16 @@ const LoginUserInput = () => {
             <TouchableOpacity
                 onPress={() => {
                     auth()
-                        .signInWithEmailAndPassword(
-                            email,
-                            password
-                        )
+                        .signInWithEmailAndPassword(email, password)
                         .then(() => {
-                            console.log(
-                                "User account created & signed in!"
-                            );
+                            console.log("User account created & signed in!");
                         })
                         .catch(error => {
                             setLogError(error);
                         });
                 }}>
                 <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
-                        Login
-                    </Text>
+                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>Login</Text>
                 </View>
             </TouchableOpacity>
 
@@ -66,13 +50,9 @@ const LoginUserInput = () => {
             )}
         </View>
     );
-}
+};
 
 const Login = ({ navigation }) => {
-
-
-    const forgot = () => { };
-
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
@@ -82,103 +62,37 @@ const Login = ({ navigation }) => {
                     style={styles.userUnloggedStack.userUnloggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
-
-                <View
-                    style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
-                    <View
-                        style={styles.userUnloggedStack.userUnloggedStack.form}>
-                        <Text
-                            style={styles.userUnloggedStack.userUnloggedStack.title}>
-                            Login
-                        </Text>
-                        <View
-                            style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-                            <TextInput
-                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                                onChangeText={text => setEmail(text)}
-                                value={email}
-                                placeholder="Email"
-                                placeholderTextColor="black"
-                            />
-                            <TextInput
-                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                                onChangeText={text => setPassword(text)}
-                                value={password}
-                                placeholder="Password"
-                                placeholderTextColor="black"
-                                secureTextEntry={true}
-                            />
-                            <TouchableOpacity
-                                onPress={() => {
-                                    auth()
-                                        .signInWithEmailAndPassword(
-                                            email,
-                                            password
-                                        )
-                                        .then(() => {
-                                            console.log(
-                                                "User account created & signed in!"
-                                            );
-                                        })
-                                        .catch(error => {
-                                            setLogError(error);
-                                        });
-                                }}>
-                                <View
-                                    style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                                    <Text
-                                        style={styles.userUnloggedStack.userUnloggedStack.loginText}>
-                                        Login
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            {logError && (
-                                <Text
-                                    style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
-                                    Invalid email or password.
-                                </Text>
-                            )}
-                        </View>
-                        <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
-                            <View
-                                style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                <Text
-                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-
-
                 <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
                     <View style={styles.userUnloggedStack.userUnloggedStack.form}>
-                        <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
-                            Login
-                        </Text>
-
                         <LoginUserInput />
-
                         <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
                             <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                <Text style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-
+                                <Text
+                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                     Forgot My Password
                                 </Text>
                             </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate("Register")}>
-
-                            <View
-                                style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                            <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                 <Text
                                     style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-
-                            <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                <Text style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-
-                                    Create an Account
+                                    <View
+                                        style={
+                                            styles.userUnloggedStack.userUnloggedStack.forgotButton
+                                        }>
+                                        <Text
+                                            style={
+                                                styles.userUnloggedStack.userUnloggedStack
+                                                    .forgotButton
+                                            }>
+                                            Create an Account
+                                        </Text>
+                                    </View>
                                 </Text>
                             </View>
                         </TouchableOpacity>
-
                     </View>
                 </View>
             </ImageBackground>

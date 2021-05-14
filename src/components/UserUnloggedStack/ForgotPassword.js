@@ -1,6 +1,44 @@
 import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import styles from "../../assets/styles.js";
+import auth from "@react-native-firebase/auth";
+
+const ForgotPasswordUserInput = () => {
+    const [email, setEmail] = React.useState("");
+    const [logError, setLogError] = React.useState();
+
+    return (
+        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
+            <TextInput
+                style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                onChangeText={text => setEmail(text)}
+                value={email}
+                placeholder="Email"
+                placeholderTextColor="black"
+            />
+
+            <TouchableOpacity
+                onPress={() => {
+                    auth().sendPasswordResetEmail(email);
+                    setLogError(
+                        "If a user exists with this email, you should receive an email shortly."
+                    );
+                }}>
+                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
+                        Reset Password
+                    </Text>
+                </View>
+            </TouchableOpacity>
+
+            {logError && (
+                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                    {logError}
+                </Text>
+            )}
+        </View>
+    );
+};
 
 const ForgotPassword = ({ navigation }) => {
     return (
@@ -17,58 +55,18 @@ const ForgotPassword = ({ navigation }) => {
                         <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
                             Reset Password
                         </Text>
-                        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-                            <TextInputForms />
-                        </View>
-                        <TouchableOpacity onPress>
-                            <View style={styles.userUnloggedStack.userUnloggedStack.resetButton}>
-                                <Text style={styles.userUnloggedStack.userUnloggedStack.resetText}>
-                                    RESET
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <ForgotPasswordUserInput />
                         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                             <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                 <Text
                                     style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                    Returning User?
+                                    Login instead.
                                 </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                 </View>
             </ImageBackground>
-        </View>
-    );
-};
-
-const TextInputForms = () => {
-    const [email, setEmail] = useState("");
-    const [firstPassword, setFirstPassword] = useState("");
-    const [secondPassword, setSecondPassword] = useState("");
-    return (
-        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-            <TextInput
-                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                onChangeText={text => setEmail(text)}
-                value={email}
-                placeholder="Email Address"
-                placeholderTextColor="black"
-            />
-            <TextInput
-                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                onChangeText={text => setFirstPassword(text)}
-                value={firstPassword}
-                placeholder="New Password"
-                placeholderTextColor="black"
-            />
-            <TextInput
-                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                onChangeText={text => setSecondPassword(text)}
-                value={secondPassword}
-                placeholder="Retype Password"
-                placeholderTextColor="black"
-            />
         </View>
     );
 };

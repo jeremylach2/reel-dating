@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import database from "@react-native-firebase/database";
 
 const fb = database();
@@ -8,10 +9,14 @@ class Users {
             .ref(`/users/${uid}`)
             .once("value")
             .then(snapshot => {
-                return {
-                    id: uid,
-                    ...snapshot.val(),
-                };
+                const user = snapshot.val();
+
+                return user
+                    ? {
+                        id: uid,
+                        ...snapshot.val(),
+                    }
+                    : null;
             });
     }
 
