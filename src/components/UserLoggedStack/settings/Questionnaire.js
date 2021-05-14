@@ -59,7 +59,7 @@ const sexPreference = [
     },
 ];
 
-const QuestionaireItem = ({ item, value, updateItem }) => {
+const QuestionnaireItem = ({ item, value, updateItem }) => {
     return (
         <TouchableOpacity onPress={() => updateItem(item, !value)}>
             <LinearGradient
@@ -78,7 +78,7 @@ const QuestionaireItem = ({ item, value, updateItem }) => {
 const QuestionnaireList = ({ items, updateItem }) => {
     const itemList = Object.keys(items);
     return itemList.map(item => (
-        <QuestionaireItem item={item} value={items[item]} updateItem={updateItem} key={item} />
+        <QuestionnaireItem item={item} value={items[item]} updateItem={updateItem} key={item} />
     ));
 };
 
@@ -118,7 +118,7 @@ const lifestyleList = {
     Drinker: false,
 };
 
-const Questionaire = ({ navigation }) => {
+const Questionnaire = ({ navigation }) => {
     const [interests, setInterests] = useState(interestsList);
     const [lifestyles, setLifestyles] = useState(lifestyleList);
     const [sliderValue, setSliderValue] = useState(18);
@@ -237,4 +237,4 @@ const Questionaire = ({ navigation }) => {
     );
 };
 
-export default Questionaire;
+export default Questionnaire;

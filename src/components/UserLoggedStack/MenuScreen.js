@@ -6,7 +6,7 @@ import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
 import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";
-
+import userMatching from "../../lib/UserMatching.js";
 const quotePicker = () => {
     const index = Math.floor(Math.random() * quotes.length);
     return quotes[index];
@@ -29,7 +29,7 @@ const MenuScreen = () => {
         }).start();
     }, [AnimOpacity]);
 
-    // Adds dot effect to searching
+    // Adds trailing dot effect to searching
     useEffect(() => {
         let dots = dot === maxDots ? 0 : dot + 1;
         const interval = setInterval(() => {
@@ -47,6 +47,11 @@ const MenuScreen = () => {
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
 
+
+    // to check if matches are being searched for
+    // add time interval in the future.
+    if (userActive) userMatching(user);
+
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -62,35 +67,40 @@ const MenuScreen = () => {
                         {currStatus}
                         {userActive ? searching : ""}
                     </Text>
-                    <TouchableOpacity onPress={() => changeUserActive(!userActive)}>
-                        {userActive && (
-                            <Pulse
-                                color={"orange"}
-                                numPulses={4}
-                                diameter={400}
-                                speed={20}
-                                duration={2000}
-                            />
-                        )}
-                        <Animated.View
-                            style={[
-                                styles.userLoggedStack.userLoggedStack.powerContainer,
-                                userActive
-                                    ? { opacity: AnimOpacity, backgroundColor: "rgb(240, 196, 77)" }
-                                    : { opacity: 1, backgroundColor: "rgba(32, 32, 32, 0.3)" },
-                            ]}
-                            onPress={{ opacity: AnimOpacity }}>
-                            <FontAwesome5
-                                name="power-off"
-                                size={60}
-                                style={styles.userLoggedStack.userLoggedStack.powerStatus}
-                                color={userActive ? "rgb(251, 255, 0)" : "black"}
-                            />
-                        </Animated.View>
-                    </TouchableOpacity>
+
+                    <PowerButton
+                        userActive={userActive}
+                        AnimOpacity={AnimOpacity}
+                        changeUserActive={changeUserActive}
+                    />
                 </View>
             </ImageBackground>
         </View>
+    );
+};
+
+const PowerButton = props => {
+    return (
+        <TouchableOpacity onPress={() => props.changeUserActive(!props.userActive)}>
+            {props.userActive && (
+                <Pulse color={"orange"} numPulses={4} diameter={400} speed={20} duration={2000} />
+            )}
+            <Animated.View
+                style={[
+                    styles.userLoggedStack.userLoggedStack.powerContainer,
+                    props.userActive
+                        ? { opacity: props.AnimOpacity, backgroundColor: "rgb(240, 196, 77)" }
+                        : { opacity: 1, backgroundColor: "rgba(32, 32, 32, 0.3)" },
+                ]}
+                onPress={{ opacity: props.AnimOpacity }}>
+                <FontAwesome5
+                    name="power-off"
+                    size={60}
+                    style={styles.userLoggedStack.userLoggedStack.powerStatus}
+                    color={props.userActive ? "rgb(251, 255, 0)" : "black"}
+                />
+            </Animated.View>
+        </TouchableOpacity>
     );
 };
 
