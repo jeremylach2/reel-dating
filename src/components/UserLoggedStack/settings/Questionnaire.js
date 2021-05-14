@@ -1,63 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "react-native-gesture-handler";
-import {
-    Text,
-    ImageBackground,
-    View,
-    ScrollView,
-    TouchableOpacity,
-    Modal,
-} from "react-native";
+import { Text, ImageBackground, View, ScrollView, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import RadioButtonRN from "radio-buttons-react-native";
+import RadioButton from "radio-buttons-react-native";
 import Slider from "@react-native-community/slider";
 import styles from "../../../assets/styles.js";
 
-const agePreference = [
-    {
-        label: "18-25",
-        accessibilityLabel: "18-25",
-    },
-    {
-        label: "26-33",
-        accessibilityLabel: "26-33",
-    },
-    {
-        label: "34-41",
-        accessibilityLabel: "34-41",
-    },
-    {
-        label: "42-48",
-        accessibilityLabel: "42-48",
-    },
-    {
-        label: "49-56",
-        accessibilityLabel: "49-56",
-    },
-    {
-        label: "56-63",
-        accessibilityLabel: "56-63",
-    },
-    {
-        label: "64+",
-        accessibilityLabel: "64+",
-    },
-];
-
-const sexPreference = [
-    {
-        label: "Men",
-        accessibilityLabel: "Men",
-    },
-    {
-        label: "Women",
-        accessibilityLabel: "Women",
-    },
-    {
-        label: "Both",
-        accessibilityLabel: "Both",
-    },
-];
+import Users from "../../../lib/Users";
+import UserContext from "../../../lib/UserContext";
 
 const QuestionaireItem = ({ item, value, updateItem }) => {
     return (
@@ -118,22 +68,51 @@ const lifestyleList = {
     Drinker: false,
 };
 
+const genderPreferenceOptions = [
+    {
+        label: "Men",
+        value: 1,
+    },
+    {
+        label: "Women",
+        value: 2,
+    },
+    {
+        label: "Both",
+        value: 3,
+    },
+];
+
 const Questionaire = ({ navigation }) => {
+    const { user } = useContext(UserContext);
     const [interests, setInterests] = useState(interestsList);
     const [lifestyles, setLifestyles] = useState(lifestyleList);
+    const [genderPreference, setGenderPreference] = useState();
     const [sliderValue, setSliderValue] = useState(18);
-    const [height, setHeight] = useState("");
 
     function updateInterest(interest, value) {
         const newList = { ...interests };
+
         newList[interest] = value;
         setInterests(newList);
     }
 
     function updateLifestyle(lifestyle, value) {
         const newList = { ...lifestyles };
+
         newList[lifestyle] = value;
         setLifestyles(newList);
+    }
+
+    function updateUser() {
+        Users.updateUserByUID(user.id, {
+            questionnaire: {
+                interests,
+                lifestyle: lifestyles,
+                agePreference: sliderValue,
+                genderPreference,
+            },
+        });
     }
 
     return (
@@ -151,7 +130,7 @@ const Questionaire = ({ navigation }) => {
                         </View>
                         <View style={styles.userLoggedStack.settings.settings.headerContent}>
                             <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                What Age Would You Like to See?
+                                What age would you like to see?
                             </Text>
                         </View>
                         <Slider
@@ -161,11 +140,11 @@ const Questionaire = ({ navigation }) => {
                             maximumValue={100}
                             minimumTrackTintColor="#FFFFFF"
                             maximumTrackTintColor="#000000"
-                            onValueChange={sliderValue => setSliderValue(sliderValue)}
+                            onValueChange={newSliderValue => setSliderValue(newSliderValue)}
                             step={1}
                         />
                         <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                            Age : {sliderValue}
+                            Age: {sliderValue}
                         </Text>
                         <View style={styles.userLoggedStack.settings.settings.headerContent}>
                             <Text style={styles.userLoggedStack.settings.settings.accountText}>
@@ -176,14 +155,15 @@ const Questionaire = ({ navigation }) => {
                             style={
                                 styles.userLoggedStack.settings.settings.questionnaireRadioContainer
                             }>
-                            <RadioButtonRN
-                                data={sexPreference}
+                            <RadioButton
+                                data={genderPreferenceOptions}
                                 deactiveColor="white"
                                 activeColor="white"
                                 boxDeactiveBgColor="transparent"
                                 boxActiveBgColor="rgba(22, 22, 22, 0.2)"
                                 textColor="white"
-                                selectedBtn={e => console.log(e)}
+                                initial={genderPreference}
+                                selectedBtn={e => setGenderPreference(e.value)}
                             />
                         </View>
                         <View style={styles.userLoggedStack.settings.settings.headerContent}>
@@ -217,7 +197,7 @@ const Questionaire = ({ navigation }) => {
                                 styles.userLoggedStack.settings.settings
                                     .questionnaireButtonContainer
                             }>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={updateUser}>
                                 <LinearGradient
                                     colors={["#e00ba0", "#46a0db"]}
                                     style={styles.userLoggedStack.settings.settings.linearGradient}
