@@ -85,10 +85,26 @@ const genderPreferenceOptions = [
 
 const Questionnaire = ({ navigation }) => {
     const { user } = useContext(UserContext);
-    const [interests, setInterests] = useState(interestsList);
-    const [lifestyles, setLifestyles] = useState(lifestyleList);
-    const [genderPreference, setGenderPreference] = useState();
-    const [sliderValue, setSliderValue] = useState(18);
+    const [interests, setInterests] = useState(
+        user.questionnaire && user.questionnaire.interests
+            ? user.questionnaire.interests
+            : interestsList
+    );
+    const [lifestyles, setLifestyles] = useState(
+        user.questionnaire && user.questionnaire.lifestyle
+            ? user.questionnaire.lifestyle
+            : lifestyleList
+    );
+    const [genderPreference, setGenderPreference] = useState(
+        user.questionnaire && user.questionnaire.genderPreference
+            ? user.questionnaire.genderPreference
+            : null
+    );
+    const [sliderValue, setSliderValue] = useState(
+        user.questionnaire && user.questionnaire.agePreference
+            ? user.questionnaire.agePreference
+            : 18
+    );
 
     function updateInterest(interest, value) {
         const newList = { ...interests };
