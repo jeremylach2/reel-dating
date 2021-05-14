@@ -12,11 +12,66 @@ import {
 import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
 
-const Register = ({ navigation }) => {
+const RegisterUserInput = ({ navigation }) => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [logError, setLogError] = React.useState();
 
+    return (
+        <View style={styles.userUnloggedStack.userUnloggedStack.form}>
+            <Text style={styles.userUnloggedStack.userUnloggedStack.title}>Create Account</Text>
+            <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
+                
+                <TextInput
+                    style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                    onChangeText={text => setEmail(text)}
+                    value={email}
+                    placeholder="Email"
+                    placeholderTextColor="black"
+                />
+                <TextInput
+                    style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                    onChangeText={text => setPassword(text)}
+                    value={password}
+                    placeholder="Password"
+                    placeholderTextColor="black"
+                    secureTextEntry={true}
+                />
+
+                <TouchableOpacity
+                    onPress={() => { //Add RegisterQuestionnaire somewhere right here.
+                        auth()
+                            .createUserWithEmailAndPassword(
+                                email,
+                                password
+                            )
+                            .then(() => {
+                                console.log(
+                                    "User account created & signed in!"
+                                );
+                            })
+                            .catch(error => {
+                                setLogError(error);
+                            });
+                    }}>
+                    <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                        <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
+                            Join Reel
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+
+                {logError && (
+                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                        {logError}
+                    </Text>
+                )}
+            </View>
+        </View>
+    );
+}
+
+const Register = ({ navigation }) => {
     const forgot = () => { };
 
     return (
@@ -28,63 +83,20 @@ const Register = ({ navigation }) => {
                     style={styles.userUnloggedStack.userUnloggedStack.logo}
                     source={require("../../assets/images/logo.png")}
                 />
+
                 <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
-                    <View style={styles.userUnloggedStack.userUnloggedStack.form}>
-                        <Text style={styles.userUnloggedStack.userUnloggedStack.title}>Create Account</Text>
-                        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-                            <TextInput
-                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                                onChangeText={text => setEmail(text)}
-                                value={email}
-                                placeholder="Email"
-                                placeholderTextColor="black"
-                            />
-                            <TextInput
-                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                                onChangeText={text => setPassword(text)}
-                                value={password}
-                                placeholder="Password"
-                                placeholderTextColor="black"
-                                secureTextEntry={true}
-                            />
-                            <TouchableOpacity
-                                onPress={() => { //Add RegisterQuestionnaire somewhere right here.
-                                    auth()
-                                        .createUserWithEmailAndPassword(
-                                            email,
-                                            password
-                                        )
-                                        .then(() => {
-                                            console.log(
-                                                "User account created & signed in!"
-                                            );
-                                        })
-                                        .catch(error => {
-                                            setLogError(error);
-                                        });
-                                }}>
-                                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
-                                        Join Reel
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate("Login")}>
-                                <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                    <Text style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                        Returning User?
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            {logError && (
-                                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
-                                    {logError}
-                                </Text>
-                            )}
-                        </View>
-                    </View>
+                    <RegisterUserInput />
                 </View>
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("Login")}>
+                    <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                        <Text style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                            Returning User?
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+
             </ImageBackground>
         </View>
     );

@@ -9,7 +9,7 @@ import styles from "../../../assets/styles.js";
 import Users from "../../../lib/Users";
 import UserContext from "../../../lib/UserContext";
 
-const QuestionaireItem = ({ item, value, updateItem }) => {
+const QuestionnaireItem = ({ item, value, updateItem }) => {
     return (
         <TouchableOpacity onPress={() => updateItem(item, !value)}>
             <LinearGradient
@@ -28,7 +28,7 @@ const QuestionaireItem = ({ item, value, updateItem }) => {
 const QuestionnaireList = ({ items, updateItem }) => {
     const itemList = Object.keys(items);
     return itemList.map(item => (
-        <QuestionaireItem item={item} value={items[item]} updateItem={updateItem} key={item} />
+        <QuestionnaireItem item={item} value={items[item]} updateItem={updateItem} key={item} />
     ));
 };
 
@@ -83,7 +83,7 @@ const genderPreferenceOptions = [
     },
 ];
 
-const Questionaire = ({ navigation }) => {
+const Questionnaire = ({ navigation }) => {
     const { user } = useContext(UserContext);
     const [interests, setInterests] = useState(interestsList);
     const [lifestyles, setLifestyles] = useState(lifestyleList);
@@ -217,4 +217,4 @@ const Questionaire = ({ navigation }) => {
     );
 };
 
-export default Questionaire;
+export default Questionnaire;
