@@ -108,8 +108,6 @@ export default async function (currentUser) {
 
         if (await Users.getPendingMatch(user.id)) continue;
 
-        Users.createPendingMatch(user, currentUser);
-
         if (userMatches) return user;
     }
 

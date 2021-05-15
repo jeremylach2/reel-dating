@@ -72,7 +72,7 @@ class Users {
 
     static async createPendingMatch(user, initialUser) {
         return fb
-            .ref(`/pending_matches/${user.id}`)
+            .ref(`/pending_match/${user.id}`)
             .set({
                 initial_user_id: initialUser.id,
             });

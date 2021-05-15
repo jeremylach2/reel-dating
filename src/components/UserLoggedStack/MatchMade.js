@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import "react-native-gesture-handler";
 import { Text, ImageBackground, View, TouchableOpacity, Animated } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import UserContext from "../../lib/UserContext.js";
+import Users from "../../lib/Users";
 import styles from "../../assets/styles.js";
 
 const MatchMade = ({
@@ -10,6 +12,7 @@ const MatchMade = ({
         params: { match },
     },
 }) => {
+    const { user, changeUserActive, userActive } = useContext(UserContext);
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -39,7 +42,7 @@ const MatchMade = ({
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => Users.createPendingMatch(match, user)}>
                         <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
                             <MaterialCIcons name="heart" size={60} color="white" />
                             <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>

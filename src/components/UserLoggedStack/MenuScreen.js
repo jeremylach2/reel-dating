@@ -6,6 +6,7 @@ import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
 import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";
+import Users from "../../lib/Users.js";
 import userMatching from "../../lib/UserMatching.js";
 
 const quotePicker = () => {
@@ -49,15 +50,22 @@ const MenuScreen = ({ navigation }) => {
     useEffect(() => {
         if (!userActive) return;
 
-        const interval = setInterval(() => {
-            userMatching(user)
-                .then(match => {
-                    if (!match) return;
+        const interval = setInterval(async () => {
+            const currUserMatch = await Users.getPendingMatch(user.id);
 
-                    changeUserActive(false);
-                    navigation.navigate("matchmade", { match });
-                })
-                .catch(console.error);
+            if (currUserMatch)
+                navigation.navigate("matchmade", {
+                    match: await Users.getUserByUID(currUserMatch.initial_user_id),
+                });
+            else
+                userMatching(user)
+                    .then(match => {
+                        if (!match) return;
+
+                        changeUserActive(false);
+                        navigation.navigate("matchmade", { match });
+                    })
+                    .catch(console.error);
         }, 1000);
 
         return () => clearInterval(interval);
