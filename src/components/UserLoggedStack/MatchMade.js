@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import "react-native-gesture-handler";
 import { Text, ImageBackground, View, TouchableOpacity, Animated } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -12,7 +12,14 @@ const MatchMade = ({
         params: { match },
     },
 }) => {
-    const { user, changeUserActive, userActive } = useContext(UserContext);
+    const { user } = useContext(UserContext);
+    const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
+    const [myPendingMatch, setMyPendingMatch] = useState();
+
+    useEffect(() => {
+        Users.getPendingMatch(user.id).then(setMyPendingMatch);
+    }, []);
+
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -22,6 +29,7 @@ const MatchMade = ({
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
                     <Text style={styles.userLoggedStack.userLoggedStack.matchMadeHeader}>
                         Match Made!
+                        {myPendingMatch && <Text>Person is waiting on you!</Text>}
                     </Text>
                 </View>
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
@@ -32,25 +40,40 @@ const MatchMade = ({
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeart}>
                     <HeartAnim />
                 </View>
-                <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
-                    <TouchableOpacity>
-                        <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
-                            <MaterialCIcons name="heart-broken" size={60} color="white" />
-                            <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
-                                Decline
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
+                {awaitingResponsePendingMatch ? (
+                    <Text>Pending match!</Text>
+                ) : (
+                    <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
+                        <TouchableOpacity>
+                            <View
+                                style={
+                                    styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
+                                }>
+                                <MaterialCIcons name="heart-broken" size={60} color="white" />
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                                    Decline
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => Users.createPendingMatch(match, user)}>
-                        <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
-                            <MaterialCIcons name="heart" size={60} color="white" />
-                            <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
-                                Accept
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            onPress={() =>
+                                Users.createPendingMatch(match, user).then(
+                                    setAwaitingResponsePendingMatch
+                                )
+                            }>
+                            <View
+                                style={
+                                    styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
+                                }>
+                                <MaterialCIcons name="heart" size={60} color="white" />
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                                    Accept
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                )}
             </ImageBackground>
         </View>
     );

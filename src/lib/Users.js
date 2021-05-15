@@ -61,6 +61,12 @@ class Users {
             .then(snapshot => {
                 const match = snapshot.val();
 
+                if (match && Date.now() - match.timestamp > 30 * 1000) {
+                    this.deletePendingMatch(uid);
+
+                    return null;
+                }
+
                 return match
                     ? {
                         user_id: uid,
@@ -75,7 +81,15 @@ class Users {
             .ref(`/pending_match/${user.id}`)
             .set({
                 initial_user_id: initialUser.id,
-            });
+                timestamp: Date.now() + 30 * 1000,
+            })
+            .then(() => this.getPendingMatch(user.id));
+    }
+
+    static async deletePendingMatch(uid) {
+        return fb
+            .ref(`/pending_match/${uid}`)
+            .remove();
     }
 }
 
