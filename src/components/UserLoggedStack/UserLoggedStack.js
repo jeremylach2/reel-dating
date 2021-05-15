@@ -105,13 +105,12 @@ const UserLoggedStack = props => {
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                         let iconName;
-                        if (route.name === "Home") {
-                            iconName = focused ? "home" : "home-outline";
-                        } else if (route.name === "Settings") {
+                        if (route.name === "Home") iconName = focused ? "home" : "home-outline";
+                        else if (route.name === "Settings")
                             iconName = focused ? "settings" : "settings-outline";
-                        } else if (route.name === "Matches") {
+                        else if (route.name === "Matches")
                             iconName = focused ? "heart" : "heart-outline";
-                        }
+
                         return <Ionicons name={iconName} size={size} color={color} />;
                     },
                 })}

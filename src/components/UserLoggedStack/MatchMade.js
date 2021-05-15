@@ -1,12 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import "react-native-gesture-handler";
-import { Text, ImageBackground, View, TouchableOpacity, Modal, Animated } from "react-native";
+import { Text, ImageBackground, View, TouchableOpacity, Animated } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import LinearGradient from "react-native-linear-gradient";
 import styles from "../../assets/styles.js";
 
-const MatchMade = ({ match }) => {
+const MatchMade = ({
+    route: {
+        params: { match },
+    },
+}) => {
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground

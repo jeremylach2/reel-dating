@@ -1,14 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect, useContext } from "react";
-import {
-    Text,
-    ImageBackground,
-    View,
-    Image,
-    Animated,
-    TouchableOpacity,
-    Button,
-} from "react-native";
+import { Text, ImageBackground, View, Image, Animated, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
@@ -25,6 +17,7 @@ const MenuScreen = ({ navigation }) => {
     const { user, changeUserActive, userActive } = useContext(UserContext);
     const [dot, setDot] = useState(1);
     const [quote, setQuote] = useState(quotePicker());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const AnimOpacity = new Animated.Value(0.5);
     const maxDots = 5;
@@ -53,22 +46,22 @@ const MenuScreen = ({ navigation }) => {
         return () => clearInterval(interval);
     }, [quote]);
 
-    function findMatch() {
-        //console.log("User is active?", userActive);
+    useEffect(() => {
         if (!userActive) return;
 
-        userMatching(user)
-            .then(match => {
-                console.log("User Match?", match);
+        const interval = setInterval(() => {
+            userMatching(user)
+                .then(match => {
+                    if (!match) return;
 
-                if (!match) return;
+                    changeUserActive(false);
+                    navigation.navigate("matchmade", { match });
+                })
+                .catch(console.error);
+        }, 1000);
 
-                navigation.navigate("matchmade", { match });
-            })
-            .catch(console.error);
-    }
-
-    findMatch();
+        return () => clearInterval(interval);
+    }, [changeUserActive, navigation, user, userActive]);
 
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
