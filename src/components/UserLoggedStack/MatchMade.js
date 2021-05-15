@@ -6,7 +6,7 @@ import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
 import styles from "../../assets/styles.js";
 
-const MatchMade = () => {
+const MatchMade = ({ match }) => {
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -20,7 +20,7 @@ const MatchMade = () => {
                 </View>
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
                     <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
-                        Match Name Here, Their Age
+                        {match.name.first}, {match.age}
                     </Text>
                 </View>
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeart}>
@@ -36,7 +36,7 @@ const MatchMade = () => {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity>
                         <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
                             <MaterialCIcons name="heart" size={60} color="white" />
                             <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
