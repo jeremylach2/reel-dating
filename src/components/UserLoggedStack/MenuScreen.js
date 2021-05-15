@@ -1,6 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect, useContext } from "react";
-import { Text, ImageBackground, View, Image, Animated, TouchableOpacity } from "react-native";
+import {
+    Text,
+    ImageBackground,
+    View,
+    Image,
+    Animated,
+    TouchableOpacity,
+    Button,
+} from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
 import quotes from "../../assets/quotes.js";
@@ -13,7 +21,7 @@ const quotePicker = () => {
     return quotes[index];
 };
 
-const MenuScreen = () => {
+const MenuScreen = ({ navigation }) => {
     const { user, changeUserActive, userActive } = useContext(UserContext);
     const [dot, setDot] = useState(1);
     const [quote, setQuote] = useState(quotePicker());
@@ -45,19 +53,22 @@ const MenuScreen = () => {
         return () => clearInterval(interval);
     }, [quote]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (!userActive) return;
+    function findMatch() {
+        //console.log("User is active?", userActive);
+        if (!userActive) return;
 
-            const userMatch = userMatching(user);
+        userMatching(user)
+            .then(match => {
+                console.log("User Match?", match);
 
-            console.log("User Match?", userMatch);
+                if (!match) return;
 
-            if (!userMatch) return;
-            navigator.navigate("MatchMade", { match: userMatch });
-        }, 10000);
-        return () => clearInterval(interval);
-    }, []);
+                navigation.navigate("matchmade", { match });
+            })
+            .catch(console.error);
+    }
+
+    findMatch();
 
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
@@ -77,7 +88,6 @@ const MenuScreen = () => {
                         {currStatus}
                         {userActive ? searching : ""}
                     </Text>
-
                     <PowerButton
                         userActive={userActive}
                         AnimOpacity={AnimOpacity}

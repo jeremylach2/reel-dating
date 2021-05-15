@@ -2,14 +2,18 @@ import Users from "./Users";
 
 const minThres = 0.6;
 
+function objectToTrueArray(obj) {
+    return Object.keys(obj).filter(k => obj[k]);
+}
+
 function driverCompare(otherUser, currUser) {
     const interestScore = compareInterests(
-        currUser.questionnaire.interests,
-        otherUser.questionnaire.interests
+        objectToTrueArray(currUser.questionnaire.interests),
+        objectToTrueArray(otherUser.questionnaire.interests)
     );
     const lifestyleScore = compareLifestyle(
-        currUser.questionnaire.lifestyle,
-        otherUser.questionnaire.lifestyle
+        objectToTrueArray(currUser.questionnaire.lifestyle),
+        objectToTrueArray(otherUser.questionnaire.lifestyle)
     );
     const otherScore = compareOther(currUser, otherUser);
 

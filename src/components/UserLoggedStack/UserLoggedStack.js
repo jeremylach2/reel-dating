@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MenuScreen from "./MenuScreen";
 import Matches from "./Matches";
+import MatchMade from "./MatchMade";
 import MatchesText from "./MatchesText";
 import Options from "./settings/Options";
 import Account from "./settings/Account";
@@ -13,6 +14,22 @@ import Help from "./settings/Help";
 import Questionnaire from "./settings/Questionnaire";
 import PrivacySecurity from "./settings/PrivacySecurity";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
+const MenuStack = createStackNavigator();
+
+function MenuStackScreen() {
+    return (
+        <MenuStack.Navigator
+            initialRouteName="menu"
+            screenOptions={{
+                gestureEnabled: true,
+                headerShown: false,
+            }}>
+            <MenuStack.Screen name="menu" component={MenuScreen} />
+            <MenuStack.Screen name="matchmade" component={MatchMade} />
+        </MenuStack.Navigator>
+    );
+}
 
 const MatchesStack = createStackNavigator();
 
@@ -109,7 +126,7 @@ const UserLoggedStack = props => {
                     keyboardHidesTabBar: true,
                 }}>
                 <Tab.Screen name="Matches" component={MatchesStackScreen} />
-                <Tab.Screen name="Home" component={MenuScreen} />
+                <Tab.Screen name="Home" component={MenuStackScreen} />
                 <Tab.Screen name="Settings" component={SettingsStackScreen} />
             </Tab.Navigator>
         </NavigationContainer>
