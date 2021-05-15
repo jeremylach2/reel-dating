@@ -53,6 +53,30 @@ class Users {
                 });
             });
     }
+
+    static async getPendingMatch(uid) {
+        return fb
+            .ref(`/pending_match/${uid}`)
+            .once("value")
+            .then(snapshot => {
+                const match = snapshot.val();
+
+                return match
+                    ? {
+                        user_id: uid,
+                        ...snapshot.val(),
+                    }
+                    : null;
+            });
+    }
+
+    static async createPendingMatch(user, initialUser) {
+        return fb
+            .ref(`/pending_matches/${user.id}`)
+            .set({
+                initial_user_id: initialUser.id,
+            });
+    }
 }
 
 export default Users;

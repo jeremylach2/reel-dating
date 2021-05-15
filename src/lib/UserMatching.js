@@ -99,10 +99,18 @@ export default async function (currentUser) {
     const users = await Users.getAll();
     const otherActiveUsers = users.filter(u => u.id !== currentUser.id && u.active);
 
-    for (let i = 0; i < otherActiveUsers.length; i++) {
-        const userMatches = driverCompare(otherActiveUsers[i], currentUser);
+    // remove people they already matched with!
+    // sorry Bouchard :(
 
-        if (userMatches) return otherActiveUsers[i];
+    for (let i = 0; i < otherActiveUsers.length; i++) {
+        const user = otherActiveUsers[i];
+        const userMatches = driverCompare(user, currentUser);
+
+        if (await Users.getPendingMatch(user.id)) continue;
+
+        Users.createPendingMatch(user, currentUser);
+
+        if (userMatches) return user;
     }
 
     return null;
