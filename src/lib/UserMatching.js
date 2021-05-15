@@ -65,7 +65,7 @@ function compareOther(A, B) {
 }
 
 function ageMatches(AprefAge, BprefAge, AgeA, AgeB, ageCuttoff) {
-    return !(
+    return (
         AprefAge + ageCuttoff >= AgeB &&
         AprefAge - ageCuttoff <= AgeB &&
         BprefAge + ageCuttoff >= AgeA &&
