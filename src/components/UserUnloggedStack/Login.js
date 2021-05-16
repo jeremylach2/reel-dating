@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
                             <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                 <Text
                                     style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                    Forgot My Password
+                                    Forgot my Password
                                 </Text>
                             </View>
                         </TouchableOpacity>

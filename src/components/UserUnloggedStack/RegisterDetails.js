@@ -46,20 +46,22 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
                 placeholderTextColor="black"
                 keyboardType="numeric"
             />
-            <View style={styles.userLoggedStack.settings.settings.questionnaireRadioContainer}>
-                <RadioButton
-                    data={genderOptions}
-                    deactiveColor="white"
-                    activeColor="white"
-                    boxDeactiveBgColor="transparent"
-                    boxActiveBgColor="rgba(22, 22, 22, 0.2)"
-                    textColor="white"
-                    initial={gender}
-                    selectedBtn={e => setGender(e.value)}
-                />
+            <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
+                <View style={styles.userUnloggedStack.userUnloggedStack.questionnaireRadioContainer}>
+                    <RadioButton
+                        data={genderOptions}
+                        deactiveColor="white"
+                        activeColor="white"
+                        boxDeactiveBgColor="transparent"
+                        boxActiveBgColor="rgba(22, 22, 22, 0.2)"
+                        textColor="white"
+                        initial={gender}
+                        selectedBtn={e => setGender(e.value)}
+                    />
+                </View>
             </View>
 
-            <TouchableOpacity
+            <TouchableOpacity style={styles.userUnloggedStack.userUnloggedStack.joinButton}
                 onPress={() => {
                     Users.createUserWithUID(uid, {
                         name: {

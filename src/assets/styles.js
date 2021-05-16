@@ -475,6 +475,13 @@ export default {
                 resizeMode: "cover",
                 justifyContent: "center",
             },
+            joinButton : {
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                width: "100%",
+                marginTop: "5%",
+            },
             loginButton: {
                 backgroundColor: "#FFFFFF",
                 borderRadius: 4,
@@ -501,6 +508,9 @@ export default {
                 justifyContent: "center",
                 alignContent: "center",
                 height: 400,
+            },
+            questionnaireRadioContainer: {
+                width: "90%",
             },
             resetButton: {
                 backgroundColor: "#FFFFFF",
