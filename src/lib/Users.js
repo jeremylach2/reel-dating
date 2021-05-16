@@ -86,6 +86,15 @@ class Users {
             .then(() => this.getPendingMatch(user.id));
     }
 
+    static async updatePendingMatch(uid, data) {
+        return fb
+            .ref(`/pending_match/${uid}`)
+            .update(data)
+            .then(() => {
+                return this.getPendingMatch(uid);
+            });
+    }
+
     static async deletePendingMatch(uid) {
         return fb
             .ref(`/pending_match/${uid}`)

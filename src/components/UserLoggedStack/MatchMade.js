@@ -8,17 +8,23 @@ import Users from "../../lib/Users";
 import styles from "../../assets/styles.js";
 
 const MatchMade = ({
+    navigation,
     route: {
         params: { match },
     },
 }) => {
     const { user } = useContext(UserContext);
     const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
+    const [hadAwaiting, setHadAwaiting] = useState(false);
     const [myPendingMatch, setMyPendingMatch] = useState();
 
     useEffect(() => {
         Users.getPendingMatch(user.id).then(setMyPendingMatch);
     }, []);
+
+    Users.getPendingMatch(match.id).then(setAwaitingResponsePendingMatch);
+
+    if (hadAwaiting && !awaitingResponsePendingMatch) console.log("they accepted!");
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
@@ -57,11 +63,19 @@ const MatchMade = ({
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() =>
-                                Users.createPendingMatch(match, user).then(
-                                    setAwaitingResponsePendingMatch
-                                )
-                            }>
+                            onPress={() => {
+                                if (myPendingMatch) {
+                                    Users.deletePendingMatch(user.id);
+                                    navigation.navigate("Matches", {
+                                        screen: "matchesText",
+                                        id: match.id,
+                                    });
+                                } else
+                                    Users.createPendingMatch(match, user).then(pend => {
+                                        setAwaitingResponsePendingMatch(pend);
+                                        setHadAwaiting(true);
+                                    });
+                            }}>
                             <View
                                 style={
                                     styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
