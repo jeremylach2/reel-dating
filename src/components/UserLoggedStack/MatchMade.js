@@ -28,7 +28,7 @@ const MatchMade = ({
         const newMatch = await Matches.create(match.id, user.id);
 
         const userMatches = {
-            [match.id]: match.matches[user.id],
+            [match.id]: newMatch.id,
             ...[user.matches || {}],
         };
         Users.update(user.id, { userMatches });
