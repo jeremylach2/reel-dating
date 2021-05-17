@@ -20,27 +20,18 @@ class Matches {
             });
     }
 
-    static async create(id, data) {
+    static async create(initialUser, matchedUser) {
+        const id = `${initialUser}-${matchedUser}-${Date.now()}`;
         return fb
             .ref(`/matches/${id}`)
-            .set(data)
-            .then(() => {
-                return this.get(id);
-            });
-    }
-
-    static async createRandomID(initialUser, matchedUser) {
-        return fb
-            .ref("/matches")
-            .push()
             .set({
                 initial_user: initialUser,
                 matched_user: matchedUser,
                 date: Date.now(),
                 messages: [],
             })
-            .then(snapshot => {
-                return this.get(snapshot.key);
+            .then(() => {
+                return this.get(id);
             });
     }
 
