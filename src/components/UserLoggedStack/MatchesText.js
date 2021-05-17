@@ -29,16 +29,14 @@ const iniMes = [
 const MatchesText = ({
     navigation,
     route: {
-        params: { match },
+        params: { match: matchItem },
     },
 }) => {
     const { user } = useContext(UserContext);
 
+    const [match, setMatch] = useState(matchItem);
     const [messages, setMessages] = useState(match.messages || []);
     const [giftedMessages, setGiftedMessages] = useState([]);
-
-    const { initialUser, matchedUser } = match;
-    const otherUser = initialUser.id === user.id ? matchedUser : initialUser;
 
     function newMessage(newMessages) {
         console.log(newMessages);
@@ -82,6 +80,16 @@ const MatchesText = ({
             .then(setGiftedMessages)
             .catch(console.error);
     }, [match, messages]);
+
+    useEffect(() => {
+        const ref = Matches.getOn(matchItem.id);
+
+        const event = ref.on("value", async snapshot =>
+            Matches.formatSnapshot(matchItem.id, snapshot).then(setMatch)
+        );
+
+        return () => ref.removeListener(event);
+    }, []);
 
     return <GiftedChat messages={giftedMessages} onSend={newMessage} user={user} />;
 };

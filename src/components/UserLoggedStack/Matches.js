@@ -147,9 +147,10 @@ function MatchContacted({ navigation, item, user }) {
 const Matches = ({ navigation }) => {
     const { user } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
-
+    // reece is a loser
+    // if reece doesnt see this it proves he isnt paying attention 
     const notChattedMatches = matches.filter(m => !m.messages);
-    const chattedMatches = matches.filter(m => !!m.messages);
+    const chattedMatches = matches.filter(m => !!m.messages);   
 
     useEffect(() => {
         Users.getMatches(user).then(setMatches);

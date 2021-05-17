@@ -22,16 +22,23 @@ class Matches {
         return fb
             .ref(`/matches/${id}`)
             .once("value")
-            .then(snapshot => {
-                const user = snapshot.val();
+            .then(async snapshot => {
+                const match = snapshot.val();
 
-                return user
+                return match
                     ? {
                         id,
                         ...snapshot.val(),
+                        initialUser: await Users.get(match.initial_user),
+                        matchedUser: await Users.get(match.matched_user),
                     }
                     : null;
             });
+    }
+
+    static getOn(id) {
+        return fb
+            .ref(`/matches/${id}`);
     }
 
     static async create(initialUser, matchedUser) {
@@ -77,6 +84,19 @@ class Matches {
                     { ...match.matchedUser, _id: match.matched_user, name: `${match.matchedUser.name.first} ${match.matchedUser.name.last}` },
             };
         });
+    }
+
+    static async formatSnapshot(id, snapshot) {
+        const match = snapshot.val();
+
+        return match
+            ? {
+                id,
+                ...snapshot.val(),
+                initialUser: await Users.get(match.initial_user),
+                matchedUser: await Users.get(match.matched_user),
+            }
+            : null;
     }
 }
 
