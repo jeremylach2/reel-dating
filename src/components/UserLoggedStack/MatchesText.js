@@ -82,13 +82,17 @@ const MatchesText = ({
     }, [match, messages]);
 
     useEffect(() => {
+        setMessages(match.messages);
+    }, [match]);
+
+    useEffect(() => {
         const ref = Matches.getOn(matchItem.id);
 
-        const event = ref.on("value", async snapshot =>
-            Matches.formatSnapshot(matchItem.id, snapshot).then(setMatch)
-        );
+        const event = ref.on("value", async snapshot => {
+            Matches.formatSnapshot(matchItem.id, snapshot).then(setMatch);
+        });
 
-        return () => ref.removeListener(event);
+        return () => ref.off("value", event);
     }, []);
 
     return <GiftedChat messages={giftedMessages} onSend={newMessage} user={user} />;
