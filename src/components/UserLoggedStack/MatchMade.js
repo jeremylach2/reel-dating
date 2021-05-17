@@ -35,10 +35,7 @@ const MatchMade = ({
 
         Users.update(user.id, { matches: userMatches });
 
-        navigation.navigate("Matches", {
-            screen: "matchesText",
-            id: match.id,
-        });
+        navigation.navigate("Matches");
     }
 
     async function declineMatch() {
@@ -82,10 +79,7 @@ const MatchMade = ({
 
                 setHadAwaiting(false);
 
-                navigation.navigate("Matches", {
-                    screen: "matchesText",
-                    id: matchUser.matches[user.id],
-                });
+                navigation.navigate("Matches");
             }
     }
 

@@ -39,7 +39,6 @@ const MatchesText = ({
     const [giftedMessages, setGiftedMessages] = useState([]);
 
     function newMessage(newMessages) {
-        console.log(newMessages);
         const messagesToPush = newMessages.map(m => {
             return {
                 ...m,
@@ -52,12 +51,6 @@ const MatchesText = ({
             setMessages(m.messages.sort((a, b) => a.createdAt <= b.createdAt))
         );
     }
-
-    const onSend = useCallback((messages2 = []) => {
-        console.log(messages2);
-
-        //setMessages(previousMessages => GiftedChat.append(previousMessages, messages2));
-    }, []);
 
     useEffect(() => {
         const parent = navigation.dangerouslyGetParent();
