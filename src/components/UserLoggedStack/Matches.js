@@ -12,6 +12,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "../../assets/styles.js";
 import Users from "../../lib/Users.js";
 import UserContext from "../../lib/UserContext.js";
+import MatchesLib from "../../lib/Matches.js";
 
 const maxNameLength = 9;
 const maxMessageLength = 20;
@@ -147,14 +148,23 @@ function MatchContacted({ navigation, item, user }) {
 const Matches = ({ navigation }) => {
     const { user } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
-    // reece is a loser
-    // if reece doesnt see this it proves he isnt paying attention 
+
     const notChattedMatches = matches.filter(m => !m.messages);
-    const chattedMatches = matches.filter(m => !!m.messages);   
+    const chattedMatches = matches.filter(m => !!m.messages);
 
     useEffect(() => {
         Users.getMatches(user).then(setMatches);
     }, [user]);
+
+    useEffect(() => {
+        const ref = MatchesLib.getOn();
+
+        const event = ref.on("value", async snapshot => {
+            Users.getMatches(user).then(setMatches);
+        });
+
+        return () => ref.off("value", event);
+    }, []);
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>

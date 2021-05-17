@@ -38,11 +38,12 @@ class Matches {
 
     static getOn(id) {
         return fb
-            .ref(`/matches/${id}`);
+            .ref(id ? `/matches/${id}` : "/matches");
     }
 
     static async create(initialUser, matchedUser) {
         const id = generateHash(`${initialUser}-${matchedUser}-${Date.now()}`);
+
         return fb
             .ref(`/matches/${id}`)
             .set({
