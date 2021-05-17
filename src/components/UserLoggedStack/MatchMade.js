@@ -33,7 +33,8 @@ const MatchMade = ({
             ...[user.matches || {}],
         };
 
-        Users.update(user.id, { matches: userMatches });
+        await Users.update(user.id, { matches: userMatches });
+        await refetchUser();
 
         navigation.navigate("Matches");
     }
