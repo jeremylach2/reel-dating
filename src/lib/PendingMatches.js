@@ -47,7 +47,7 @@ class PendingMatches {
 
     static async delete(id) {
         return fb
-            .ref(`/pending_match/${id}`)
+            .ref(`/pending_matches/${id}`)
             .remove();
     }
 }
