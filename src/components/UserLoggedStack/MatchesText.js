@@ -75,10 +75,13 @@ const MatchesText = ({
     }, []);
 
     useEffect(() => {
-        Matches.getGiftedMessages(messages.sort((a, b) => a.createdAt <= b.createdAt))
+        Matches.getGiftedMessages(
+            match,
+            messages.sort((a, b) => a.createdAt <= b.createdAt)
+        )
             .then(setGiftedMessages)
             .catch(console.error);
-    }, [messages]);
+    }, [match, messages]);
 
     return <GiftedChat messages={giftedMessages} onSend={newMessage} user={user} />;
 };

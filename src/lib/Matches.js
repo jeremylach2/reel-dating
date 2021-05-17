@@ -68,11 +68,13 @@ class Matches {
             });
     }
 
-    static async getGiftedMessages(messages = []) {
+    static async getGiftedMessages(match, messages = []) {
         return messages.map(m => {
             return {
                 ...m,
-                user: Users.get(m.user),
+                user: m.user === match.initial_user ?
+                    { ...match.initialUser, _id: match.initial_user, name: `${match.initialUser.name.first} ${match.initialUser.name.last}` } :
+                    { ...match.matchedUser, _id: match.matched_user, name: `${match.matchedUser.name.first} ${match.matchedUser.name.last}` },
             };
         });
     }
