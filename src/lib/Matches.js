@@ -3,6 +3,19 @@ import database from "@react-native-firebase/database";
 
 const fb = database();
 
+function generateHash(string) {
+    var hash = 0;
+    if (string.length == 0) return hash;
+    for (let i = 0; i < string.length; i++) {
+        var charCode = string.charCodeAt(i);
+        // eslint-disable-next-line no-bitwise
+        hash = (hash << 7) - hash + charCode;
+        // eslint-disable-next-line no-bitwise
+        hash = hash & hash;
+    }
+    return hash;
+}
+
 class Matches {
     static async get(id) {
         return fb
@@ -21,7 +34,7 @@ class Matches {
     }
 
     static async create(initialUser, matchedUser) {
-        const id = `${initialUser}-${matchedUser}-${Date.now()}`;
+        const id = generateHash(`${initialUser}-${matchedUser}-${Date.now()}`);
         return fb
             .ref(`/matches/${id}`)
             .set({
