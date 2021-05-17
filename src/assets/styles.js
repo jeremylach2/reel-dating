@@ -69,6 +69,12 @@ export default {
                 alignItems: "center",
                 fontSize: 15,
             },
+            matchMadeContainer: {
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+            },
             matchMadeHeart: {
                 marginTop: "10%",
                 alignItems: "center",
@@ -475,7 +481,7 @@ export default {
                 resizeMode: "cover",
                 justifyContent: "center",
             },
-            joinButton : {
+            joinButton: {
                 display: "flex",
                 flexWrap: "wrap",
                 flexDirection: "column",

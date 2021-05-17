@@ -17,6 +17,19 @@ const MatchMade = ({
     const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
     const [hadAwaiting, setHadAwaiting] = useState(false);
     const [myPendingMatch, setMyPendingMatch] = useState();
+    const [dot, setDot] = useState(1);
+    const maxDots = 5;
+
+    // Adds trailing dot effect to searching
+    useEffect(() => {
+        let dots = dot === maxDots ? 0 : dot + 1;
+        const interval = setInterval(() => {
+            setDot(dots);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [dot]);
+
+    let awaiting = dot === 0 ? "" : ".".repeat(dot);
 
     useEffect(() => {
         Users.getPendingMatch(user.id).then(setMyPendingMatch);
@@ -35,7 +48,6 @@ const MatchMade = ({
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
                     <Text style={styles.userLoggedStack.userLoggedStack.matchMadeHeader}>
                         Match Made!
-                        {myPendingMatch && <Text>Person is waiting on you!</Text>}
                     </Text>
                 </View>
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeaderContent}>
@@ -47,7 +59,9 @@ const MatchMade = ({
                     <HeartAnim />
                 </View>
                 {awaitingResponsePendingMatch ? (
-                    <Text>Pending match!</Text>
+                    <View style={styles.userLoggedStack.userLoggedStack.matchMadeContainer}>
+                        <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>Awaiting response{awaiting}</Text>
+                    </View>
                 ) : (
                     <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
                         <TouchableOpacity>
