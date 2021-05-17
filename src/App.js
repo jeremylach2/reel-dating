@@ -76,7 +76,8 @@ const App = props => {
         return <RegisterDetails uid={firebaseUser.uid} onUserCreate={onUserCreate} />;
 
     return (
-        <UserContext.Provider value={{ user, changeUserActive, userActive }}>
+        <UserContext.Provider
+            value={{ user, changeUserActive, userActive, refetchUser: onUserCreate }}>
             <UserLoggedStack />
         </UserContext.Provider>
     );

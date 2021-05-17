@@ -84,7 +84,7 @@ const genderPreferenceOptions = [
 ];
 
 const Questionnaire = ({ navigation }) => {
-    const { user } = useContext(UserContext);
+    const { user, refetchUser } = useContext(UserContext);
     const [interests, setInterests] = useState(
         user.questionnaire && user.questionnaire.interests
             ? user.questionnaire.interests
@@ -128,7 +128,7 @@ const Questionnaire = ({ navigation }) => {
                 agePreference: sliderValue,
                 genderPreference,
             },
-        });
+        }).then(refetchUser);
     }
 
     return (
