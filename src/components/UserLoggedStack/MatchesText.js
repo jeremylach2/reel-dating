@@ -75,7 +75,7 @@ const MatchesText = ({
     }, [match, messages]);
 
     useEffect(() => {
-        setMessages(match.messages);
+        setMessages(match.messages || []);
     }, [match]);
 
     useEffect(() => {
