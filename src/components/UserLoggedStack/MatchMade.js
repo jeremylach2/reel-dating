@@ -31,6 +31,7 @@ const MatchMade = ({
             [match.id]: newMatch.id,
             ...[user.matches || {}],
         };
+
         Users.update(user.id, { matches: userMatches });
 
         navigation.navigate("Matches", {
@@ -39,24 +40,48 @@ const MatchMade = ({
         });
     }
 
+    async function declineMatch() {
+        PendingMatches.delete(user.id);
+
+        const userMatches = {
+            [match.id]: false,
+            ...[user.matches || {}],
+        };
+
+        Users.update(user.id, { matches: userMatches });
+
+        navigation.navigate("menu");
+    }
+
     async function checkMatch() {
         const matchUser = await Users.get(match.id);
 
-        console.log(matchUser);
-
         if (matchUser.matches && matchUser.matches[user.id] !== null) {
             if (matchUser.matches[user.id] === false) {
-                // declined
-                console.log("rejected, fool!");
-            } else {
-                // accepted
-                console.log("accepted");
+                const userMatches = {
+                    [match.id]: false,
+                    ...[user.matches || {}],
+                };
 
+                Users.update(user.id, { matches: userMatches });
+
+                navigation.navigate("menu");
+
+                setHadAwaiting(false);
+            } else {
                 const userMatches = {
                     [match.id]: matchUser.matches[user.id],
                     ...[user.matches || {}],
                 };
+
                 Users.update(user.id, { matches: userMatches });
+
+                navigation.navigate("Matches", {
+                    screen: "matchesText",
+                    id: matchUser.matches[user.id],
+                });
+
+                setHadAwaiting(false);
             }
         } else {
             // something wrong happened!
@@ -108,7 +133,7 @@ const MatchMade = ({
                     </View>
                 ) : (
                     <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={declineMatch}>
                             <View
                                 style={
                                     styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
@@ -122,9 +147,8 @@ const MatchMade = ({
 
                         <TouchableOpacity
                             onPress={() => {
-                                if (myPendingMatch) {
-                                    createMatch();
-                                } else
+                                if (myPendingMatch) createMatch();
+                                else
                                     PendingMatches.create(match.id, user.id).then(pend => {
                                         setAwaitingResponsePendingMatch(pend);
                                         setHadAwaiting(true);
