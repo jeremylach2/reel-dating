@@ -15,6 +15,7 @@ class Users {
                 return user
                     ? {
                         id: uid,
+                        _id: uid,
                         ...snapshot.val(),
                     }
                     : null;
