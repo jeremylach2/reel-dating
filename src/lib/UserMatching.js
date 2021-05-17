@@ -1,3 +1,4 @@
+import PendingMatches from "./PendingMatches";
 import Users from "./Users";
 
 const minThres = 0.6;
@@ -106,7 +107,7 @@ export default async function (currentUser) {
         const user = otherActiveUsers[i];
         const userMatches = driverCompare(user, currentUser);
 
-        if (await Users.getPendingMatch(user.id)) continue;
+        if (await PendingMatches.get(user.id)) continue;
 
         if (userMatches) return user;
     }

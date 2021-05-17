@@ -121,7 +121,7 @@ const Questionnaire = ({ navigation }) => {
     }
 
     function updateUser() {
-        Users.updateUserByUID(user.id, {
+        Users.update(user.id, {
             questionnaire: {
                 interests,
                 lifestyle: lifestyles,

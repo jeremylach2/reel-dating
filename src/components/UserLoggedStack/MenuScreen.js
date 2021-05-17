@@ -8,6 +8,7 @@ import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";
 import Users from "../../lib/Users.js";
 import userMatching from "../../lib/UserMatching.js";
+import PendingMatches from "../../lib/PendingMatches.js";
 
 const quotePicker = () => {
     const index = Math.floor(Math.random() * quotes.length);
@@ -51,11 +52,11 @@ const MenuScreen = ({ navigation }) => {
         if (!userActive) return;
 
         const interval = setInterval(async () => {
-            const currUserMatch = await Users.getPendingMatch(user.id);
+            const currUserMatch = await PendingMatches.get(user.id);
 
             if (currUserMatch)
                 navigation.navigate("matchmade", {
-                    match: await Users.getUserByUID(currUserMatch.initial_user_id),
+                    match: await Users.get(currUserMatch.initial_user_id),
                 });
             else
                 userMatching(user)
@@ -73,6 +74,11 @@ const MenuScreen = ({ navigation }) => {
 
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
+
+    if (!user.questionnaire)
+        navigation.navigate("Settings", {
+            screen: "questionnaire",
+        });
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>

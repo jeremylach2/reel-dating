@@ -36,7 +36,7 @@ const App = props => {
     }
 
     function onUserCreate() {
-        Users.getUserByUID(firebaseUser.uid).then(dbUser => {
+        Users.get(firebaseUser.uid).then(dbUser => {
             setUser(dbUser);
             if (dbUserInitializing) setDBUserInitializing(false);
         });
@@ -45,7 +45,7 @@ const App = props => {
     function changeUserActive(active, uid = firebaseUser.uid) {
         setUserActive(active);
 
-        Users.updateUserByUID(uid, {
+        Users.update(uid, {
             active,
         });
     }
@@ -66,7 +66,7 @@ const App = props => {
     if (firebaseInitializing) return null;
     if (!firebaseUser) return <UserUnloggedStack />;
     if (firebaseUser && !user)
-        Users.getUserByUID(firebaseUser.uid).then(dbUser => {
+        Users.get(firebaseUser.uid).then(dbUser => {
             setUser(dbUser);
             if (dbUserInitializing) setDBUserInitializing(false);
         });

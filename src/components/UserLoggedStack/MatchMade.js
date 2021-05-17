@@ -5,7 +5,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import UserContext from "../../lib/UserContext.js";
 import Users from "../../lib/Users";
+import PendingMatches from "../../lib/PendingMatches";
 import styles from "../../assets/styles.js";
+import Matches from "../../lib/Matches.js";
 
 const MatchMade = ({
     navigation,
@@ -20,6 +22,23 @@ const MatchMade = ({
     const [dot, setDot] = useState(1);
     const maxDots = 5;
 
+    async function createMatch() {
+        PendingMatches.delete(user.id);
+
+        const newMatch = await Matches.create(match.id, user.id);
+
+        const userMatches = { [match.id]: newMatch.id, ...[user.matches || {}] };
+        const matchMatches = { [user.id]: newMatch.id, ...[match.matches || {}] };
+
+        Users.update(user.id, { userMatches });
+        Users.update(match.id, { matchMatches });
+
+        navigation.navigate("Matches", {
+            screen: "matchesText",
+            id: match.id,
+        });
+    }
+
     // Adds trailing dot effect to searching
     useEffect(() => {
         let dots = dot === maxDots ? 0 : dot + 1;
@@ -32,10 +51,10 @@ const MatchMade = ({
     let awaiting = dot === 0 ? "" : ".".repeat(dot);
 
     useEffect(() => {
-        Users.getPendingMatch(user.id).then(setMyPendingMatch);
+        PendingMatches.get(user.id).then(setMyPendingMatch);
     }, []);
 
-    Users.getPendingMatch(match.id).then(setAwaitingResponsePendingMatch);
+    PendingMatches.get(match.id).then(setAwaitingResponsePendingMatch);
 
     if (hadAwaiting && !awaitingResponsePendingMatch) console.log("they accepted!");
 
@@ -79,13 +98,9 @@ const MatchMade = ({
                         <TouchableOpacity
                             onPress={() => {
                                 if (myPendingMatch) {
-                                    Users.deletePendingMatch(user.id);
-                                    navigation.navigate("Matches", {
-                                        screen: "matchesText",
-                                        id: match.id,
-                                    });
+                                    createMatch();
                                 } else
-                                    Users.createPendingMatch(match, user).then(pend => {
+                                    PendingMatches.create(match.id, user.id).then(pend => {
                                         setAwaitingResponsePendingMatch(pend);
                                         setHadAwaiting(true);
                                     });

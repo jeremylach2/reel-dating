@@ -4,7 +4,7 @@ import database from "@react-native-firebase/database";
 const fb = database();
 
 class Users {
-    static async getUserByUID(uid) {
+    static async get(uid) {
         return fb
             .ref(`/users/${uid}`)
             .once("value")
@@ -20,21 +20,21 @@ class Users {
             });
     }
 
-    static async createUserWithUID(uid, data) {
+    static async create(uid, data) {
         return fb
             .ref(`/users/${uid}`)
             .set(data)
             .then(() => {
-                return this.getUserByUID(uid);
+                return this.get(uid);
             });
     }
 
-    static async updateUserByUID(uid, data) {
+    static async update(uid, data) {
         return fb
             .ref(`/users/${uid}`)
             .update(data)
             .then(() => {
-                return this.getUserByUID(uid);
+                return this.get(uid);
             });
     }
 
@@ -52,53 +52,6 @@ class Users {
                     };
                 });
             });
-    }
-
-    static async getPendingMatch(uid) {
-        return fb
-            .ref(`/pending_match/${uid}`)
-            .once("value")
-            .then(snapshot => {
-                const match = snapshot.val();
-
-                if (match && Date.now() - match.timestamp > 30 * 1000) {
-                    this.deletePendingMatch(uid);
-
-                    return null;
-                }
-
-                return match
-                    ? {
-                        user_id: uid,
-                        ...snapshot.val(),
-                    }
-                    : null;
-            });
-    }
-
-    static async createPendingMatch(user, initialUser) {
-        return fb
-            .ref(`/pending_match/${user.id}`)
-            .set({
-                initial_user_id: initialUser.id,
-                timestamp: Date.now() + 30 * 1000,
-            })
-            .then(() => this.getPendingMatch(user.id));
-    }
-
-    static async updatePendingMatch(uid, data) {
-        return fb
-            .ref(`/pending_match/${uid}`)
-            .update(data)
-            .then(() => {
-                return this.getPendingMatch(uid);
-            });
-    }
-
-    static async deletePendingMatch(uid) {
-        return fb
-            .ref(`/pending_match/${uid}`)
-            .remove();
     }
 }
 

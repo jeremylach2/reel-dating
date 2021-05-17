@@ -63,7 +63,7 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
 
             <TouchableOpacity style={styles.userUnloggedStack.userUnloggedStack.joinButton}
                 onPress={() => {
-                    Users.createUserWithUID(uid, {
+                    Users.create(uid, {
                         name: {
                             first: firstName,
                             last: lastName,
