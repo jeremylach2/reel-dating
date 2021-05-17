@@ -3,44 +3,10 @@ import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from 
 import styles from "../../assets/styles.js";
 import auth from "@react-native-firebase/auth";
 
-const ForgotPasswordUserInput = () => {
-    const [email, setEmail] = React.useState("");
-    const [logError, setLogError] = React.useState();
-
-    return (
-        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
-            <TextInput
-                style={styles.userUnloggedStack.userUnloggedStack.userInput}
-                onChangeText={text => setEmail(text)}
-                value={email}
-                placeholder="Email"
-                placeholderTextColor="black"
-            />
-
-            <TouchableOpacity
-                onPress={() => {
-                    auth().sendPasswordResetEmail(email);
-                    setLogError(
-                        "If a user exists with this email, you should receive an email shortly."
-                    );
-                }}>
-                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
-                        Reset Password
-                    </Text>
-                </View>
-            </TouchableOpacity>
-
-            {logError && (
-                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
-                    {logError}
-                </Text>
-            )}
-        </View>
-    );
-};
-
 const ForgotPassword = ({ navigation }) => {
+    const [email, setEmail] = React.useState("");
+    const [logError, setLogError] = React.useState(" ");
+
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
@@ -55,15 +21,44 @@ const ForgotPassword = ({ navigation }) => {
                         <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
                             Reset Password
                         </Text>
-                        <ForgotPasswordUserInput />
-                        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-                            <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                <Text
-                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
-                                    Login instead.
+                        <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
+                            <TextInput
+                                style={styles.userUnloggedStack.userUnloggedStack.userInput}
+                                onChangeText={text => setEmail(text)}
+                                value={email}
+                                placeholder="Email"
+                                placeholderTextColor="black"
+                            />
+
+                            <TouchableOpacity
+                                onPress={() => {
+                                    auth().sendPasswordResetEmail(email);
+                                    setLogError(
+                                        "You should receive an email shortly."
+                                    );
+                                }}>
+                                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
+                                        Reset Password
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                                <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                    <Text
+                                        style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                        Login Instead
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+
+                            {logError && (
+                                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                                    {logError}
                                 </Text>
-                            </View>
-                        </TouchableOpacity>
+                            )}
+                        </View>
                     </View>
                 </View>
             </ImageBackground>
