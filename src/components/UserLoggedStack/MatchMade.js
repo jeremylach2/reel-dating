@@ -27,9 +27,11 @@ const MatchMade = ({
 
         const newMatch = await Matches.create(match.id, user.id);
 
-        const matchMatches = { [user.id]: newMatch.id, ...[match.matches || {}] };
-
-        Users.update(match.id, { matchMatches });
+        const userMatches = {
+            [match.id]: match.matches[user.id],
+            ...[user.matches || {}],
+        };
+        Users.update(user.id, { userMatches });
 
         navigation.navigate("Matches", {
             screen: "matchesText",
