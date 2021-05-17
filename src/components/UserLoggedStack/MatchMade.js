@@ -31,7 +31,7 @@ const MatchMade = ({
             [match.id]: newMatch.id,
             ...[user.matches || {}],
         };
-        Users.update(user.id, { userMatches });
+        Users.update(user.id, { matches: userMatches });
 
         navigation.navigate("Matches", {
             screen: "matchesText",
@@ -41,6 +41,8 @@ const MatchMade = ({
 
     async function checkMatch() {
         const matchUser = await Users.get(match.id);
+
+        console.log(matchUser);
 
         if (matchUser.matches && matchUser.matches[user.id] !== null) {
             if (matchUser.matches[user.id] === false) {
@@ -54,7 +56,7 @@ const MatchMade = ({
                     [match.id]: matchUser.matches[user.id],
                     ...[user.matches || {}],
                 };
-                Users.update(user.id, { userMatches });
+                Users.update(user.id, { matches: userMatches });
             }
         } else {
             // something wrong happened!
