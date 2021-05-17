@@ -94,11 +94,22 @@ function combineScores(interestScore, lifestyleScore, otherScore) {
     return totalScore > minThres && otherScore;
 }
 
+// to prevent previous matches from coming up multiple times
+function alreadyMatched(user, otherUser) {
+    if (!user.matches && !otherUser.matches) return false;
+    if (user.matches && user.matches[otherUser.id] !== null) return true;
+    if (otherUser.matches && otherUser.matches[user.id] !== null) return true;
+
+    return false;
+}
+
 // This function contains the matchmaking algorithm using the
 // Tanimoto Distance forumla and our own specifications.
 export default async function (currentUser) {
     const users = await Users.getAll();
-    const otherActiveUsers = users.filter(u => u.id !== currentUser.id && u.active);
+    const otherActiveUsers = users.filter(
+        u => u.id !== currentUser.id && u.active && !alreadyMatched(currentUser, u)
+    );
 
     // remove people they already matched with!
     // sorry Bouchard :(

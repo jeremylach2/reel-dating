@@ -15,7 +15,7 @@ const MatchMade = ({
         params: { match },
     },
 }) => {
-    const { user } = useContext(UserContext);
+    const { user, refetchUser } = useContext(UserContext);
     const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
     const [hadAwaiting, setHadAwaiting] = useState(false);
     const [myPendingMatch, setMyPendingMatch] = useState();
@@ -48,7 +48,8 @@ const MatchMade = ({
             ...[user.matches || {}],
         };
 
-        Users.update(user.id, { matches: userMatches });
+        await Users.update(user.id, { matches: userMatches });
+        await refetchUser();
 
         navigation.navigate("menu");
     }
@@ -63,25 +64,27 @@ const MatchMade = ({
                     ...[user.matches || {}],
                 };
 
-                Users.update(user.id, { matches: userMatches });
-
-                navigation.navigate("menu");
+                await Users.update(user.id, { matches: userMatches });
+                await refetchUser();
 
                 setHadAwaiting(false);
+
+                navigation.navigate("menu");
             } else {
                 const userMatches = {
                     [match.id]: matchUser.matches[user.id],
                     ...[user.matches || {}],
                 };
 
-                Users.update(user.id, { matches: userMatches });
+                await Users.update(user.id, { matches: userMatches });
+                await refetchUser();
+
+                setHadAwaiting(false);
 
                 navigation.navigate("Matches", {
                     screen: "matchesText",
                     id: matchUser.matches[user.id],
                 });
-
-                setHadAwaiting(false);
             }
         } else {
             // something wrong happened!
