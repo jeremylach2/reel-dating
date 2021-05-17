@@ -95,7 +95,7 @@ function combineScores(interestScore, lifestyleScore, otherScore) {
 }
 
 // to prevent previous matches from coming up multiple times
-function alreadyMatched(user, otherUser) {
+export function alreadyMatched(user, otherUser) {
     if (!user.matches && !otherUser.matches) return false;
     if (user.matches && user.matches[otherUser.id] !== null) return true;
     if (otherUser.matches && otherUser.matches[user.id] !== null) return true;

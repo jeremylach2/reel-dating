@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "react-native-gesture-handler";
 import {
     Text,
@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "../../assets/styles.js";
+import Users from "../../lib/Users.js";
+import UserContext from "../../lib/UserContext.js";
 
 const maxNameLength = 9;
 const maxMessageLength = 20;
@@ -96,25 +98,33 @@ let bothMatchedList = [
     },
 ];
 
-function MatchNotContacted({ item }) {
+function MatchNotContacted({ navigation, item, user }) {
+    const { initialUser, matchedUser } = item;
+    const otherUser = initialUser.id === user.id ? matchedUser : initialUser;
+
     return (
-        <TouchableNativeFeedback>
+        <TouchableNativeFeedback
+            onPress={() => navigation.navigate("matchesText", { match: item })}>
             <View style={styles.userLoggedStack.userLoggedStack.utilityBox}>
                 <Image
                     source={require("../../assets/images/profile-picture-example.png")}
                     style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
                 />
                 <Text style={styles.userLoggedStack.userLoggedStack.text}>
-                    {item.name.first.substring(0, maxNameLength)}
+                    {otherUser.name.first.substring(0, maxNameLength)}
                 </Text>
             </View>
         </TouchableNativeFeedback>
     );
 }
 
-function MatchContacted({ item, navigation }) {
+function MatchContacted({ navigation, item, user }) {
+    const { initialUser, matchedUser } = item;
+    const otherUser = initialUser.id === user.id ? matchedUser : initialUser;
+
     return (
-        <TouchableNativeFeedback onPress={() => navigation.navigate("matchesText")}>
+        <TouchableNativeFeedback
+            onPress={() => navigation.navigate("matchesText", { match: item })}>
             <View style={styles.userLoggedStack.userLoggedStack.utilityBoxContent}>
                 <View style={styles.userLoggedStack.userLoggedStack.utilityBox}>
                     <Image
@@ -122,11 +132,11 @@ function MatchContacted({ item, navigation }) {
                         style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
                     />
                     <Text style={styles.userLoggedStack.userLoggedStack.text}>
-                        {item.name.first.substring(0, maxNameLength)}
+                        {otherUser.name.first.substring(0, maxNameLength)}
                     </Text>
                 </View>
                 <Text style={styles.userLoggedStack.userLoggedStack.text}>
-                    {item.text.substring(0, maxMessageLength)}
+                    {item.messages[0].text.substring(0, maxMessageLength)}
                 </Text>
                 <AntDesign name="right" size={25} color="white" />
             </View>
@@ -135,6 +145,16 @@ function MatchContacted({ item, navigation }) {
 }
 
 const Matches = ({ navigation }) => {
+    const { user } = useContext(UserContext);
+    const [matches, setMatches] = useState([]);
+
+    const notChattedMatches = matches.filter(m => !m.messages);
+    const chattedMatches = matches.filter(m => !!m.messages);
+
+    useEffect(() => {
+        Users.getMatches(user).then(setMatches);
+    }, [user]);
+
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -144,8 +164,14 @@ const Matches = ({ navigation }) => {
                 <View style={styles.userLoggedStack.userLoggedStack.utilityBox}>
                     <View style={styles.userLoggedStack.userLoggedStack.utilityBoxContent}>
                         <FlatList
-                            data={notMatchList}
-                            renderItem={MatchNotContacted}
+                            data={notChattedMatches}
+                            renderItem={({ item }) => (
+                                <MatchNotContacted
+                                    navigation={navigation}
+                                    item={item}
+                                    user={user}
+                                />
+                            )}
                             keyExtractor={item => item.id}
                             horizontal={true}
                             ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
@@ -160,9 +186,9 @@ const Matches = ({ navigation }) => {
                         </View>
                         <FlatList
                             style={{ width: "100%", alignContent: "center" }}
-                            data={bothMatchedList}
+                            data={chattedMatches}
                             renderItem={({ item }) => (
-                                <MatchContacted navigation={navigation} item={item} />
+                                <MatchContacted navigation={navigation} item={item} user={user} />
                             )}
                             keyExtractor={item => item.id}
                         />

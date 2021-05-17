@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import database from "@react-native-firebase/database";
+import Matches from "./Matches";
 
 const fb = database();
 
@@ -52,6 +53,20 @@ class Users {
                     };
                 });
             });
+    }
+
+    static async getMatches(user) {
+        const matches = user.matches ? Object.keys(user.matches) : [];
+
+        const matchArray = Promise.all(matches.filter(m => user.matches[m] !== false).map(m => Matches.get(user.matches[m])));
+
+        return Promise.all((await matchArray).map(async m => {
+            return {
+                ...m,
+                initialUser: await this.get(m.initial_user),
+                matchedUser: await this.get(m.matched_user),
+            };
+        }));
     }
 }
 

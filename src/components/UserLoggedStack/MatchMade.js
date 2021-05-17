@@ -8,6 +8,7 @@ import Users from "../../lib/Users";
 import PendingMatches from "../../lib/PendingMatches";
 import styles from "../../assets/styles.js";
 import Matches from "../../lib/Matches.js";
+import { alreadyMatched } from "../../lib/UserMatching.js";
 
 const MatchMade = ({
     navigation,
@@ -57,7 +58,7 @@ const MatchMade = ({
     async function checkMatch() {
         const matchUser = await Users.get(match.id);
 
-        if (matchUser.matches && matchUser.matches[user.id] !== null) {
+        if (matchUser.matches && matchUser.matches[user.id] !== null)
             if (matchUser.matches[user.id] === false) {
                 const userMatches = {
                     [match.id]: false,
@@ -86,10 +87,6 @@ const MatchMade = ({
                     id: matchUser.matches[user.id],
                 });
             }
-        } else {
-            // something wrong happened!
-            console.log("uh oh");
-        }
     }
 
     // Adds trailing dot effect to searching

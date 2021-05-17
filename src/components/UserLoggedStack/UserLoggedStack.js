@@ -42,7 +42,15 @@ function MatchesStackScreen() {
                 headerShown: false,
             }}>
             <MatchesStack.Screen name="matches" component={Matches} />
-            <MatchesStack.Screen name="matchesText" component={MatchesText} />
+            <MatchesStack.Screen
+                name="matchesText"
+                component={MatchesText}
+                options={{
+                    headerShown: true,
+                    title: null,
+                    headerTransparent: true,
+                }}
+            />
         </MatchesStack.Navigator>
     );
 }

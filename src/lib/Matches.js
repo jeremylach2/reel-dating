@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import database from "@react-native-firebase/database";
+import Users from "./Users";
 
 const fb = database();
 
@@ -55,6 +56,25 @@ class Matches {
             .then(() => {
                 return this.get(id);
             });
+    }
+
+    static async appendMessages(id, oldMessages, newMessages) {
+        console.log(newMessages);
+        return fb
+            .ref(`/matches/${id}`)
+            .update({ messages: [...oldMessages, ...newMessages] })
+            .then(() => {
+                return this.get(id);
+            });
+    }
+
+    static async getGiftedMessages(messages = []) {
+        return messages.map(m => {
+            return {
+                ...m,
+                user: Users.get(m.user),
+            };
+        });
     }
 }
 
