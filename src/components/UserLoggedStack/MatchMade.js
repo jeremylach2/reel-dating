@@ -27,16 +27,37 @@ const MatchMade = ({
 
         const newMatch = await Matches.create(match.id, user.id);
 
-        const userMatches = { [match.id]: newMatch.id, ...[user.matches || {}] };
         const matchMatches = { [user.id]: newMatch.id, ...[match.matches || {}] };
 
-        Users.update(user.id, { userMatches });
         Users.update(match.id, { matchMatches });
 
         navigation.navigate("Matches", {
             screen: "matchesText",
             id: match.id,
         });
+    }
+
+    async function checkMatch() {
+        const matchUser = await Users.get(match.id);
+
+        if (matchUser.matches && matchUser.matches[user.id] !== null) {
+            if (matchUser.matches[user.id] === false) {
+                // declined
+                console.log("rejected, fool!");
+            } else {
+                // accepted
+                console.log("accepted");
+
+                const userMatches = {
+                    [match.id]: matchUser.matches[user.id],
+                    ...[user.matches || {}],
+                };
+                Users.update(user.id, { userMatches });
+            }
+        } else {
+            // something wrong happened!
+            console.log("uh oh");
+        }
     }
 
     // Adds trailing dot effect to searching
@@ -56,7 +77,7 @@ const MatchMade = ({
 
     PendingMatches.get(match.id).then(setAwaitingResponsePendingMatch);
 
-    if (hadAwaiting && !awaitingResponsePendingMatch) console.log("they accepted!");
+    if (hadAwaiting && !awaitingResponsePendingMatch) checkMatch();
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
