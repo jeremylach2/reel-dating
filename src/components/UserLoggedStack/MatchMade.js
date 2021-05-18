@@ -17,7 +17,7 @@ const MatchMade = ({
         params: { match },
     },
 }) => {
-    const { user, refetchUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
     const [hadAwaiting, setHadAwaiting] = useState(false);
     const [myPendingMatch, setMyPendingMatch] = useState();
@@ -35,7 +35,6 @@ const MatchMade = ({
         };
 
         await Users.update(user.id, { matches: userMatches });
-        await refetchUser();
 
         navigation.navigate("Matches");
     }
@@ -49,7 +48,6 @@ const MatchMade = ({
         };
 
         await Users.update(user.id, { matches: userMatches });
-        await refetchUser();
 
         navigation.navigate("menu");
     }
@@ -66,7 +64,6 @@ const MatchMade = ({
                 };
 
                 await Users.update(user.id, { matches: userMatches });
-                await refetchUser();
 
                 setHadAwaiting(false);
 
@@ -78,7 +75,6 @@ const MatchMade = ({
                 };
 
                 await Users.update(user.id, { matches: userMatches });
-                await refetchUser();
 
                 setHadAwaiting(false);
 

@@ -16,7 +16,7 @@ const genderOptions = [
     },
 ];
 
-const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
+const RegisterDetailsUserInput = ({ uid }) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [age, setAge] = useState("");
@@ -70,7 +70,7 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
                         },
                         age: +age,
                         gender,
-                    }).then(onUserCreate);
+                    });
                 }}>
                 <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
                     <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
@@ -88,7 +88,7 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
     );
 };
 
-const RegisterQuestionnaire = ({ navigation, uid, onUserCreate }) => {
+const RegisterQuestionnaire = ({ navigation, uid }) => {
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
@@ -103,7 +103,7 @@ const RegisterQuestionnaire = ({ navigation, uid, onUserCreate }) => {
                         <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
                             Your Information
                         </Text>
-                        <RegisterDetailsUserInput uid={uid} onUserCreate={onUserCreate} />
+                        <RegisterDetailsUserInput uid={uid} />
                     </View>
                 </View>
             </ImageBackground>
