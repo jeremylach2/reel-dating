@@ -1,8 +1,8 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect, useContext } from "react";
 import { Text, ImageBackground, View, Image, Animated, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
+
 import quotes from "../../assets/quotes.js";
 import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";

@@ -3,13 +3,14 @@ import "react-native-gesture-handler";
 import { Text, ImageBackground, View, TouchableOpacity, Animated } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 import UserContext from "../../lib/UserContext.js";
 import Users from "../../lib/Users";
 import PendingMatches from "../../lib/PendingMatches";
 import styles from "../../assets/styles.js";
 import Matches from "../../lib/Matches.js";
-import { alreadyMatched } from "../../lib/UserMatching.js";
 
+// Screen when a match is found.
 const MatchMade = ({
     navigation,
     route: {
@@ -53,6 +54,7 @@ const MatchMade = ({
         navigation.navigate("menu");
     }
 
+    // Looks for a response from match.
     async function checkMatch() {
         const matchUser = await Users.get(match.id);
 

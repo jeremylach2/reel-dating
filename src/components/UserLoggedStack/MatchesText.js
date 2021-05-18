@@ -1,31 +1,10 @@
-import React, { useState, useContext, useCallback, useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
 import { GiftedChat } from "react-native-gifted-chat";
+
 import Matches from "../../lib/Matches.js";
 import UserContext from "../../lib/UserContext.js";
 
-const iniMes = [
-    {
-        _id: 1,
-        text: "MAGA",
-        createdAt: new Date(),
-        user: {
-            _id: 2,
-            name: "Reece",
-            avatar: "https://i.pinimg.com/originals/36/ed/9d/36ed9d8b150a182a6e7b6d1a81a0f1b9.jpg",
-        },
-    },
-    {
-        _id: 2,
-        text: "Whats Good",
-        createdAt: new Date(),
-        user: {
-            _id: 1,
-            name: "Jackson",
-        },
-    },
-];
-
+// Text screen chat between user and match.
 const MatchesText = ({
     navigation,
     route: {
@@ -33,7 +12,6 @@ const MatchesText = ({
     },
 }) => {
     const { user } = useContext(UserContext);
-
     const [match, setMatch] = useState(matchItem);
     const [messages, setMessages] = useState(match.messages || []);
     const [giftedMessages, setGiftedMessages] = useState([]);
@@ -52,6 +30,7 @@ const MatchesText = ({
         );
     }
 
+    // Disables tab bar in this screen.
     useEffect(() => {
         const parent = navigation.dangerouslyGetParent();
 
@@ -78,6 +57,7 @@ const MatchesText = ({
         setMessages(match.messages || []);
     }, [match]);
 
+    // Dynamically updates match, including messages.
     useEffect(() => {
         const ref = Matches.getOn(matchItem.id);
 

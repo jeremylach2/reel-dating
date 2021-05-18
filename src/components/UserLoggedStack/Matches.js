@@ -9,6 +9,7 @@ import {
     TouchableNativeFeedback,
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+
 import styles from "../../assets/styles.js";
 import Users from "../../lib/Users.js";
 import UserContext from "../../lib/UserContext.js";
@@ -17,88 +18,7 @@ import MatchesLib from "../../lib/Matches.js";
 const maxNameLength = 9;
 const maxMessageLength = 20;
 
-let notMatchList = [
-    {
-        id: "1",
-        name: {
-            first: "Jeremy",
-        },
-    },
-    {
-        id: "2",
-        name: {
-            first: "Jack",
-        },
-    },
-    {
-        id: "3",
-        name: {
-            first: "Jimmy",
-        },
-    },
-    {
-        id: "4",
-        name: {
-            first: "Jude",
-        },
-    },
-    {
-        id: "5",
-        name: {
-            first: "Jayden",
-        },
-    },
-    {
-        id: "6",
-        name: {
-            first: "Jamie",
-        },
-    },
-    {
-        id: "7",
-        name: {
-            first: "Joshua",
-        },
-    },
-    {
-        id: "8",
-        name: {
-            first: "Jake",
-        },
-    },
-    {
-        id: "9",
-        name: {
-            first: "Jaleen",
-        },
-    },
-    {
-        id: "10",
-        name: {
-            first: "James",
-        },
-    },
-];
-
-let bothMatchedList = [
-    {
-        id: "1",
-        name: {
-            first: "Jackson",
-            last: "Ulmer",
-        },
-        text: "I want you.",
-    },
-    {
-        id: "2",
-        name: {
-            first: "Reece",
-            last: "Person B Last",
-        },
-        text: "U up?",
-    },
-];
-
+// List of user's matches but not contacted yet.
 function MatchNotContacted({ navigation, item, user }) {
     const { initialUser, matchedUser } = item;
     const otherUser = initialUser.id === user.id ? matchedUser : initialUser;
@@ -119,6 +39,7 @@ function MatchNotContacted({ navigation, item, user }) {
     );
 }
 
+// List of user's matches that were contacted.
 function MatchContacted({ navigation, item, user }) {
     const { initialUser, matchedUser } = item;
     const otherUser = initialUser.id === user.id ? matchedUser : initialUser;
@@ -145,6 +66,7 @@ function MatchContacted({ navigation, item, user }) {
     );
 }
 
+// Screen that contains both uncontacted and contacted matches of the user.
 const Matches = ({ navigation }) => {
     const { user } = useContext(UserContext);
     const [matches, setMatches] = useState([]);
@@ -156,6 +78,7 @@ const Matches = ({ navigation }) => {
         Users.getMatches(user).then(setMatches);
     }, [user]);
 
+    // Event listener to dynamically update users' matches.
     useEffect(() => {
         const ref = MatchesLib.getOn();
 

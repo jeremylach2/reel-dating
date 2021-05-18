@@ -3,6 +3,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 import MenuScreen from "./MenuScreen";
 import Matches from "./Matches";
 import MatchMade from "./MatchMade";
@@ -13,7 +15,6 @@ import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
 import Questionnaire from "./settings/Questionnaire";
 import PrivacySecurity from "./settings/PrivacySecurity";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 const MenuStack = createStackNavigator();
 

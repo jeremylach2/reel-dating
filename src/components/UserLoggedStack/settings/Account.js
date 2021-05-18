@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "react-native-gesture-handler";
 import {
     Text,
@@ -11,18 +11,16 @@ import {
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
+
 import styles from "../../../assets/styles.js";
 import UserContext from "../../../lib/UserContext";
 
-const Account = ({ navigation }) => {
+// Account information of user
+const Account = () => {
     const { user } = useContext(UserContext);
-    const [firstName, setFirstName] = React.useState(user.name.first);
-    const [lastName, setLastName] = React.useState(user.name.last);
-    const [email, setEmail] = React.useState("");
-
-    //Still need to add blocked accounts and profile picture change buttons - had issue with them before removing for overall well being.
-    //Also change the button color for the update buttons.
-    //Also, why would you have change password here? shouldn't it be it's own thing or redirect somewhere else?
+    const [firstName, setFirstName] = useState(user.name.first);
+    const [lastName, setLastName] = useState(user.name.last);
+    const [email, setEmail] = useState("");
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>

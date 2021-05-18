@@ -3,8 +3,6 @@ import { Text, ImageBackground, View, Image, TextInput, TouchableOpacity } from 
 import RadioButton from "radio-buttons-react-native";
 
 import Users from "../../lib/Users";
-
-import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
 
 const genderOptions = [
@@ -47,7 +45,8 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
                 keyboardType="numeric"
             />
             <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
-                <View style={styles.userUnloggedStack.userUnloggedStack.questionnaireRadioContainer}>
+                <View
+                    style={styles.userUnloggedStack.userUnloggedStack.questionnaireRadioContainer}>
                     <RadioButton
                         data={genderOptions}
                         deactiveColor="white"
@@ -61,7 +60,8 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
                 </View>
             </View>
 
-            <TouchableOpacity style={styles.userUnloggedStack.userUnloggedStack.joinButton}
+            <TouchableOpacity
+                style={styles.userUnloggedStack.userUnloggedStack.joinButton}
                 onPress={() => {
                     Users.create(uid, {
                         name: {

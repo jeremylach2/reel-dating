@@ -1,14 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "react-native-gesture-handler";
-import {
-    Alert,
-    Text,
-    ImageBackground,
-    View,
-    Modal,
-    ScrollView,
-    TouchableOpacity,
-} from "react-native";
+import { Text, ImageBackground, View, Modal, ScrollView, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import RadioButton from "radio-buttons-react-native";
 import Slider from "@react-native-community/slider";

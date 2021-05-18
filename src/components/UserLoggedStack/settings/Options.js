@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { Text, ImageBackground, View, Image, TouchableNativeFeedback } from "react-native";
+import { Text, ImageBackground, View, TouchableNativeFeedback } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import AccountIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 import styles from "../../../assets/styles.js";
-
 import auth from "@react-native-firebase/auth";
-
 import UserContext from "../../../lib/UserContext";
 
 const Options = ({ navigation }) => {

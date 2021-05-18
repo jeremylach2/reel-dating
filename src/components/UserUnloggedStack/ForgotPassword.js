@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
-import styles from "../../assets/styles.js";
+
 import auth from "@react-native-firebase/auth";
+import styles from "../../assets/styles.js";
 
 const ForgotPassword = ({ navigation }) => {
-    const [email, setEmail] = React.useState("");
-    const [logError, setLogError] = React.useState(" ");
+    const [email, setEmail] = useState("");
+    const [logError, setLogError] = useState(" ");
 
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
@@ -33,28 +34,36 @@ const ForgotPassword = ({ navigation }) => {
                             <TouchableOpacity
                                 onPress={() => {
                                     auth().sendPasswordResetEmail(email);
-                                    setLogError(
-                                        "You should receive an email shortly."
-                                    );
+                                    setLogError("You should receive an email shortly.");
                                 }}>
-                                <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
-                                    <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
+                                <View
+                                    style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
+                                    <Text
+                                        style={
+                                            styles.userUnloggedStack.userUnloggedStack.loginText
+                                        }>
                                         Reset Password
                                     </Text>
                                 </View>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-                                <View style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                <View
+                                    style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
                                     <Text
-                                        style={styles.userUnloggedStack.userUnloggedStack.forgotButton}>
+                                        style={
+                                            styles.userUnloggedStack.userUnloggedStack.forgotButton
+                                        }>
                                         Login Instead
                                     </Text>
                                 </View>
                             </TouchableOpacity>
 
                             {logError && (
-                                <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                                <Text
+                                    style={
+                                        styles.userUnloggedStack.userUnloggedStack.loginErrorText
+                                    }>
                                     {logError}
                                 </Text>
                             )}
