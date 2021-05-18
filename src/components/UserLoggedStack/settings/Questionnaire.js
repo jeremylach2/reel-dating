@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "react-native-gesture-handler";
 import {
     Alert,
@@ -94,26 +94,10 @@ const genderPreferenceOptions = [
 const Questionnaire = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const { user } = useContext(UserContext);
-    const [interests, setInterests] = useState(
-        user.questionnaire && user.questionnaire.interests
-            ? user.questionnaire.interests
-            : interestsList
-    );
-    const [lifestyles, setLifestyles] = useState(
-        user.questionnaire && user.questionnaire.lifestyle
-            ? user.questionnaire.lifestyle
-            : lifestyleList
-    );
-    const [genderPreference, setGenderPreference] = useState(
-        user.questionnaire && user.questionnaire.genderPreference
-            ? user.questionnaire.genderPreference
-            : null
-    );
-    const [sliderValue, setSliderValue] = useState(
-        user.questionnaire && user.questionnaire.agePreference
-            ? user.questionnaire.agePreference
-            : 18
-    );
+    const [interests, setInterests] = useState(interestsList);
+    const [lifestyles, setLifestyles] = useState(lifestyleList);
+    const [genderPreference, setGenderPreference] = useState();
+    const [sliderValue, setSliderValue] = useState(18);
 
     function updateInterest(interest, value) {
         const newList = { ...interests };
@@ -139,6 +123,15 @@ const Questionnaire = ({ navigation }) => {
             },
         });
     }
+
+    useEffect(() => {
+        if (!user.questionnaire) return;
+
+        setInterests(user.questionnaire.interests);
+        setLifestyles(user.questionnaire.lifestyle);
+        setGenderPreference(user.questionnaire.genderPreference);
+        setSliderValue(user.questionnaire.agePreference);
+    }, [user]);
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>

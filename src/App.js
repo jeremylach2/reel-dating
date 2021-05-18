@@ -33,13 +33,6 @@ const App = props => {
         setAppState(applicationState.current);
     }
 
-    function onUserCreate() {
-        Users.get(firebaseUser.uid).then(dbUser => {
-            setUser(dbUser);
-            if (dbUserInitializing) setDBUserInitializing(false);
-        });
-    }
-
     function changeUserActive(active, uid = firebaseUser.uid) {
         setUserActive(active);
 
@@ -76,12 +69,10 @@ const App = props => {
     if (!firebaseUser) return <UserUnloggedStack />;
 
     if (dbUserInitializing) return null;
-    else if (!dbUserInitializing && !user)
-        return <RegisterDetails uid={firebaseUser.uid} onUserCreate={onUserCreate} />;
+    else if (!dbUserInitializing && !user) return <RegisterDetails uid={firebaseUser.uid} />;
 
     return (
-        <UserContext.Provider
-            value={{ user, changeUserActive, userActive, refetchUser: onUserCreate }}>
+        <UserContext.Provider value={{ user, changeUserActive, userActive }}>
             <UserLoggedStack />
         </UserContext.Provider>
     );
