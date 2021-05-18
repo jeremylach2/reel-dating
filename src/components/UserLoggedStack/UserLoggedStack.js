@@ -127,7 +127,7 @@ const UserLoggedStack = props => {
                     activeTintColor: "white",
                     inactiveTintColor: "white",
                     style: {
-                        backgroundColor: "rgba(22, 22, 22, 0.2)",
+                        backgroundColor: "rgba(22, 22, 22, 0.5)",
                         position: "absolute",
                         elevation: 0,
                     },
