@@ -10,10 +10,7 @@ import Users from "../../lib/Users.js";
 import userMatching from "../../lib/UserMatching.js";
 import PendingMatches from "../../lib/PendingMatches.js";
 
-const quotePicker = () => {
-    const index = Math.floor(Math.random() * quotes.length);
-    return quotes[index];
-};
+const quotePicker = () => quotes[Math.floor(Math.random() * quotes.length)];
 
 const MenuScreen = ({ navigation }) => {
     const { user, changeUserActive, userActive } = useContext(UserContext);
@@ -35,16 +32,15 @@ const MenuScreen = ({ navigation }) => {
 
     // Adds trailing dot effect to searching
     useEffect(() => {
-        let dots = dot === maxDots ? 0 : dot + 1;
-        const interval = setInterval(() => {
-            setDot(dots);
-        }, 1000);
+        const interval = setInterval(() => setDot(dot === maxDots ? 0 : dot + 1), 1000);
+
         return () => clearInterval(interval);
     }, [dot]);
 
     // Timer to change quotes every 30s
     useEffect(() => {
         const interval = setInterval(() => setQuote(quotePicker()), 30000);
+
         return () => clearInterval(interval);
     }, [quote]);
 
@@ -72,13 +68,16 @@ const MenuScreen = ({ navigation }) => {
         return () => clearInterval(interval);
     }, [changeUserActive, navigation, user, userActive]);
 
+    useEffect(() => {
+        if (!user.questionnaire)
+            navigation.navigate("Settings", {
+                screen: "questionnaire",
+                initial: false,
+            });
+    });
+
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
-
-    if (!user.questionnaire)
-        navigation.navigate("Settings", {
-            screen: "questionnaire",
-        });
 
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
