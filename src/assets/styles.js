@@ -43,7 +43,6 @@ export default {
                 width: "100%",
             },
             matchMadeButton: {
-                marginBottom: "10%",
                 width: 120,
                 height: 25,
                 borderRadius: 110,
@@ -76,12 +75,12 @@ export default {
                 alignItems: "center",
             },
             matchMadeHeart: {
-                marginTop: "10%",
+                marginTop: "8%",
                 alignItems: "center",
                 marginBottom: "8%",
             },
             matchMadeHeader: {
-                marginTop: "5%",
+                marginTop: "3%",
                 color: "white",
                 fontSize: 30,
                 fontFamily: "sans-serif-light",
@@ -89,12 +88,6 @@ export default {
             matchMadeHeaderContent: {
                 margin: 5,
                 alignItems: "center",
-            },
-            matchMadeProfilePicture: {
-                width: "90%",
-                height: "80%",
-                marginTop: "15%",
-                marginBottom: "5%",
             },
             matchMadeText: {
                 color: "white",
@@ -278,6 +271,19 @@ export default {
                     width: 220,
                     height: 50,
                     borderRadius: 110,
+                },
+                modalBox: {
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgba(0,0,0,0.75)",
+                },
+                modalText: {
+                    color: "white",
+                    fontSize: 50,
+                    marginBottom: "10%",
+                    fontFamily: "sans-serif-light",
+                    textAlign: "center",
                 },
                 notificationText: {
                     color: "white",

@@ -124,7 +124,9 @@ const MatchMade = ({
                 </View>
                 {awaitingResponsePendingMatch ? (
                     <View style={styles.userLoggedStack.userLoggedStack.matchMadeContainer}>
-                        <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>Awaiting response{awaiting}</Text>
+                        <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                            Awaiting response{awaiting}
+                        </Text>
                     </View>
                 ) : (
                     <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>

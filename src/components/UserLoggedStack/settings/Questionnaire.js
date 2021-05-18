@@ -1,6 +1,14 @@
 import React, { useState, useContext } from "react";
 import "react-native-gesture-handler";
-import { Text, ImageBackground, View, ScrollView, TouchableOpacity } from "react-native";
+import {
+    Alert,
+    Text,
+    ImageBackground,
+    View,
+    Modal,
+    ScrollView,
+    TouchableOpacity,
+} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import RadioButton from "radio-buttons-react-native";
 import Slider from "@react-native-community/slider";
@@ -84,6 +92,7 @@ const genderPreferenceOptions = [
 ];
 
 const Questionnaire = ({ navigation }) => {
+    const [modalVisible, setModalVisible] = useState(false);
     const { user, refetchUser } = useContext(UserContext);
     const [interests, setInterests] = useState(
         user.questionnaire && user.questionnaire.interests
@@ -139,6 +148,33 @@ const Questionnaire = ({ navigation }) => {
                 resizeMode="cover">
                 <ScrollView>
                     <View style={styles.userLoggedStack.settings.settings.utilityBox}>
+                        <Modal animationType="fade" transparent={true} visible={modalVisible}>
+                            <View style={styles.userLoggedStack.settings.settings.modalBox}>
+                                <Text style={styles.userLoggedStack.settings.settings.modalText}>
+                                    Questionnaire Updated
+                                </Text>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        setModalVisible(false);
+                                    }}>
+                                    <LinearGradient
+                                        colors={["#e00ba0", "#46a0db"]}
+                                        style={
+                                            styles.userLoggedStack.settings.settings.linearGradient
+                                        }
+                                        start={{ x: 0.7, y: 0 }}>
+                                        <Text
+                                            style={
+                                                styles.userLoggedStack.settings.settings.buttonText
+                                            }>
+                                            {" "}
+                                            Close{" "}
+                                        </Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
+                        </Modal>
+
                         <View style={styles.userLoggedStack.settings.settings.headerContent}>
                             <Text style={styles.userLoggedStack.settings.settings.header}>
                                 QUESTIONNAIRE
@@ -213,7 +249,11 @@ const Questionnaire = ({ navigation }) => {
                                 styles.userLoggedStack.settings.settings
                                     .questionnaireButtonContainer
                             }>
-                            <TouchableOpacity onPress={updateUser}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    updateUser;
+                                    setModalVisible(true);
+                                }}>
                                 <LinearGradient
                                     colors={["#e00ba0", "#46a0db"]}
                                     style={styles.userLoggedStack.settings.settings.linearGradient}
