@@ -22,6 +22,23 @@ class Users {
             });
     }
 
+    static getOn(id) {
+        return fb
+            .ref(`/users/${id}`);
+    }
+
+    static async formatSnapshot(id, snapshot) {
+        const user = snapshot.val();
+
+        return user
+            ? {
+                id,
+                _id: id,
+                ...snapshot.val(),
+            }
+            : null;
+    }
+
     static async create(uid, data) {
         return fb
             .ref(`/users/${uid}`)

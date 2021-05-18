@@ -6,8 +6,6 @@ import auth from "@react-native-firebase/auth";
 import Users from "./lib/Users";
 import UserContext from "./lib/UserContext";
 
-import SplashScreen from "react-native-splash-screen";
-
 import UserUnloggedStack from "./components/UserUnloggedStack/UserUnloggedStack.js";
 import UserLoggedStack from "./components/UserLoggedStack/UserLoggedStack.js";
 import RegisterDetails from "./components/UserUnloggedStack/RegisterDetails.js";
@@ -50,8 +48,6 @@ const App = props => {
         });
     }
 
-    useEffect(() => SplashScreen.hide(), []);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => auth().onAuthStateChanged(onAuthStateChanged), []);
 
@@ -61,15 +57,23 @@ const App = props => {
         return () => AppState.removeEventListener("change", onAppStateChange);
     }, []);
 
+    useEffect(() => {
+        if (!firebaseUser) return;
+
+        const ref = Users.getOn(firebaseUser.uid);
+
+        const event = ref.on("value", async snapshot => {
+            Users.formatSnapshot(firebaseUser.uid, snapshot).then(setUser);
+            if (dbUserInitializing) setDBUserInitializing(false);
+        });
+
+        return () => ref.off("value", event);
+    }, [dbUserInitializing, firebaseUser]);
+
     if (appState !== "active" && userActive) changeUserActive(false);
 
     if (firebaseInitializing) return null;
     if (!firebaseUser) return <UserUnloggedStack />;
-    if (firebaseUser && !user)
-        Users.get(firebaseUser.uid).then(dbUser => {
-            setUser(dbUser);
-            if (dbUserInitializing) setDBUserInitializing(false);
-        });
 
     if (dbUserInitializing) return null;
     else if (!dbUserInitializing && !user)

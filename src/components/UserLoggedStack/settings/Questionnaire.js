@@ -93,7 +93,7 @@ const genderPreferenceOptions = [
 
 const Questionnaire = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    const { user, refetchUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [interests, setInterests] = useState(
         user.questionnaire && user.questionnaire.interests
             ? user.questionnaire.interests
@@ -137,7 +137,7 @@ const Questionnaire = ({ navigation }) => {
                 agePreference: sliderValue,
                 genderPreference,
             },
-        }).then(refetchUser);
+        });
     }
 
     return (
@@ -251,7 +251,7 @@ const Questionnaire = ({ navigation }) => {
                             }>
                             <TouchableOpacity
                                 onPress={() => {
-                                    updateUser;
+                                    updateUser();
                                     setModalVisible(true);
                                 }}>
                                 <LinearGradient
