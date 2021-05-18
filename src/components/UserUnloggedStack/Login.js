@@ -31,9 +31,6 @@ const LoginUserInput = () => {
                 onPress={() => {
                     auth()
                         .signInWithEmailAndPassword(email, password)
-                        .then(() => {
-                            console.log("User account created & signed in!");
-                        })
                         .catch(error => {
                             setLogError(error);
                         });

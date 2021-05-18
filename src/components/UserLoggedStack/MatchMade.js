@@ -58,9 +58,11 @@ const MatchMade = ({
 
         if (matchUser.matches && matchUser.matches[user.id] !== null)
             if (matchUser.matches[user.id] === false) {
+                const oldMatches = user.matches || {};
+
                 const userMatches = {
                     [match.id]: false,
-                    ...[user.matches || {}],
+                    ...oldMatches,
                 };
 
                 await Users.update(user.id, { matches: userMatches });
@@ -69,9 +71,11 @@ const MatchMade = ({
 
                 navigation.navigate("menu");
             } else {
+                const oldMatches = user.matches || {};
+
                 const userMatches = {
                     [match.id]: matchUser.matches[user.id],
-                    ...[user.matches || {}],
+                    ...oldMatches,
                 };
 
                 await Users.update(user.id, { matches: userMatches });

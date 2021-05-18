@@ -85,10 +85,6 @@ function tanimotoDistance(C, A, B) {
 }
 
 function combineScores(interestScore, lifestyleScore, otherScore) {
-    // console.log("I-Score", interestScore);
-    // console.log("L-Score", lifestyleScore);
-    // console.log("O-Score", otherScore);
-
     const totalScore = interestScore + lifestyleScore / 2;
 
     return totalScore > minThres && otherScore;

@@ -67,7 +67,6 @@ class Matches {
     }
 
     static async appendMessages(id, oldMessages, newMessages) {
-        console.log(newMessages);
         return fb
             .ref(`/matches/${id}`)
             .update({ messages: [...oldMessages, ...newMessages] })
