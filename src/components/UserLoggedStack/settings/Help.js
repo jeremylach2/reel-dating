@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "react-native-gesture-handler";
-import {
-    Text,
-    ImageBackground,
-    View,
-    TextInput,
-    TouchableOpacity,
-} from "react-native";
+import { Text, ImageBackground, View, TextInput, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import styles from "../../../assets/styles.js";
+import auth from "@react-native-firebase/auth";
 
-const Help = ({ navigation }) => {
-    const [problem, sendProblem] = React.useState("");
+import styles from "../../../assets/styles.js";
+import SupportRequests from "../../../lib/SupportRequests";
+
+const Help = () => {
+    const [problem, setProblem] = useState("");
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>
@@ -19,19 +16,13 @@ const Help = ({ navigation }) => {
                 source={require("../../../assets/images/background-settings.png")}
                 style={styles.userLoggedStack.settings.settings.background}
                 resizeMode="cover">
-                <View
-                    style={styles.userLoggedStack.settings.settings.utilityBox}>
-                    <View
-                        style={
-                            styles.userLoggedStack.settings.settings
-                                .textInputContainer
-                        }>
+                <View style={styles.userLoggedStack.settings.settings.utilityBox}>
+                    <View style={styles.userLoggedStack.settings.settings.textInputContainer}>
                         <TextInput
-                            style={
-                                styles.userLoggedStack.settings.settings
-                                    .textInputBox
-                            }
+                            style={styles.userLoggedStack.settings.settings.textInputBox}
                             color="white"
+                            onChangeText={text => setProblem(text)}
+                            value={problem}
                             placeholder="Type Your Problem Here..."
                             placeholderTextColor="white"
                             multiline={true}
@@ -40,23 +31,19 @@ const Help = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View
-                    style={
-                        styles.userLoggedStack.settings.settings.buttonContainer
-                    }>
-                    <TouchableOpacity>
+                <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            SupportRequests.create({
+                                message: problem,
+                                uid: auth().currentUser.uid,
+                            });
+                        }}>
                         <LinearGradient
                             colors={["#ff79cd", "#aa2ee6"]}
-                            style={
-                                styles.userLoggedStack.settings.settings
-                                    .linearGradient
-                            }
+                            style={styles.userLoggedStack.settings.settings.linearGradient}
                             start={{ x: 0.7, y: 0 }}>
-                            <Text
-                                style={
-                                    styles.userLoggedStack.settings.settings
-                                        .buttonText
-                                }>
+                            <Text style={styles.userLoggedStack.settings.settings.buttonText}>
                                 Send Problem
                             </Text>
                         </LinearGradient>

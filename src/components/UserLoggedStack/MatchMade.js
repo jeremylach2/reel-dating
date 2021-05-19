@@ -1,12 +1,110 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import "react-native-gesture-handler";
-import { Text, ImageBackground, View, TouchableOpacity, Modal, Animated } from "react-native";
+import { Text, ImageBackground, View, TouchableOpacity, Animated } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import LinearGradient from "react-native-linear-gradient";
-import styles from "../../assets/styles.js";
 
-const MatchMade = ({ match }) => {
+import UserContext from "../../lib/UserContext.js";
+import Users from "../../lib/Users";
+import PendingMatches from "../../lib/PendingMatches";
+import styles from "../../assets/styles.js";
+import Matches from "../../lib/Matches.js";
+
+// Screen when a match is found.
+const MatchMade = ({
+    navigation,
+    route: {
+        params: { match },
+    },
+}) => {
+    const { user } = useContext(UserContext);
+    const [awaitingResponsePendingMatch, setAwaitingResponsePendingMatch] = useState();
+    const [hadAwaiting, setHadAwaiting] = useState(false);
+    const [myPendingMatch, setMyPendingMatch] = useState();
+    const [dot, setDot] = useState(1);
+    const maxDots = 5;
+
+    async function createMatch() {
+        PendingMatches.delete(user.id);
+
+        const newMatch = await Matches.create(match.id, user.id);
+
+        const userMatches = {
+            [match.id]: newMatch.id,
+            ...[user.matches || {}],
+        };
+
+        await Users.update(user.id, { matches: userMatches });
+
+        navigation.navigate("Matches");
+    }
+
+    async function declineMatch() {
+        PendingMatches.delete(user.id);
+
+        const userMatches = {
+            [match.id]: false,
+            ...[user.matches || {}],
+        };
+
+        await Users.update(user.id, { matches: userMatches });
+
+        navigation.navigate("menu");
+    }
+
+    // Looks for a response from match.
+    async function checkMatch() {
+        const matchUser = await Users.get(match.id);
+
+        if (matchUser.matches && matchUser.matches[user.id] !== null)
+            if (matchUser.matches[user.id] === false) {
+                const oldMatches = user.matches || {};
+
+                const userMatches = {
+                    [match.id]: false,
+                    ...oldMatches,
+                };
+
+                await Users.update(user.id, { matches: userMatches });
+
+                setHadAwaiting(false);
+
+                navigation.navigate("menu");
+            } else {
+                const oldMatches = user.matches || {};
+
+                const userMatches = {
+                    [match.id]: matchUser.matches[user.id],
+                    ...oldMatches,
+                };
+
+                await Users.update(user.id, { matches: userMatches });
+
+                setHadAwaiting(false);
+
+                navigation.navigate("Matches");
+            }
+    }
+
+    // Adds trailing dot effect to searching
+    useEffect(() => {
+        let dots = dot === maxDots ? 0 : dot + 1;
+        const interval = setInterval(() => {
+            setDot(dots);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [dot]);
+
+    let awaiting = dot === 0 ? "" : ".".repeat(dot);
+
+    useEffect(() => {
+        PendingMatches.get(user.id).then(setMyPendingMatch);
+    }, []);
+
+    PendingMatches.get(match.id).then(setAwaitingResponsePendingMatch);
+
+    if (hadAwaiting && !awaitingResponsePendingMatch) checkMatch();
+
     return (
         <View style={styles.userLoggedStack.userLoggedStack.container}>
             <ImageBackground
@@ -26,25 +124,47 @@ const MatchMade = ({ match }) => {
                 <View style={styles.userLoggedStack.userLoggedStack.matchMadeHeart}>
                     <HeartAnim />
                 </View>
-                <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
-                    <TouchableOpacity>
-                        <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
-                            <MaterialCIcons name="heart-broken" size={60} color="white" />
-                            <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
-                                Decline
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
+                {awaitingResponsePendingMatch ? (
+                    <View style={styles.userLoggedStack.userLoggedStack.matchMadeContainer}>
+                        <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                            Awaiting response{awaiting}
+                        </Text>
+                    </View>
+                ) : (
+                    <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonContainer}>
+                        <TouchableOpacity onPress={declineMatch}>
+                            <View
+                                style={
+                                    styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
+                                }>
+                                <MaterialCIcons name="heart-broken" size={60} color="white" />
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                                    Decline
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity>
-                        <View style={styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle}>
-                            <MaterialCIcons name="heart" size={60} color="white" />
-                            <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
-                                Accept
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            onPress={() => {
+                                if (myPendingMatch) createMatch();
+                                else
+                                    PendingMatches.create(match.id, user.id).then(pend => {
+                                        setAwaitingResponsePendingMatch(pend);
+                                        setHadAwaiting(true);
+                                    });
+                            }}>
+                            <View
+                                style={
+                                    styles.userLoggedStack.userLoggedStack.matchMadeButtonCircle
+                                }>
+                                <MaterialCIcons name="heart" size={60} color="white" />
+                                <Text style={styles.userLoggedStack.userLoggedStack.matchMadeText}>
+                                    Accept
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                )}
             </ImageBackground>
         </View>
     );

@@ -43,7 +43,6 @@ export default {
                 width: "100%",
             },
             matchMadeButton: {
-                marginBottom: "10%",
                 width: 120,
                 height: 25,
                 borderRadius: 110,
@@ -69,13 +68,19 @@ export default {
                 alignItems: "center",
                 fontSize: 15,
             },
+            matchMadeContainer: {
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+            },
             matchMadeHeart: {
-                marginTop: "10%",
+                marginTop: "8%",
                 alignItems: "center",
                 marginBottom: "8%",
             },
             matchMadeHeader: {
-                marginTop: "5%",
+                marginTop: "3%",
                 color: "white",
                 fontSize: 30,
                 fontFamily: "sans-serif-light",
@@ -83,12 +88,6 @@ export default {
             matchMadeHeaderContent: {
                 margin: 5,
                 alignItems: "center",
-            },
-            matchMadeProfilePicture: {
-                width: "90%",
-                height: "80%",
-                marginTop: "15%",
-                marginBottom: "5%",
             },
             matchMadeText: {
                 color: "white",
@@ -244,12 +243,6 @@ export default {
                     fontSize: 20,
                 },
                 headerContent: {
-                    /* Notifications issue here, Reece can explain.
-                    borderColor: "white",
-                    margin: 10,
-                    alignItems: "center",
-                    */
-
                     borderBottomWidth: 1,
                     borderColor: "white",
                     margin: 10,
@@ -272,6 +265,19 @@ export default {
                     width: 220,
                     height: 50,
                     borderRadius: 110,
+                },
+                modalBox: {
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgba(0,0,0,0.75)",
+                },
+                modalText: {
+                    color: "white",
+                    fontSize: 50,
+                    marginBottom: "10%",
+                    fontFamily: "sans-serif-light",
+                    textAlign: "center",
                 },
                 notificationText: {
                     color: "white",
@@ -475,6 +481,13 @@ export default {
                 resizeMode: "cover",
                 justifyContent: "center",
             },
+            joinButton: {
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                width: "100%",
+                marginTop: "5%",
+            },
             loginButton: {
                 backgroundColor: "#FFFFFF",
                 borderRadius: 4,
@@ -501,6 +514,9 @@ export default {
                 justifyContent: "center",
                 alignContent: "center",
                 height: 400,
+            },
+            questionnaireRadioContainer: {
+                width: "90%",
             },
             resetButton: {
                 backgroundColor: "#FFFFFF",

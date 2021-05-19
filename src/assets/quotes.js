@@ -1,7 +1,7 @@
 export default [
     "\"I love you and I like you.\" – Parks and Recreation",
-    "\"I like you very much. Just as you are.\" – Bridget Jones\'s Diary",
-    "\"Love me—that\'s all I ask of you.\" – Phantom of the Opera",
+    "\"I like you very much. Just as you are.\" – Bridget Jones's Diary",
+    "\"Love me—that's all I ask of you.\" – Phantom of the Opera",
     "\"True love stories never have endings.\" - Richard Bach",
     "\"At the touch of love everyone becomes a poet.\" - Plato",
     "\"We accept the love we think we deserve.\" - Stephen Chbosky",

@@ -1,13 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, ImageBackground, View, Image, TextInput, TouchableOpacity } from "react-native";
 
 import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
 
 const RegisterUserInput = () => {
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [logError, setLogError] = React.useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [logError, setLogError] = useState();
 
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.formContent}>
@@ -31,9 +31,6 @@ const RegisterUserInput = () => {
                 onPress={() => {
                     auth()
                         .createUserWithEmailAndPassword(email, password)
-                        .then(() => {
-                            console.log("User account created & signed in!");
-                        })
                         .catch(error => {
                             setLogError(error);
                         });

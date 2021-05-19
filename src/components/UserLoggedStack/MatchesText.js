@@ -1,69 +1,74 @@
-import React, { useState, useEffect, useCallback } from "react";
-import {
-    Text,
-    ImageBackground,
-    View,
-    Image,
-    FlatList,
-    TouchableNativeFeedback,
-} from "react-native";
-import styles from "../../assets/styles.js";
-import { GiftedChat } from 'react-native-gifted-chat';
-import { Dimensions } from 'react-native';
-let chat = [
-    {
-        from: "123",
-        msg: "ajkdhfal",
-        date: 1620087330249,
-    },
-    {
-        from: "321",
-        msg: "asdfasdf",
-        date: 1620087330250,
-    },
-];
+import React, { useState, useContext, useEffect } from "react";
+import { GiftedChat } from "react-native-gifted-chat";
 
-const MatchesText = () => {
-    const [messages, setMessages] = useState([]);
+import Matches from "../../lib/Matches.js";
+import UserContext from "../../lib/UserContext.js";
+
+// Text screen chat between user and match.
+const MatchesText = ({
+    navigation,
+    route: {
+        params: { match: matchItem },
+    },
+}) => {
+    const { user } = useContext(UserContext);
+    const [match, setMatch] = useState(matchItem);
+    const [messages, setMessages] = useState(match.messages || []);
+    const [giftedMessages, setGiftedMessages] = useState([]);
+
+    function newMessage(newMessages) {
+        const messagesToPush = newMessages.map(m => {
+            return {
+                ...m,
+                createdAt: Date.now(),
+                user: m.user.id,
+            };
+        });
+
+        Matches.appendMessages(match.id, messages, messagesToPush).then(m =>
+            setMessages(m.messages.sort((a, b) => a.createdAt <= b.createdAt))
+        );
+    }
+
+    // Disables tab bar in this screen.
+    useEffect(() => {
+        const parent = navigation.dangerouslyGetParent();
+
+        parent.setOptions({
+            tabBarVisible: false,
+        });
+
+        return () =>
+            parent.setOptions({
+                tabBarVisible: true,
+            });
+    }, []);
 
     useEffect(() => {
-        setMessages([
-            {
-                _id: 1,
-                text: 'MAGA',
-                createdAt: new Date(),
-                user: {
-                    _id: 2,
-                    name: 'Reece',
-                    avatar: 'https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/05/12/104466932-PE_Color.530x298.jpg?v=1591298823',
-                },
-            },
-            {
-                _id: 2,
-                text: 'Whats Good',
-                createdAt: new Date(),
-                user: {
-                    _id: 1,
-                    name: 'Jackson',
-                },
-            },
-        ]);
+        Matches.getGiftedMessages(
+            match,
+            messages.sort((a, b) => a.createdAt <= b.createdAt)
+        )
+            .then(setGiftedMessages)
+            .catch(console.error);
+    }, [match, messages]);
+
+    useEffect(() => {
+        setMessages(match.messages || []);
+    }, [match]);
+
+    // Dynamically updates match, including messages.
+    useEffect(() => {
+        const ref = Matches.getOn(matchItem.id);
+
+        const event = ref.on("value", async snapshot => {
+            Matches.formatSnapshot(matchItem.id, snapshot).then(setMatch);
+        });
+
+        return () => ref.off("value", event);
     }, []);
 
-    const onSend = useCallback((messages = []) => {
-        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-    }, []);
-
-    return (
-        <GiftedChat
-            messages={messages}
-            onSend={messages => onSend(messages)}
-            user={{
-                _id: 1,
-            }}
-        />
-    );
+    return <GiftedChat messages={giftedMessages} onSend={newMessage} user={user} />;
 };
-
 
 export default MatchesText;

@@ -3,8 +3,6 @@ import { Text, ImageBackground, View, Image, TextInput, TouchableOpacity } from 
 import RadioButton from "radio-buttons-react-native";
 
 import Users from "../../lib/Users";
-
-import auth from "@react-native-firebase/auth";
 import styles from "../../assets/styles.js";
 
 const genderOptions = [
@@ -18,7 +16,7 @@ const genderOptions = [
     },
 ];
 
-const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
+const RegisterDetailsUserInput = ({ uid }) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [age, setAge] = useState("");
@@ -46,29 +44,33 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
                 placeholderTextColor="black"
                 keyboardType="numeric"
             />
-            <View style={styles.userLoggedStack.settings.settings.questionnaireRadioContainer}>
-                <RadioButton
-                    data={genderOptions}
-                    deactiveColor="white"
-                    activeColor="white"
-                    boxDeactiveBgColor="transparent"
-                    boxActiveBgColor="rgba(22, 22, 22, 0.2)"
-                    textColor="white"
-                    initial={gender}
-                    selectedBtn={e => setGender(e.value)}
-                />
+            <View style={styles.userUnloggedStack.userUnloggedStack.utilityBox}>
+                <View
+                    style={styles.userUnloggedStack.userUnloggedStack.questionnaireRadioContainer}>
+                    <RadioButton
+                        data={genderOptions}
+                        deactiveColor="white"
+                        activeColor="white"
+                        boxDeactiveBgColor="transparent"
+                        boxActiveBgColor="rgba(22, 22, 22, 0.2)"
+                        textColor="white"
+                        initial={gender}
+                        selectedBtn={e => setGender(e.value)}
+                    />
+                </View>
             </View>
 
             <TouchableOpacity
+                style={styles.userUnloggedStack.userUnloggedStack.joinButton}
                 onPress={() => {
-                    Users.createUserWithUID(uid, {
+                    Users.create(uid, {
                         name: {
                             first: firstName,
                             last: lastName,
                         },
                         age: +age,
                         gender,
-                    }).then(onUserCreate);
+                    });
                 }}>
                 <View style={styles.userUnloggedStack.userUnloggedStack.loginButton}>
                     <Text style={styles.userUnloggedStack.userUnloggedStack.loginText}>
@@ -86,7 +88,7 @@ const RegisterDetailsUserInput = ({ uid, onUserCreate }) => {
     );
 };
 
-const RegisterQuestionnaire = ({ navigation, uid, onUserCreate }) => {
+const RegisterQuestionnaire = ({ navigation, uid }) => {
     return (
         <View style={styles.userUnloggedStack.userUnloggedStack.container}>
             <ImageBackground
@@ -101,7 +103,7 @@ const RegisterQuestionnaire = ({ navigation, uid, onUserCreate }) => {
                         <Text style={styles.userUnloggedStack.userUnloggedStack.title}>
                             Your Information
                         </Text>
-                        <RegisterDetailsUserInput uid={uid} onUserCreate={onUserCreate} />
+                        <RegisterDetailsUserInput uid={uid} />
                     </View>
                 </View>
             </ImageBackground>

@@ -1,22 +1,22 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState, useEffect, useContext } from "react";
 import { Text, ImageBackground, View, Image, Animated, TouchableOpacity } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Pulse from "react-native-pulse";
+
 import quotes from "../../assets/quotes.js";
 import styles from "../../assets/styles.js";
 import UserContext from "../../lib/UserContext.js";
+import Users from "../../lib/Users.js";
 import userMatching from "../../lib/UserMatching.js";
+import PendingMatches from "../../lib/PendingMatches.js";
 
-const quotePicker = () => {
-    const index = Math.floor(Math.random() * quotes.length);
-    return quotes[index];
-};
+const quotePicker = () => quotes[Math.floor(Math.random() * quotes.length)];
 
-const MenuScreen = () => {
+const MenuScreen = ({ navigation }) => {
     const { user, changeUserActive, userActive } = useContext(UserContext);
     const [dot, setDot] = useState(1);
     const [quote, setQuote] = useState(quotePicker());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const AnimOpacity = new Animated.Value(0.5);
     const maxDots = 5;
@@ -32,32 +32,49 @@ const MenuScreen = () => {
 
     // Adds trailing dot effect to searching
     useEffect(() => {
-        let dots = dot === maxDots ? 0 : dot + 1;
-        const interval = setInterval(() => {
-            setDot(dots);
-        }, 1000);
+        const interval = setInterval(() => setDot(dot === maxDots ? 0 : dot + 1), 1000);
+
         return () => clearInterval(interval);
     }, [dot]);
 
     // Timer to change quotes every 30s
     useEffect(() => {
         const interval = setInterval(() => setQuote(quotePicker()), 30000);
+
         return () => clearInterval(interval);
     }, [quote]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (!userActive) return;
+        if (!userActive) return;
 
-            const userMatch = userMatching(user);
+        const interval = setInterval(async () => {
+            const currUserMatch = await PendingMatches.get(user.id);
 
-            console.log("User Match?", userMatch);
+            if (currUserMatch)
+                navigation.navigate("matchmade", {
+                    match: await Users.get(currUserMatch.initial_user_id),
+                });
+            else
+                userMatching(user)
+                    .then(match => {
+                        if (!match) return;
 
-            if (!userMatch) return;
-            navigator.navigate("MatchMade", { match: userMatch });
-        }, 10000);
+                        changeUserActive(false);
+                        navigation.navigate("matchmade", { match });
+                    })
+                    .catch(console.error);
+        }, 1000);
+
         return () => clearInterval(interval);
-    }, []);
+    }, [changeUserActive, navigation, user, userActive]);
+
+    useEffect(() => {
+        if (!user.questionnaire)
+            navigation.navigate("Settings", {
+                screen: "questionnaire",
+                initial: false,
+            });
+    });
 
     let currStatus = userActive ? "Searching" : "Not Searching";
     let searching = dot === 0 ? "" : ".".repeat(dot);
@@ -77,7 +94,6 @@ const MenuScreen = () => {
                         {currStatus}
                         {userActive ? searching : ""}
                     </Text>
-
                     <PowerButton
                         userActive={userActive}
                         AnimOpacity={AnimOpacity}

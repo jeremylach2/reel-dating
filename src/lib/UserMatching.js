@@ -1,15 +1,20 @@
+import PendingMatches from "./PendingMatches";
 import Users from "./Users";
 
 const minThres = 0.6;
 
+function objectToTrueArray(obj) {
+    return Object.keys(obj).filter(k => obj[k]);
+}
+
 function driverCompare(otherUser, currUser) {
     const interestScore = compareInterests(
-        currUser.questionnaire.interests,
-        otherUser.questionnaire.interests
+        objectToTrueArray(currUser.questionnaire.interests),
+        objectToTrueArray(otherUser.questionnaire.interests)
     );
     const lifestyleScore = compareLifestyle(
-        currUser.questionnaire.lifestyle,
-        otherUser.questionnaire.lifestyle
+        objectToTrueArray(currUser.questionnaire.lifestyle),
+        objectToTrueArray(otherUser.questionnaire.lifestyle)
     );
     const otherScore = compareOther(currUser, otherUser);
 
@@ -61,7 +66,7 @@ function compareOther(A, B) {
 }
 
 function ageMatches(AprefAge, BprefAge, AgeA, AgeB, ageCuttoff) {
-    return !(
+    return (
         AprefAge + ageCuttoff >= AgeB &&
         AprefAge - ageCuttoff <= AgeB &&
         BprefAge + ageCuttoff >= AgeA &&
@@ -80,25 +85,38 @@ function tanimotoDistance(C, A, B) {
 }
 
 function combineScores(interestScore, lifestyleScore, otherScore) {
-    // console.log("I-Score", interestScore);
-    // console.log("L-Score", lifestyleScore);
-    // console.log("O-Score", otherScore);
-
     const totalScore = interestScore + lifestyleScore / 2;
 
     return totalScore > minThres && otherScore;
+}
+
+// to prevent previous matches from coming up multiple times
+export function alreadyMatched(user, otherUser) {
+    if (!user.matches && !otherUser.matches) return false;
+    if (user.matches && user.matches[otherUser.id] !== null) return true;
+    if (otherUser.matches && otherUser.matches[user.id] !== null) return true;
+
+    return false;
 }
 
 // This function contains the matchmaking algorithm using the
 // Tanimoto Distance forumla and our own specifications.
 export default async function (currentUser) {
     const users = await Users.getAll();
-    const otherActiveUsers = users.filter(u => u.id !== currentUser.id && u.active);
+    const otherActiveUsers = users.filter(
+        u => u.id !== currentUser.id && u.active && !alreadyMatched(currentUser, u)
+    );
+
+    // remove people they already matched with!
+    // sorry Bouchard :(
 
     for (let i = 0; i < otherActiveUsers.length; i++) {
-        const userMatches = driverCompare(otherActiveUsers[i], currentUser);
+        const user = otherActiveUsers[i];
+        const userMatches = driverCompare(user, currentUser);
 
-        if (userMatches) return otherActiveUsers[i];
+        if (await PendingMatches.get(user.id)) continue;
+
+        if (userMatches) return user;
     }
 
     return null;
