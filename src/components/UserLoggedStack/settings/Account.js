@@ -11,8 +11,10 @@ import {
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
+import auth from "@react-native-firebase/auth";
 
 import styles from "../../../assets/styles.js";
+import Users from "../../../lib/Users";
 import UserContext from "../../../lib/UserContext";
 
 // Account information of user
@@ -64,7 +66,15 @@ const Account = () => {
                         </View>
                     </View>
                     <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                Users.update(auth().currentUser.uid, {
+                                    name: {
+                                        first: firstName,
+                                        last: lastName,
+                                    },
+                                });
+                            }}>
                             <LinearGradient
                                 colors={["#ff79cd", "#aa2ee6"]}
                                 style={styles.userLoggedStack.settings.settings.linearGradient}
