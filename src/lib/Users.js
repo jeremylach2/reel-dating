@@ -86,6 +86,12 @@ class Users {
             };
         }));
     }
+
+    static async delete(id) {
+        return fb
+            .ref(`/users/${id}`)
+            .remove();
+    }
 }
 
 export default Users;

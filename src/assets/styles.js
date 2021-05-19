@@ -243,12 +243,6 @@ export default {
                     fontSize: 20,
                 },
                 headerContent: {
-                    /* Notifications issue here, Reece can explain.
-                    borderColor: "white",
-                    margin: 10,
-                    alignItems: "center",
-                    */
-
                     borderBottomWidth: 1,
                     borderColor: "white",
                     margin: 10,

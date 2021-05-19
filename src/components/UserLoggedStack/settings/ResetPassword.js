@@ -1,25 +1,22 @@
 import React, { useContext, useState } from "react";
-import "react-native-gesture-handler";
 import {
-    Text,
-    ImageBackground,
-    View,
     Image,
-    TextInput,
+    Text,
+    View,
     ScrollView,
+    TextInput,
     TouchableOpacity,
+    ImageBackground,
 } from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import LinearGradient from "react-native-linear-gradient";
+import auth from "@react-native-firebase/auth";
 
 import styles from "../../../assets/styles.js";
-import UserContext from "../../../lib/UserContext";
+import UserContext from "../../../lib/UserContext.js";
 
-// Account information of user
-const Account = () => {
+const ForgotPassword = ({ navigation }) => {
     const { user } = useContext(UserContext);
-    const [firstName, setFirstName] = useState(user.name.first);
-    const [lastName, setLastName] = useState(user.name.last);
+    const [logError, setLogError] = useState(" ");
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>
@@ -34,44 +31,31 @@ const Account = () => {
                             style={styles.userLoggedStack.settings.settings.profilePicture}
                         />
                         <View style={styles.userLoggedStack.settings.settings.itemContainer}>
-                            <View style={styles.userLoggedStack.settings.settings.headerContent}>
-                                <MaterialIcons name="account" size={40} color="white" />
-                            </View>
                             <View style={styles.userLoggedStack.settings.settings.itemContent}>
                                 <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                    First Name:{" "}
+                                    Reset by Email
                                 </Text>
-                                <TextInput
-                                    color="white"
-                                    onChangeText={text => setFirstName(text)}
-                                    value={firstName}
-                                    placeholder="First Name Sample"
-                                    placeholderTextColor="white"
-                                />
-                            </View>
-                            <View style={styles.userLoggedStack.settings.settings.itemContent}>
-                                <Text style={styles.userLoggedStack.settings.settings.accountText}>
-                                    Last Name:{" "}
-                                </Text>
-                                <TextInput
-                                    color="white"
-                                    onChangeText={text => setLastName(text)}
-                                    value={lastName}
-                                    placeholder="Last Name Sample"
-                                    placeholderTextColor="white"
-                                />
                             </View>
                         </View>
+                        {logError && (
+                            <Text style={styles.userUnloggedStack.userUnloggedStack.loginErrorText}>
+                                {logError}
+                            </Text>
+                        )}
                     </View>
                     <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                auth().sendPasswordResetEmail(auth().currentUser.email);
+                                setLogError("You should receive an email shortly.");
+                            }}>
                             <LinearGradient
                                 colors={["#ff79cd", "#aa2ee6"]}
                                 style={styles.userLoggedStack.settings.settings.linearGradient}
                                 start={{ x: 0.7, y: 0 }}>
                                 <Text style={styles.userLoggedStack.settings.settings.buttonText}>
                                     {" "}
-                                    Change{" "}
+                                    Request Email{" "}
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -82,4 +66,4 @@ const Account = () => {
     );
 };
 
-export default Account;
+export default ForgotPassword;

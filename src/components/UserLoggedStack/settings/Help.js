@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "react-native-gesture-handler";
 import { Text, ImageBackground, View, TextInput, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import auth from "@react-native-firebase/auth";
 
 import styles from "../../../assets/styles.js";
+import SupportRequests from "../../../lib/SupportRequests";
 
-const Help = ({ navigation }) => {
-    const [problem, sendProblem] = React.useState("");
+const Help = () => {
+    const [problem, setProblem] = useState("");
 
     return (
         <View style={styles.userLoggedStack.settings.settings.container}>
@@ -19,6 +21,8 @@ const Help = ({ navigation }) => {
                         <TextInput
                             style={styles.userLoggedStack.settings.settings.textInputBox}
                             color="white"
+                            onChangeText={text => setProblem(text)}
+                            value={problem}
                             placeholder="Type Your Problem Here..."
                             placeholderTextColor="white"
                             multiline={true}
@@ -28,7 +32,13 @@ const Help = ({ navigation }) => {
                 </View>
 
                 <View style={styles.userLoggedStack.settings.settings.buttonContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            SupportRequests.create({
+                                message: problem,
+                                uid: auth().currentUser.uid,
+                            });
+                        }}>
                         <LinearGradient
                             colors={["#ff79cd", "#aa2ee6"]}
                             style={styles.userLoggedStack.settings.settings.linearGradient}

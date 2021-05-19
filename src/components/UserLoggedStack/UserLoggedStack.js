@@ -11,10 +11,10 @@ import MatchMade from "./MatchMade";
 import MatchesText from "./MatchesText";
 import Options from "./settings/Options";
 import Account from "./settings/Account";
-import Notifications from "./settings/Notifications";
 import Help from "./settings/Help";
 import Questionnaire from "./settings/Questionnaire";
 import PrivacySecurity from "./settings/PrivacySecurity";
+import ResetPassword from "./settings/ResetPassword";
 
 const MenuStack = createStackNavigator();
 
@@ -85,11 +85,6 @@ function SettingsStackScreen() {
                 options={{ title: "ACCOUNT" }}
             />
             <SettingsStack.Screen
-                name="notifications"
-                component={Notifications}
-                options={{ title: "NOTIFICATIONS" }}
-            />
-            <SettingsStack.Screen
                 name="questionnaire"
                 component={Questionnaire}
                 options={{ headerShown: false }}
@@ -98,6 +93,11 @@ function SettingsStackScreen() {
                 name="privacy"
                 component={PrivacySecurity}
                 options={{ title: "PRIVACY" }}
+            />
+            <SettingsStack.Screen
+                name="resetpassword"
+                component={ResetPassword}
+                options={{ title: "PASSWORD" }}
             />
             <SettingsStack.Screen name="help" component={Help} options={{ title: "HELP" }} />
         </SettingsStack.Navigator>

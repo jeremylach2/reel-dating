@@ -31,16 +31,6 @@ const Options = ({ navigation }) => {
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback
-                            onPress={() => navigation.navigate("notifications")}>
-                            <View style={styles.userLoggedStack.settings.settings.optionsButton}>
-                                <MaterialIcons name="notifications" size={25} color="white" />
-                                <Text style={styles.userLoggedStack.settings.settings.optionsText}>
-                                    Notifications
-                                </Text>
-                                <AntDesign name="right" size={25} color="white" />
-                            </View>
-                        </TouchableNativeFeedback>
-                        <TouchableNativeFeedback
                             onPress={() => navigation.navigate("questionnaire")}>
                             <View style={styles.userLoggedStack.settings.settings.optionsButton}>
                                 <AntDesign name="questioncircle" size={25} color="white" />
